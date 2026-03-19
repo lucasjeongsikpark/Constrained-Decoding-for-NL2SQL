@@ -1,8 +1,8 @@
 [
   {
-    "instance_id": "wikisql_train_41905",
-    "db": "2-11960788-1",
-    "question": "What county has a CERCLIS ID of scd037405362?",
+    "instance_id": "wikisql_train_425",
+    "db": "1-10715317-2",
+    "question": "What is the title of the episode directed by Peter Markle and written by Jerry Stahl?",
     "schema": {
       "table_names_original": [
         "table"
@@ -10,26 +10,36 @@
       "column_names_original": [
         [
           0,
-          "CERCLIS ID"
+          "No. in series"
         ],
         [
           0,
-          "Name"
+          "No. in season"
         ],
         [
           0,
-          "County"
+          "Title"
         ],
         [
           0,
-          "Proposed"
+          "Directed by"
         ],
         [
           0,
-          "Listed"
+          "Written by"
+        ],
+        [
+          0,
+          "Original air date"
+        ],
+        [
+          0,
+          "U.S. viewers (millions)"
         ]
       ],
       "column_types": [
+        "real",
+        "real",
         "text",
         "text",
         "text",
@@ -37,57 +47,7 @@
         "text"
       ]
     },
-    "gold_sql_query": "SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'"
-  },
-  {
-    "instance_id": "wikisql_train_7296",
-    "db": "1-19643196-1",
-    "question": "What year had an Allison B400R transmission and a model of BRT?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Fleet #"
-        ],
-        [
-          0,
-          "Year"
-        ],
-        [
-          0,
-          "Manufacture"
-        ],
-        [
-          0,
-          "Model"
-        ],
-        [
-          0,
-          "Length (ft)"
-        ],
-        [
-          0,
-          "Engine"
-        ],
-        [
-          0,
-          "Transmission"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "real",
-        "text",
-        "text",
-        "real",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'"
+    "gold_sql_query": "SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl'"
   },
   {
     "instance_id": "wikisql_train_1639",
@@ -140,9 +100,9 @@
     "gold_sql_query": "SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'"
   },
   {
-    "instance_id": "wikisql_train_48598",
-    "db": "2-18618672-2",
-    "question": "What team was in 1st plate in a year later than 1956?",
+    "instance_id": "wikisql_train_1739",
+    "db": "1-12251936-1",
+    "question": "How many times was the GFR 2006 equal to 53.2?",
     "schema": {
       "table_names_original": [
         "table"
@@ -150,251 +110,26 @@
       "column_names_original": [
         [
           0,
-          "Year"
+          "County"
         ],
         [
           0,
-          "1st Place Team"
+          "Live births 2006"
         ],
         [
           0,
-          "2nd Place Team"
+          "GFR 2006"
         ],
         [
           0,
-          "3rd Place Team"
+          "TFR 2006"
         ],
         [
           0,
-          "4th Place Team"
-        ],
-        [
-          0,
-          "Host Location"
+          "Whites as % of Pop."
         ]
       ],
       "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT 1st Place Team FROM table WHERE Year > 1956"
-  },
-  {
-    "instance_id": "wikisql_train_18024",
-    "db": "2-14871719-1",
-    "question": "Which Region has a Date of early september 1999?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Date"
-        ],
-        [
-          0,
-          "Label"
-        ],
-        [
-          0,
-          "Region"
-        ],
-        [
-          0,
-          "Format"
-        ],
-        [
-          0,
-          "Catalog"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Region FROM table WHERE Date = 'early september 1999'"
-  },
-  {
-    "instance_id": "wikisql_train_16049",
-    "db": "2-1004125-4",
-    "question": "What MLS team is affiliated with yale university?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Pick #"
-        ],
-        [
-          0,
-          "MLS Team"
-        ],
-        [
-          0,
-          "Player"
-        ],
-        [
-          0,
-          "Position"
-        ],
-        [
-          0,
-          "Affiliation"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT MLS Team FROM table WHERE Affiliation = 'yale university'"
-  },
-  {
-    "instance_id": "wikisql_train_14628",
-    "db": "1-28241890-2",
-    "question": "How many next in lines had heirs of Archduke Karl?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Emperor"
-        ],
-        [
-          0,
-          "Heir"
-        ],
-        [
-          0,
-          "Relationship to emperor and status"
-        ],
-        [
-          0,
-          "Became heir"
-        ],
-        [
-          0,
-          "Ceased to be heir"
-        ],
-        [
-          0,
-          "Next in line"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT COUNT(Next in line) FROM table WHERE Heir = 'Archduke Karl'"
-  },
-  {
-    "instance_id": "wikisql_train_9144",
-    "db": "1-22360-3",
-    "question": "Name the silver for baseball",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Discipline"
-        ],
-        [
-          0,
-          "Contested"
-        ],
-        [
-          0,
-          "Number of Olympiads"
-        ],
-        [
-          0,
-          "Gold"
-        ],
-        [
-          0,
-          "Silver"
-        ],
-        [
-          0,
-          "Bronze"
-        ],
-        [
-          0,
-          "Total"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "real",
-        "real",
-        "real",
-        "real",
-        "real"
-      ]
-    },
-    "gold_sql_query": "SELECT MIN(Silver) FROM table WHERE Discipline = 'Baseball'"
-  },
-  {
-    "instance_id": "wikisql_train_48265",
-    "db": "2-18569929-1",
-    "question": "What is the highest number of matches that has a round of Third Round?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Round"
-        ],
-        [
-          0,
-          "Date"
-        ],
-        [
-          0,
-          "Matches"
-        ],
-        [
-          0,
-          "Clubs"
-        ],
-        [
-          0,
-          "New entries this round"
-        ],
-        [
-          0,
-          "Prize money"
-        ]
-      ],
-      "column_types": [
-        "text",
         "text",
         "real",
         "text",
@@ -402,12 +137,12 @@
         "text"
       ]
     },
-    "gold_sql_query": "SELECT MAX(Matches) FROM table WHERE Round = 'third round'"
+    "gold_sql_query": "SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'"
   },
   {
-    "instance_id": "wikisql_train_6717",
-    "db": "1-18662026-1",
-    "question": "If the rings number is 60.000, what is the number for the vault?",
+    "instance_id": "wikisql_train_1952",
+    "db": "1-1277350-7",
+    "question": "What is tuesday day three when thursday day five is kamis?",
     "schema": {
       "table_names_original": [
         "table"
@@ -415,43 +150,38 @@
       "column_names_original": [
         [
           0,
-          "Position"
+          "Day (see Irregularities )"
         ],
         [
           0,
-          "Country"
+          "Sunday Day One"
         ],
         [
           0,
-          "Floor"
+          "Monday Day Two"
         ],
         [
           0,
-          "Pommel Horse"
+          "Tuesday Day Three"
         ],
         [
           0,
-          "Rings"
+          "Wednesday Day Four"
         ],
         [
           0,
-          "Vault"
+          "Thursday Day Five"
         ],
         [
           0,
-          "Parallel Bars"
+          "Friday Day Six"
         ],
         [
           0,
-          "Horizontal Bar"
-        ],
-        [
-          0,
-          "Team Total"
+          "Saturday Day Seven"
         ]
       ],
       "column_types": [
-        "text",
         "text",
         "text",
         "text",
@@ -462,287 +192,7 @@
         "text"
       ]
     },
-    "gold_sql_query": "SELECT COUNT(Vault) FROM table WHERE Rings = '60.000'"
-  },
-  {
-    "instance_id": "wikisql_train_44348",
-    "db": "2-18371034-3",
-    "question": "What is the smallest Pick with Overall larger than 17, a Player name of dave adams category:articles with hcards, and a Year larger than 1963?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Year"
-        ],
-        [
-          0,
-          "Round"
-        ],
-        [
-          0,
-          "Pick"
-        ],
-        [
-          0,
-          "Overall"
-        ],
-        [
-          0,
-          "Player name"
-        ],
-        [
-          0,
-          "Position"
-        ],
-        [
-          0,
-          "AFL team"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "real",
-        "real",
-        "real",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT MIN(Pick) FROM table WHERE Overall > 17 AND Player name = 'dave adams category:articles with hcards' AND Year > 1963"
-  },
-  {
-    "instance_id": "wikisql_train_48540",
-    "db": "2-1876262-4",
-    "question": "What period has 0.25% as the other mozilla?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Period"
-        ],
-        [
-          0,
-          "Internet Explorer"
-        ],
-        [
-          0,
-          "Chrome"
-        ],
-        [
-          0,
-          "Firefox"
-        ],
-        [
-          0,
-          "Safari"
-        ],
-        [
-          0,
-          "Opera"
-        ],
-        [
-          0,
-          "Other Mozilla"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Period FROM table WHERE Other Mozilla = '0.25%'"
-  },
-  {
-    "instance_id": "wikisql_train_35741",
-    "db": "2-11406866-1",
-    "question": "What's the lowest pick for a defensive back at Drake?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Pick"
-        ],
-        [
-          0,
-          "Round"
-        ],
-        [
-          0,
-          "Player"
-        ],
-        [
-          0,
-          "Position"
-        ],
-        [
-          0,
-          "School"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT MIN(Pick) FROM table WHERE Position = 'defensive back' AND School = 'drake'"
-  },
-  {
-    "instance_id": "wikisql_train_5697",
-    "db": "1-17323042-11",
-    "question": "What was the W-L record when HIgh Points was andre miller (30)?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Game"
-        ],
-        [
-          0,
-          "Date"
-        ],
-        [
-          0,
-          "Team"
-        ],
-        [
-          0,
-          "Score"
-        ],
-        [
-          0,
-          "High points"
-        ],
-        [
-          0,
-          "High rebounds"
-        ],
-        [
-          0,
-          "High assists"
-        ],
-        [
-          0,
-          "Location Attendance"
-        ],
-        [
-          0,
-          "Record"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Record FROM table WHERE High points = 'Andre Miller (30)'"
-  },
-  {
-    "instance_id": "wikisql_train_38698",
-    "db": "2-11779131-3",
-    "question": "Where is the player with a pick smaller than 12 and a college of UV from?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Pick"
-        ],
-        [
-          0,
-          "Player"
-        ],
-        [
-          0,
-          "Country of origin*"
-        ],
-        [
-          0,
-          "PBA team"
-        ],
-        [
-          0,
-          "College"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Country of origin* FROM table WHERE Pick < 12 AND College = 'uv'"
-  },
-  {
-    "instance_id": "wikisql_train_27651",
-    "db": "2-15344979-1",
-    "question": "Which Attendance has an Opponent of carolina panthers?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Week"
-        ],
-        [
-          0,
-          "Date"
-        ],
-        [
-          0,
-          "Opponent"
-        ],
-        [
-          0,
-          "Result"
-        ],
-        [
-          0,
-          "Attendance"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'"
+    "gold_sql_query": "SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'"
   },
   {
     "instance_id": "wikisql_train_2082",
@@ -810,9 +260,9 @@
     "gold_sql_query": "SELECT COUNT(Played) FROM table WHERE Pts Agst = 645"
   },
   {
-    "instance_id": "wikisql_train_1952",
-    "db": "1-1277350-7",
-    "question": "What is tuesday day three when thursday day five is kamis?",
+    "instance_id": "wikisql_train_5697",
+    "db": "1-17323042-11",
+    "question": "What was the W-L record when HIgh Points was andre miller (30)?",
     "schema": {
       "table_names_original": [
         "table"
@@ -820,38 +270,43 @@
       "column_names_original": [
         [
           0,
-          "Day (see Irregularities )"
+          "Game"
         ],
         [
           0,
-          "Sunday Day One"
+          "Date"
         ],
         [
           0,
-          "Monday Day Two"
+          "Team"
         ],
         [
           0,
-          "Tuesday Day Three"
+          "Score"
         ],
         [
           0,
-          "Wednesday Day Four"
+          "High points"
         ],
         [
           0,
-          "Thursday Day Five"
+          "High rebounds"
         ],
         [
           0,
-          "Friday Day Six"
+          "High assists"
         ],
         [
           0,
-          "Saturday Day Seven"
+          "Location Attendance"
+        ],
+        [
+          0,
+          "Record"
         ]
       ],
       "column_types": [
+        "real",
         "text",
         "text",
         "text",
@@ -862,7 +317,52 @@
         "text"
       ]
     },
-    "gold_sql_query": "SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'"
+    "gold_sql_query": "SELECT Record FROM table WHERE High points = 'Andre Miller (30)'"
+  },
+  {
+    "instance_id": "wikisql_train_6078",
+    "db": "1-17766232-7",
+    "question": "Who was the radio commentator when the final television commentator was John Dunn? ",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Year(s)"
+        ],
+        [
+          0,
+          "Final television commentator"
+        ],
+        [
+          0,
+          "Radio commentator"
+        ],
+        [
+          0,
+          "Spokesperson"
+        ],
+        [
+          0,
+          "Semi-final television commentator"
+        ],
+        [
+          0,
+          "Semi-final second television commentator"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'"
   },
   {
     "instance_id": "wikisql_train_6140",
@@ -903,6 +403,411 @@
       ]
     },
     "gold_sql_query": "SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'"
+  },
+  {
+    "instance_id": "wikisql_train_6698",
+    "db": "1-18638067-1",
+    "question": "What year was Teresa Wright nominated best supporting actress?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Year (Ceremony)"
+        ],
+        [
+          0,
+          "Actor/Actress"
+        ],
+        [
+          0,
+          "Category"
+        ],
+        [
+          0,
+          "Film title used in nomination"
+        ],
+        [
+          0,
+          "Result"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'"
+  },
+  {
+    "instance_id": "wikisql_train_6717",
+    "db": "1-18662026-1",
+    "question": "If the rings number is 60.000, what is the number for the vault?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "Country"
+        ],
+        [
+          0,
+          "Floor"
+        ],
+        [
+          0,
+          "Pommel Horse"
+        ],
+        [
+          0,
+          "Rings"
+        ],
+        [
+          0,
+          "Vault"
+        ],
+        [
+          0,
+          "Parallel Bars"
+        ],
+        [
+          0,
+          "Horizontal Bar"
+        ],
+        [
+          0,
+          "Team Total"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT COUNT(Vault) FROM table WHERE Rings = '60.000'"
+  },
+  {
+    "instance_id": "wikisql_train_7296",
+    "db": "1-19643196-1",
+    "question": "What year had an Allison B400R transmission and a model of BRT?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Fleet #"
+        ],
+        [
+          0,
+          "Year"
+        ],
+        [
+          0,
+          "Manufacture"
+        ],
+        [
+          0,
+          "Model"
+        ],
+        [
+          0,
+          "Length (ft)"
+        ],
+        [
+          0,
+          "Engine"
+        ],
+        [
+          0,
+          "Transmission"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "text",
+        "text",
+        "real",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'"
+  },
+  {
+    "instance_id": "wikisql_train_9144",
+    "db": "1-22360-3",
+    "question": "Name the silver for baseball",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Discipline"
+        ],
+        [
+          0,
+          "Contested"
+        ],
+        [
+          0,
+          "Number of Olympiads"
+        ],
+        [
+          0,
+          "Gold"
+        ],
+        [
+          0,
+          "Silver"
+        ],
+        [
+          0,
+          "Bronze"
+        ],
+        [
+          0,
+          "Total"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "real",
+        "real",
+        "real",
+        "real",
+        "real"
+      ]
+    },
+    "gold_sql_query": "SELECT MIN(Silver) FROM table WHERE Discipline = 'Baseball'"
+  },
+  {
+    "instance_id": "wikisql_train_10189",
+    "db": "1-23390604-1",
+    "question": "What was the highest score of candidate mir-hossein mousavi in the location known as azarbaijan, west?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Province"
+        ],
+        [
+          0,
+          "Mahmoud Ahmadinejad"
+        ],
+        [
+          0,
+          "Mehdi Karroubi"
+        ],
+        [
+          0,
+          "Mir-Hossein Mousavi"
+        ],
+        [
+          0,
+          "Mohsen Rezaee"
+        ],
+        [
+          0,
+          "Spoiled ballots"
+        ],
+        [
+          0,
+          "Total votes"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "real",
+        "real",
+        "real",
+        "real",
+        "real"
+      ]
+    },
+    "gold_sql_query": "SELECT MAX(Mir-Hossein Mousavi) FROM table WHERE Province = 'Azarbaijan, West'"
+  },
+  {
+    "instance_id": "wikisql_train_10463",
+    "db": "1-23696862-6",
+    "question": "Whose WSOP earnings were $36,372? ",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "Starting chip count"
+        ],
+        [
+          0,
+          "WSOP bracelets"
+        ],
+        [
+          0,
+          "WSOP cashes"
+        ],
+        [
+          0,
+          "WSOP earnings"
+        ],
+        [
+          0,
+          "Final place"
+        ],
+        [
+          0,
+          "Prize"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "real",
+        "real",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Name FROM table WHERE WSOP earnings = '$36,372'"
+  },
+  {
+    "instance_id": "wikisql_train_13031",
+    "db": "1-26638600-3",
+    "question": "Who was the lites 2 race two winning team when #13 Inspire Motorsports was the Lites 1 race one winning team?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Rnd"
+        ],
+        [
+          0,
+          "Circuit"
+        ],
+        [
+          0,
+          "Lites 1 Race One Winning Team"
+        ],
+        [
+          0,
+          "Lites 2 Race One Winning Team"
+        ],
+        [
+          0,
+          "Lites 1 Race Two Winning Team"
+        ],
+        [
+          0,
+          "Lites 2 Race Two Winning Team"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Lites 2 Race Two Winning Team FROM table WHERE Lites 1 Race One Winning Team = '#13 Inspire Motorsports'"
+  },
+  {
+    "instance_id": "wikisql_train_14110",
+    "db": "1-27755603-10",
+    "question": "What were the high points on March 25?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Game"
+        ],
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Team"
+        ],
+        [
+          0,
+          "Score"
+        ],
+        [
+          0,
+          "High points"
+        ],
+        [
+          0,
+          "High rebounds"
+        ],
+        [
+          0,
+          "High assists"
+        ],
+        [
+          0,
+          "Location Attendance"
+        ],
+        [
+          0,
+          "Record"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT High points FROM table WHERE Date = 'March 25'"
   },
   {
     "instance_id": "wikisql_train_14328",
@@ -960,501 +865,6 @@
     "gold_sql_query": "SELECT COUNT(Round) FROM table WHERE Circuit = 'Brno'"
   },
   {
-    "instance_id": "wikisql_train_15247",
-    "db": "1-29289372-1",
-    "question": "When 318676 is the population of 2010 and 1st class is the income classification what is the area in kilometers squared?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "City/Municipality"
-        ],
-        [
-          0,
-          "Population (2010)"
-        ],
-        [
-          0,
-          "Area (km²)"
-        ],
-        [
-          0,
-          "Pop. density (per km²)"
-        ],
-        [
-          0,
-          "Income Classification"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "real",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676"
-  },
-  {
-    "instance_id": "wikisql_train_33118",
-    "db": "2-16478687-2",
-    "question": "What is the smallest area that has a Population Density of 3,216 and a Population larger than 16,650,000?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Rank"
-        ],
-        [
-          0,
-          "Metropolitan area"
-        ],
-        [
-          0,
-          "Country"
-        ],
-        [
-          0,
-          "Population"
-        ],
-        [
-          0,
-          "Area (km²)"
-        ],
-        [
-          0,
-          "Population Density (People/km²)"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "real",
-        "real",
-        "real"
-      ]
-    },
-    "gold_sql_query": "SELECT MIN(Area (km²)) FROM table WHERE Population Density (People/km²) = '3,216' AND Population > '16,650,000'"
-  },
-  {
-    "instance_id": "wikisql_train_39453",
-    "db": "2-1140106-2",
-    "question": "What rounds did Roy Salvadori drive for David Brown Corporation?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Entrant"
-        ],
-        [
-          0,
-          "Constructor"
-        ],
-        [
-          0,
-          "Chassis"
-        ],
-        [
-          0,
-          "Engine"
-        ],
-        [
-          0,
-          "Tyre"
-        ],
-        [
-          0,
-          "Driver"
-        ],
-        [
-          0,
-          "Rounds"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Rounds FROM table WHERE Entrant = 'david brown corporation' AND Driver = 'roy salvadori'"
-  },
-  {
-    "instance_id": "wikisql_train_1739",
-    "db": "1-12251936-1",
-    "question": "How many times was the GFR 2006 equal to 53.2?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "County"
-        ],
-        [
-          0,
-          "Live births 2006"
-        ],
-        [
-          0,
-          "GFR 2006"
-        ],
-        [
-          0,
-          "TFR 2006"
-        ],
-        [
-          0,
-          "Whites as % of Pop."
-        ]
-      ],
-      "column_types": [
-        "text",
-        "real",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'"
-  },
-  {
-    "instance_id": "wikisql_train_36781",
-    "db": "2-1095011-1",
-    "question": "What Captain has Lost 13?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Competition"
-        ],
-        [
-          0,
-          "Played"
-        ],
-        [
-          0,
-          "Drawn"
-        ],
-        [
-          0,
-          "Lost"
-        ],
-        [
-          0,
-          "Position"
-        ],
-        [
-          0,
-          "Coach"
-        ],
-        [
-          0,
-          "Captain"
-        ],
-        [
-          0,
-          "Main Article"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "real",
-        "real",
-        "real",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Captain FROM table WHERE Lost = 13"
-  },
-  {
-    "instance_id": "wikisql_train_13031",
-    "db": "1-26638600-3",
-    "question": "Who was the lites 2 race two winning team when #13 Inspire Motorsports was the Lites 1 race one winning team?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Rnd"
-        ],
-        [
-          0,
-          "Circuit"
-        ],
-        [
-          0,
-          "Lites 1 Race One Winning Team"
-        ],
-        [
-          0,
-          "Lites 2 Race One Winning Team"
-        ],
-        [
-          0,
-          "Lites 1 Race Two Winning Team"
-        ],
-        [
-          0,
-          "Lites 2 Race Two Winning Team"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Lites 2 Race Two Winning Team FROM table WHERE Lites 1 Race One Winning Team = '#13 Inspire Motorsports'"
-  },
-  {
-    "instance_id": "wikisql_train_46925",
-    "db": "2-18118221-1",
-    "question": "What's the lowest number of total passengers (millions) for an annual entry/exit of 36.609?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Rank"
-        ],
-        [
-          0,
-          "Railway Station"
-        ],
-        [
-          0,
-          "Annual entry/exit (millions) 2011–12"
-        ],
-        [
-          0,
-          "Annual interchanges (millions) 2011–12"
-        ],
-        [
-          0,
-          "Total Passengers (millions) 2011–12"
-        ],
-        [
-          0,
-          "Location"
-        ],
-        [
-          0,
-          "Number of Platforms"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "real",
-        "real",
-        "real",
-        "text",
-        "real"
-      ]
-    },
-    "gold_sql_query": "SELECT MIN(Total Passengers (millions) 2011–12) FROM table WHERE Annual entry/exit (millions) 2011–12 = 36.609"
-  },
-  {
-    "instance_id": "wikisql_train_42590",
-    "db": "2-11677760-28",
-    "question": "What is the NBA Draft for the School Bishop O'Connell High School?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Player"
-        ],
-        [
-          0,
-          "Height"
-        ],
-        [
-          0,
-          "School"
-        ],
-        [
-          0,
-          "Hometown"
-        ],
-        [
-          0,
-          "College"
-        ],
-        [
-          0,
-          "NBA Draft"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT NBA Draft FROM table WHERE School = 'bishop o'connell high school'"
-  },
-  {
-    "instance_id": "wikisql_train_45962",
-    "db": "2-18160020-4",
-    "question": "What is the total of Matches with Goals of 18, and an Average larger than 0.55?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Goalkeeper"
-        ],
-        [
-          0,
-          "Goals"
-        ],
-        [
-          0,
-          "Matches"
-        ],
-        [
-          0,
-          "Average"
-        ],
-        [
-          0,
-          "Team"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "real",
-        "real",
-        "real",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT SUM(Matches) FROM table WHERE Goals = 18 AND Average > 0.55"
-  },
-  {
-    "instance_id": "wikisql_train_35713",
-    "db": "2-11485080-6",
-    "question": "How many people attended when the record was broken with 47–63?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Date"
-        ],
-        [
-          0,
-          "Opponent"
-        ],
-        [
-          0,
-          "Score"
-        ],
-        [
-          0,
-          "Loss"
-        ],
-        [
-          0,
-          "Attendance"
-        ],
-        [
-          0,
-          "Record"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "real",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Attendance FROM table WHERE Record = '47–63'"
-  },
-  {
-    "instance_id": "wikisql_train_27493",
-    "db": "2-1590854-1",
-    "question": "What is the Label that shows on april 7, 1967?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Date"
-        ],
-        [
-          0,
-          "Label"
-        ],
-        [
-          0,
-          "Format"
-        ],
-        [
-          0,
-          "Country"
-        ],
-        [
-          0,
-          "Catalog"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Label FROM table WHERE Date = 'april 7, 1967'"
-  },
-  {
     "instance_id": "wikisql_train_14446",
     "db": "1-28037619-2",
     "question": "How many people wrote the episode that had 7.26 million u.s. viewers?",
@@ -1505,9 +915,9 @@
     "gold_sql_query": "SELECT COUNT(Written by) FROM table WHERE U.S. viewers (million) = '7.26'"
   },
   {
-    "instance_id": "wikisql_train_29439",
-    "db": "2-1686975-1",
-    "question": "Which Sanskrit has a Chinese of —, and an English of cultivation of settling?",
+    "instance_id": "wikisql_train_14628",
+    "db": "1-28241890-2",
+    "question": "How many next in lines had heirs of Archduke Karl?",
     "schema": {
       "table_names_original": [
         "table"
@@ -1515,23 +925,148 @@
       "column_names_original": [
         [
           0,
-          "English"
+          "Emperor"
         ],
         [
           0,
-          "Pali"
+          "Heir"
         ],
         [
           0,
-          "Sanskrit"
+          "Relationship to emperor and status"
         ],
         [
           0,
-          "Chinese"
+          "Became heir"
         ],
         [
           0,
-          "Tibetan"
+          "Ceased to be heir"
+        ],
+        [
+          0,
+          "Next in line"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT COUNT(Next in line) FROM table WHERE Heir = 'Archduke Karl'"
+  },
+  {
+    "instance_id": "wikisql_train_15247",
+    "db": "1-29289372-1",
+    "question": "When 318676 is the population of 2010 and 1st class is the income classification what is the area in kilometers squared?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "City/Municipality"
+        ],
+        [
+          0,
+          "Population (2010)"
+        ],
+        [
+          0,
+          "Area (km²)"
+        ],
+        [
+          0,
+          "Pop. density (per km²)"
+        ],
+        [
+          0,
+          "Income Classification"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676"
+  },
+  {
+    "instance_id": "wikisql_train_16049",
+    "db": "2-1004125-4",
+    "question": "What MLS team is affiliated with yale university?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Pick #"
+        ],
+        [
+          0,
+          "MLS Team"
+        ],
+        [
+          0,
+          "Player"
+        ],
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "Affiliation"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT MLS Team FROM table WHERE Affiliation = 'yale university'"
+  },
+  {
+    "instance_id": "wikisql_train_18024",
+    "db": "2-14871719-1",
+    "question": "Which Region has a Date of early september 1999?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Label"
+        ],
+        [
+          0,
+          "Region"
+        ],
+        [
+          0,
+          "Format"
+        ],
+        [
+          0,
+          "Catalog"
         ]
       ],
       "column_types": [
@@ -1542,12 +1077,12 @@
         "text"
       ]
     },
-    "gold_sql_query": "SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'"
+    "gold_sql_query": "SELECT Region FROM table WHERE Date = 'early september 1999'"
   },
   {
-    "instance_id": "wikisql_train_38618",
-    "db": "2-11602885-3",
-    "question": "What is the most wins with a rank of 5 and less than $1,537,571 in earnings?",
+    "instance_id": "wikisql_train_18210",
+    "db": "2-14412861-10",
+    "question": "Where did Jack Badcock play?",
     "schema": {
       "table_names_original": [
         "table"
@@ -1559,35 +1094,35 @@
         ],
         [
           0,
+          "Runs"
+        ],
+        [
+          0,
           "Player"
         ],
         [
           0,
-          "Country"
+          "Opponent"
         ],
         [
           0,
-          "Earnings ( $ )"
+          "Venue"
         ],
         [
           0,
-          "Events"
-        ],
-        [
-          0,
-          "Wins"
+          "Season"
         ]
       ],
       "column_types": [
-        "real",
         "text",
         "text",
-        "real",
-        "real",
-        "real"
+        "text",
+        "text",
+        "text",
+        "text"
       ]
     },
-    "gold_sql_query": "SELECT MAX(Wins) FROM table WHERE Rank = 5 AND Earnings ( $ ) > '1,537,571'"
+    "gold_sql_query": "SELECT Venue FROM table WHERE Player = 'jack badcock'"
   },
   {
     "instance_id": "wikisql_train_18231",
@@ -1635,260 +1170,21 @@
     "gold_sql_query": "SELECT MIN(Population) FROM table WHERE Altitude (mslm) < 197 AND City = 'alessandria' AND Density (inhabitants/km 2 ) < 461.8"
   },
   {
-    "instance_id": "wikisql_train_53046",
-    "db": "2-13046272-3",
-    "question": "Which nation had a battlecruiser with an estimate of 513?",
+    "instance_id": "wikisql_train_22059",
+    "db": "2-13928610-6",
+    "question": "What record has montreal as the visitor, and february 2 as the date?",
     "schema": {
       "table_names_original": [
         "table"
       ],
       "column_names_original": [
-        [
-          0,
-          "Estimate"
-        ],
-        [
-          0,
-          "Name"
-        ],
-        [
-          0,
-          "Nat."
-        ],
-        [
-          0,
-          "Ship type"
-        ],
-        [
-          0,
-          "Where sunk"
-        ],
         [
           0,
           "Date"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Nat. FROM table WHERE Ship type = 'battlecruiser' AND Estimate = '513'"
-  },
-  {
-    "instance_id": "wikisql_train_425",
-    "db": "1-10715317-2",
-    "question": "What is the title of the episode directed by Peter Markle and written by Jerry Stahl?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "No. in series"
         ],
         [
           0,
-          "No. in season"
-        ],
-        [
-          0,
-          "Title"
-        ],
-        [
-          0,
-          "Directed by"
-        ],
-        [
-          0,
-          "Written by"
-        ],
-        [
-          0,
-          "Original air date"
-        ],
-        [
-          0,
-          "U.S. viewers (millions)"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "real",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl'"
-  },
-  {
-    "instance_id": "wikisql_train_49729",
-    "db": "2-18830959-2",
-    "question": "Which Fencing Victories (pts) has a Total of 5640?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Athlete"
-        ],
-        [
-          0,
-          "Shooting Score (pts)"
-        ],
-        [
-          0,
-          "Fencing Victories (pts)"
-        ],
-        [
-          0,
-          "Swimming Time (pts)"
-        ],
-        [
-          0,
-          "Equestrian Time (pts)"
-        ],
-        [
-          0,
-          "Running Time (pts)"
-        ],
-        [
-          0,
-          "Total"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "real"
-      ]
-    },
-    "gold_sql_query": "SELECT Fencing Victories (pts) FROM table WHERE Total = 5640"
-  },
-  {
-    "instance_id": "wikisql_train_52810",
-    "db": "2-12557476-2",
-    "question": "Which Venue has an amount of Tickets Sold/ Available of 4,700 / 4,700 (100%)?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Venue"
-        ],
-        [
-          0,
-          "City"
-        ],
-        [
-          0,
-          "Tickets Sold / Available"
-        ],
-        [
-          0,
-          "Gross Revenue (1979)"
-        ],
-        [
-          0,
-          "Gross Revenue (2012)"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Venue FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'"
-  },
-  {
-    "instance_id": "wikisql_train_10463",
-    "db": "1-23696862-6",
-    "question": "Whose WSOP earnings were $36,372? ",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Name"
-        ],
-        [
-          0,
-          "Starting chip count"
-        ],
-        [
-          0,
-          "WSOP bracelets"
-        ],
-        [
-          0,
-          "WSOP cashes"
-        ],
-        [
-          0,
-          "WSOP earnings"
-        ],
-        [
-          0,
-          "Final place"
-        ],
-        [
-          0,
-          "Prize"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "real",
-        "real",
-        "real",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Name FROM table WHERE WSOP earnings = '$36,372'"
-  },
-  {
-    "instance_id": "wikisql_train_45753",
-    "db": "2-18148933-6",
-    "question": "What country has a score of 71-66-72-72=281?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Place"
-        ],
-        [
-          0,
-          "Player"
-        ],
-        [
-          0,
-          "Country"
+          "Visitor"
         ],
         [
           0,
@@ -1896,52 +1192,11 @@
         ],
         [
           0,
-          "To par"
+          "Home"
         ],
         [
           0,
-          "Money ( £ )"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "real"
-      ]
-    },
-    "gold_sql_query": "SELECT Country FROM table WHERE Score = '71-66-72-72=281'"
-  },
-  {
-    "instance_id": "wikisql_train_27696",
-    "db": "2-15905451-2",
-    "question": "What Song's Index is F6?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Index"
-        ],
-        [
-          0,
-          "Name"
-        ],
-        [
-          0,
-          "Song"
-        ],
-        [
-          0,
-          "Group Song"
-        ],
-        [
-          0,
-          "Score"
+          "Record"
         ]
       ],
       "column_types": [
@@ -1952,7 +1207,7 @@
         "text"
       ]
     },
-    "gold_sql_query": "SELECT Song FROM table WHERE Index = 'f6'"
+    "gold_sql_query": "SELECT Record FROM table WHERE Visitor = 'montreal' AND Date = 'february 2'"
   },
   {
     "instance_id": "wikisql_train_22298",
@@ -2025,9 +1280,169 @@
     "gold_sql_query": "SELECT COUNT(Rank) FROM table WHERE Club = 'zulte waregem' AND Points > 22"
   },
   {
-    "instance_id": "wikisql_train_18210",
-    "db": "2-14412861-10",
-    "question": "Where did Jack Badcock play?",
+    "instance_id": "wikisql_train_27493",
+    "db": "2-1590854-1",
+    "question": "What is the Label that shows on april 7, 1967?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Label"
+        ],
+        [
+          0,
+          "Format"
+        ],
+        [
+          0,
+          "Country"
+        ],
+        [
+          0,
+          "Catalog"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Label FROM table WHERE Date = 'april 7, 1967'"
+  },
+  {
+    "instance_id": "wikisql_train_27651",
+    "db": "2-15344979-1",
+    "question": "Which Attendance has an Opponent of carolina panthers?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Week"
+        ],
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Opponent"
+        ],
+        [
+          0,
+          "Result"
+        ],
+        [
+          0,
+          "Attendance"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'"
+  },
+  {
+    "instance_id": "wikisql_train_27696",
+    "db": "2-15905451-2",
+    "question": "What Song's Index is F6?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Index"
+        ],
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "Song"
+        ],
+        [
+          0,
+          "Group Song"
+        ],
+        [
+          0,
+          "Score"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Song FROM table WHERE Index = 'f6'"
+  },
+  {
+    "instance_id": "wikisql_train_29439",
+    "db": "2-1686975-1",
+    "question": "Which Sanskrit has a Chinese of —, and an English of cultivation of settling?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "English"
+        ],
+        [
+          0,
+          "Pali"
+        ],
+        [
+          0,
+          "Sanskrit"
+        ],
+        [
+          0,
+          "Chinese"
+        ],
+        [
+          0,
+          "Tibetan"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'"
+  },
+  {
+    "instance_id": "wikisql_train_33118",
+    "db": "2-16478687-2",
+    "question": "What is the smallest area that has a Population Density of 3,216 and a Population larger than 16,650,000?",
     "schema": {
       "table_names_original": [
         "table"
@@ -2039,11 +1454,48 @@
         ],
         [
           0,
-          "Runs"
+          "Metropolitan area"
         ],
         [
           0,
-          "Player"
+          "Country"
+        ],
+        [
+          0,
+          "Population"
+        ],
+        [
+          0,
+          "Area (km²)"
+        ],
+        [
+          0,
+          "Population Density (People/km²)"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "real",
+        "real",
+        "real"
+      ]
+    },
+    "gold_sql_query": "SELECT MIN(Area (km²)) FROM table WHERE Population Density (People/km²) = '3,216' AND Population > '16,650,000'"
+  },
+  {
+    "instance_id": "wikisql_train_35713",
+    "db": "2-11485080-6",
+    "question": "How many people attended when the record was broken with 47–63?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Date"
         ],
         [
           0,
@@ -2051,114 +1503,15 @@
         ],
         [
           0,
-          "Venue"
-        ],
-        [
-          0,
-          "Season"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Venue FROM table WHERE Player = 'jack badcock'"
-  },
-  {
-    "instance_id": "wikisql_train_10189",
-    "db": "1-23390604-1",
-    "question": "What was the highest score of candidate mir-hossein mousavi in the location known as azarbaijan, west?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Province"
-        ],
-        [
-          0,
-          "Mahmoud Ahmadinejad"
-        ],
-        [
-          0,
-          "Mehdi Karroubi"
-        ],
-        [
-          0,
-          "Mir-Hossein Mousavi"
-        ],
-        [
-          0,
-          "Mohsen Rezaee"
-        ],
-        [
-          0,
-          "Spoiled ballots"
-        ],
-        [
-          0,
-          "Total votes"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "real",
-        "real",
-        "real",
-        "real",
-        "real",
-        "real"
-      ]
-    },
-    "gold_sql_query": "SELECT MAX(Mir-Hossein Mousavi) FROM table WHERE Province = 'Azarbaijan, West'"
-  },
-  {
-    "instance_id": "wikisql_train_14110",
-    "db": "1-27755603-10",
-    "question": "What were the high points on March 25?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Game"
-        ],
-        [
-          0,
-          "Date"
-        ],
-        [
-          0,
-          "Team"
-        ],
-        [
-          0,
           "Score"
         ],
         [
           0,
-          "High points"
+          "Loss"
         ],
         [
           0,
-          "High rebounds"
-        ],
-        [
-          0,
-          "High assists"
-        ],
-        [
-          0,
-          "Location Attendance"
+          "Attendance"
         ],
         [
           0,
@@ -2166,8 +1519,235 @@
         ]
       ],
       "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "real",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Attendance FROM table WHERE Record = '47–63'"
+  },
+  {
+    "instance_id": "wikisql_train_35741",
+    "db": "2-11406866-1",
+    "question": "What's the lowest pick for a defensive back at Drake?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Pick"
+        ],
+        [
+          0,
+          "Round"
+        ],
+        [
+          0,
+          "Player"
+        ],
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "School"
+        ]
+      ],
+      "column_types": [
         "real",
         "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT MIN(Pick) FROM table WHERE Position = 'defensive back' AND School = 'drake'"
+  },
+  {
+    "instance_id": "wikisql_train_36781",
+    "db": "2-1095011-1",
+    "question": "What Captain has Lost 13?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Competition"
+        ],
+        [
+          0,
+          "Played"
+        ],
+        [
+          0,
+          "Drawn"
+        ],
+        [
+          0,
+          "Lost"
+        ],
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "Coach"
+        ],
+        [
+          0,
+          "Captain"
+        ],
+        [
+          0,
+          "Main Article"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "real",
+        "real",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Captain FROM table WHERE Lost = 13"
+  },
+  {
+    "instance_id": "wikisql_train_38618",
+    "db": "2-11602885-3",
+    "question": "What is the most wins with a rank of 5 and less than $1,537,571 in earnings?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Rank"
+        ],
+        [
+          0,
+          "Player"
+        ],
+        [
+          0,
+          "Country"
+        ],
+        [
+          0,
+          "Earnings ( $ )"
+        ],
+        [
+          0,
+          "Events"
+        ],
+        [
+          0,
+          "Wins"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "real",
+        "real",
+        "real"
+      ]
+    },
+    "gold_sql_query": "SELECT MAX(Wins) FROM table WHERE Rank = 5 AND Earnings ( $ ) > '1,537,571'"
+  },
+  {
+    "instance_id": "wikisql_train_38698",
+    "db": "2-11779131-3",
+    "question": "Where is the player with a pick smaller than 12 and a college of UV from?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Pick"
+        ],
+        [
+          0,
+          "Player"
+        ],
+        [
+          0,
+          "Country of origin*"
+        ],
+        [
+          0,
+          "PBA team"
+        ],
+        [
+          0,
+          "College"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Country of origin* FROM table WHERE Pick < 12 AND College = 'uv'"
+  },
+  {
+    "instance_id": "wikisql_train_39453",
+    "db": "2-1140106-2",
+    "question": "What rounds did Roy Salvadori drive for David Brown Corporation?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Entrant"
+        ],
+        [
+          0,
+          "Constructor"
+        ],
+        [
+          0,
+          "Chassis"
+        ],
+        [
+          0,
+          "Engine"
+        ],
+        [
+          0,
+          "Tyre"
+        ],
+        [
+          0,
+          "Driver"
+        ],
+        [
+          0,
+          "Rounds"
+        ]
+      ],
+      "column_types": [
         "text",
         "text",
         "text",
@@ -2177,7 +1757,467 @@
         "text"
       ]
     },
-    "gold_sql_query": "SELECT High points FROM table WHERE Date = 'March 25'"
+    "gold_sql_query": "SELECT Rounds FROM table WHERE Entrant = 'david brown corporation' AND Driver = 'roy salvadori'"
+  },
+  {
+    "instance_id": "wikisql_train_41905",
+    "db": "2-11960788-1",
+    "question": "What county has a CERCLIS ID of scd037405362?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "CERCLIS ID"
+        ],
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "County"
+        ],
+        [
+          0,
+          "Proposed"
+        ],
+        [
+          0,
+          "Listed"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'"
+  },
+  {
+    "instance_id": "wikisql_train_42590",
+    "db": "2-11677760-28",
+    "question": "What is the NBA Draft for the School Bishop O'Connell High School?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Player"
+        ],
+        [
+          0,
+          "Height"
+        ],
+        [
+          0,
+          "School"
+        ],
+        [
+          0,
+          "Hometown"
+        ],
+        [
+          0,
+          "College"
+        ],
+        [
+          0,
+          "NBA Draft"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT NBA Draft FROM table WHERE School = 'bishop o'connell high school'"
+  },
+  {
+    "instance_id": "wikisql_train_44348",
+    "db": "2-18371034-3",
+    "question": "What is the smallest Pick with Overall larger than 17, a Player name of dave adams category:articles with hcards, and a Year larger than 1963?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Year"
+        ],
+        [
+          0,
+          "Round"
+        ],
+        [
+          0,
+          "Pick"
+        ],
+        [
+          0,
+          "Overall"
+        ],
+        [
+          0,
+          "Player name"
+        ],
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "AFL team"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "real",
+        "real",
+        "real",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT MIN(Pick) FROM table WHERE Overall > 17 AND Player name = 'dave adams category:articles with hcards' AND Year > 1963"
+  },
+  {
+    "instance_id": "wikisql_train_45753",
+    "db": "2-18148933-6",
+    "question": "What country has a score of 71-66-72-72=281?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Place"
+        ],
+        [
+          0,
+          "Player"
+        ],
+        [
+          0,
+          "Country"
+        ],
+        [
+          0,
+          "Score"
+        ],
+        [
+          0,
+          "To par"
+        ],
+        [
+          0,
+          "Money ( £ )"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "real"
+      ]
+    },
+    "gold_sql_query": "SELECT Country FROM table WHERE Score = '71-66-72-72=281'"
+  },
+  {
+    "instance_id": "wikisql_train_45962",
+    "db": "2-18160020-4",
+    "question": "What is the total of Matches with Goals of 18, and an Average larger than 0.55?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Goalkeeper"
+        ],
+        [
+          0,
+          "Goals"
+        ],
+        [
+          0,
+          "Matches"
+        ],
+        [
+          0,
+          "Average"
+        ],
+        [
+          0,
+          "Team"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "real",
+        "real",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT SUM(Matches) FROM table WHERE Goals = 18 AND Average > 0.55"
+  },
+  {
+    "instance_id": "wikisql_train_46925",
+    "db": "2-18118221-1",
+    "question": "What's the lowest number of total passengers (millions) for an annual entry/exit of 36.609?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Rank"
+        ],
+        [
+          0,
+          "Railway Station"
+        ],
+        [
+          0,
+          "Annual entry/exit (millions) 2011–12"
+        ],
+        [
+          0,
+          "Annual interchanges (millions) 2011–12"
+        ],
+        [
+          0,
+          "Total Passengers (millions) 2011–12"
+        ],
+        [
+          0,
+          "Location"
+        ],
+        [
+          0,
+          "Number of Platforms"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "real",
+        "real",
+        "real",
+        "text",
+        "real"
+      ]
+    },
+    "gold_sql_query": "SELECT MIN(Total Passengers (millions) 2011–12) FROM table WHERE Annual entry/exit (millions) 2011–12 = 36.609"
+  },
+  {
+    "instance_id": "wikisql_train_48265",
+    "db": "2-18569929-1",
+    "question": "What is the highest number of matches that has a round of Third Round?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Round"
+        ],
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Matches"
+        ],
+        [
+          0,
+          "Clubs"
+        ],
+        [
+          0,
+          "New entries this round"
+        ],
+        [
+          0,
+          "Prize money"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "real",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT MAX(Matches) FROM table WHERE Round = 'third round'"
+  },
+  {
+    "instance_id": "wikisql_train_48540",
+    "db": "2-1876262-4",
+    "question": "What period has 0.25% as the other mozilla?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Period"
+        ],
+        [
+          0,
+          "Internet Explorer"
+        ],
+        [
+          0,
+          "Chrome"
+        ],
+        [
+          0,
+          "Firefox"
+        ],
+        [
+          0,
+          "Safari"
+        ],
+        [
+          0,
+          "Opera"
+        ],
+        [
+          0,
+          "Other Mozilla"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Period FROM table WHERE Other Mozilla = '0.25%'"
+  },
+  {
+    "instance_id": "wikisql_train_48598",
+    "db": "2-18618672-2",
+    "question": "What team was in 1st plate in a year later than 1956?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Year"
+        ],
+        [
+          0,
+          "1st Place Team"
+        ],
+        [
+          0,
+          "2nd Place Team"
+        ],
+        [
+          0,
+          "3rd Place Team"
+        ],
+        [
+          0,
+          "4th Place Team"
+        ],
+        [
+          0,
+          "Host Location"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT 1st Place Team FROM table WHERE Year > 1956"
+  },
+  {
+    "instance_id": "wikisql_train_49729",
+    "db": "2-18830959-2",
+    "question": "Which Fencing Victories (pts) has a Total of 5640?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Athlete"
+        ],
+        [
+          0,
+          "Shooting Score (pts)"
+        ],
+        [
+          0,
+          "Fencing Victories (pts)"
+        ],
+        [
+          0,
+          "Swimming Time (pts)"
+        ],
+        [
+          0,
+          "Equestrian Time (pts)"
+        ],
+        [
+          0,
+          "Running Time (pts)"
+        ],
+        [
+          0,
+          "Total"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "real"
+      ]
+    },
+    "gold_sql_query": "SELECT Fencing Victories (pts) FROM table WHERE Total = 5640"
   },
   {
     "instance_id": "wikisql_train_50036",
@@ -2230,33 +2270,77 @@
     "gold_sql_query": "SELECT COUNT(Guests) FROM table WHERE Ship name = 'rv indochina' AND Crew < 28"
   },
   {
-    "instance_id": "wikisql_train_22059",
-    "db": "2-13928610-6",
-    "question": "What record has montreal as the visitor, and february 2 as the date?",
+    "instance_id": "wikisql_train_52810",
+    "db": "2-12557476-2",
+    "question": "Which Venue has an amount of Tickets Sold/ Available of 4,700 / 4,700 (100%)?",
     "schema": {
       "table_names_original": [
         "table"
       ],
       "column_names_original": [
+        [
+          0,
+          "Venue"
+        ],
+        [
+          0,
+          "City"
+        ],
+        [
+          0,
+          "Tickets Sold / Available"
+        ],
+        [
+          0,
+          "Gross Revenue (1979)"
+        ],
+        [
+          0,
+          "Gross Revenue (2012)"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    },
+    "gold_sql_query": "SELECT Venue FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'"
+  },
+  {
+    "instance_id": "wikisql_train_53046",
+    "db": "2-13046272-3",
+    "question": "Which nation had a battlecruiser with an estimate of 513?",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Estimate"
+        ],
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "Nat."
+        ],
+        [
+          0,
+          "Ship type"
+        ],
+        [
+          0,
+          "Where sunk"
+        ],
         [
           0,
           "Date"
-        ],
-        [
-          0,
-          "Visitor"
-        ],
-        [
-          0,
-          "Score"
-        ],
-        [
-          0,
-          "Home"
-        ],
-        [
-          0,
-          "Record"
         ]
       ],
       "column_types": [
@@ -2264,94 +2348,10 @@
         "text",
         "text",
         "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Record FROM table WHERE Visitor = 'montreal' AND Date = 'february 2'"
-  },
-  {
-    "instance_id": "wikisql_train_6698",
-    "db": "1-18638067-1",
-    "question": "What year was Teresa Wright nominated best supporting actress?",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Year (Ceremony)"
-        ],
-        [
-          0,
-          "Actor/Actress"
-        ],
-        [
-          0,
-          "Category"
-        ],
-        [
-          0,
-          "Film title used in nomination"
-        ],
-        [
-          0,
-          "Result"
-        ]
-      ],
-      "column_types": [
-        "text",
-        "text",
-        "text",
         "text",
         "text"
       ]
     },
-    "gold_sql_query": "SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'"
-  },
-  {
-    "instance_id": "wikisql_train_6078",
-    "db": "1-17766232-7",
-    "question": "Who was the radio commentator when the final television commentator was John Dunn? ",
-    "schema": {
-      "table_names_original": [
-        "table"
-      ],
-      "column_names_original": [
-        [
-          0,
-          "Year(s)"
-        ],
-        [
-          0,
-          "Final television commentator"
-        ],
-        [
-          0,
-          "Radio commentator"
-        ],
-        [
-          0,
-          "Spokesperson"
-        ],
-        [
-          0,
-          "Semi-final television commentator"
-        ],
-        [
-          0,
-          "Semi-final second television commentator"
-        ]
-      ],
-      "column_types": [
-        "real",
-        "text",
-        "text",
-        "text",
-        "text",
-        "text"
-      ]
-    },
-    "gold_sql_query": "SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'"
+    "gold_sql_query": "SELECT Nat. FROM table WHERE Ship type = 'battlecruiser' AND Estimate = '513'"
   }
 ]
