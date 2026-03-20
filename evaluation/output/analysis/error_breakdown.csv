@@ -1,0 +1,23 @@
+file,thinking,method,error_category,count
+eval_wikisql_non-thinking_zero_LMFE.json,non-thinking_zero,LMFE,syntax error,6
+eval_wikisql_non-thinking_zero_LMFE.json,non-thinking_zero,LMFE,bad column reference,6
+eval_wikisql_non-thinking_zero_none.json,non-thinking_zero,none,syntax error,4
+eval_wikisql_non-thinking_zero_none.json,non-thinking_zero,none,bad column reference,3
+eval_wikisql_non-thinking_zero_none.json,non-thinking_zero,none,unrecognized token,1
+eval_wikisql_non-thinking_zero_none.json,non-thinking_zero,none,other parse failure,1
+eval_wikisql_non-thinking_zero_outlines.json,non-thinking_zero,outlines,bad column reference,9
+eval_wikisql_non-thinking_zero_outlines.json,non-thinking_zero,outlines,syntax error,5
+eval_wikisql_non-thinking_zero_xgrammar.json,non-thinking_zero,xgrammar,empty output,1
+eval_wikisql_non-thinking_zero_xgrammar.json,non-thinking_zero,xgrammar,runaway repeated conditions / overgeneration,3
+eval_wikisql_non-thinking_zero_xgrammar.json,non-thinking_zero,xgrammar,unbalanced quotes,1
+eval_wikisql_thinking_zero_LMFE.json,thinking_zero,LMFE,bad column reference,11
+eval_wikisql_thinking_zero_LMFE.json,thinking_zero,LMFE,syntax error,2
+eval_wikisql_thinking_zero_none.json,thinking_zero,none,syntax error,8
+eval_wikisql_thinking_zero_none.json,thinking_zero,none,bad column reference,7
+eval_wikisql_thinking_zero_none.json,thinking_zero,none,empty output,2
+eval_wikisql_thinking_zero_outlines.json,thinking_zero,outlines,bad column reference,8
+eval_wikisql_thinking_zero_outlines.json,thinking_zero,outlines,syntax error,5
+eval_wikisql_thinking_zero_outlines.json,thinking_zero,outlines,unrecognized token,1
+eval_wikisql_thinking_zero_xgrammar.json,thinking_zero,xgrammar,empty output,10
+eval_wikisql_thinking_zero_xgrammar.json,thinking_zero,xgrammar,runaway repeated conditions / overgeneration,15
+eval_wikisql_thinking_zero_xgrammar.json,thinking_zero,xgrammar,syntax error,1
