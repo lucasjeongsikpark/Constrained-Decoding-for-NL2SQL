@@ -1,0 +1,616 @@
+========== output/eval_wikisql_non-thinking_zero_LMFE.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_LMFE.json              50       8      42  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY               0         0.0%
+WRONG_TABLE         0         0.0%
+WRONG_COL          35        83.3%
+WRONG_COND          7        16.7%
+OTHER               0         0.0%
+
+=================================================================
+  WRONG_COL  (35 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT COUNT(*) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Against = 645
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : SELECT * FROM table WHERE Game = 'W-L' AND High points = 'andre miller (30)'
+
+  id       : wikisql_train_6078
+  question : Who was the radio commentator when the final television commentator was John Dunn? 
+  gold     : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  pred     : SELECT * FROM table WHERE Final television commentator = 'John Dunn'
+
+
+=================================================================
+  WRONG_COND  (7 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_7296
+  question : What year had an Allison B400R transmission and a model of BRT?
+  gold     : SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'
+  pred     : SELECT Year FROM table WHERE Model = 'BRT' AND Transmission = 'Allison B400R'
+
+  id       : wikisql_train_10463
+  question : Whose WSOP earnings were $36,372? 
+  gold     : SELECT Name FROM table WHERE WSOP earnings = '$36,372'
+  pred     : SELECT Name FROM table WHERE WSOP earnings = '36,372'
+
+  id       : wikisql_train_18024
+  question : Which Region has a Date of early september 1999?
+  gold     : SELECT Region FROM table WHERE Date = 'early september 1999'
+  pred     : SELECT Region FROM table WHERE Date = 'September 1999'
+
+  id       : wikisql_train_36781
+  question : What Captain has Lost 13?
+  gold     : SELECT Captain FROM table WHERE Lost = 13
+  pred     : SELECT Captain FROM table WHERE Played = 13
+
+  id       : wikisql_train_39453
+  question : What rounds did Roy Salvadori drive for David Brown Corporation?
+  gold     : SELECT Rounds FROM table WHERE Entrant = 'david brown corporation' AND Driver = 'roy salvadori'
+  pred     : SELECT Rounds FROM table WHERE Entrant = 'Roy Salvadori' AND Constructor = 'David Brown Corporation'
+
+========== output/eval_wikisql_non-thinking_zero_none.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_none.json              50      10      40  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY               0         0.0%
+WRONG_TABLE         0         0.0%
+WRONG_COL          36        90.0%
+WRONG_COND          4        10.0%
+OTHER               0         0.0%
+
+=================================================================
+  WRONG_COL  (36 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT COUNT(*) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Against = 645
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : SELECT * FROM table WHERE Game = 'W-L' AND High points = 'andre miller (30)'
+
+  id       : wikisql_train_6078
+  question : Who was the radio commentator when the final television commentator was John Dunn? 
+  gold     : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  pred     : SELECT * FROM table WHERE Final television commentator = 'John Dunn'
+
+
+=================================================================
+  WRONG_COND  (4 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_15247
+  question : When 318676 is the population of 2010 and 1st class is the income classification what is the area in kilometers squared?
+  gold     : SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676
+  pred     : SELECT Area (km²) FROM table WHERE City/Municipality = '318676' AND Income Classification = '1st class'
+
+  id       : wikisql_train_18024
+  question : Which Region has a Date of early september 1999?
+  gold     : SELECT Region FROM table WHERE Date = 'early september 1999'
+  pred     : SELECT Region FROM table WHERE Date = 'September 1999'
+
+  id       : wikisql_train_36781
+  question : What Captain has Lost 13?
+  gold     : SELECT Captain FROM table WHERE Lost = 13
+  pred     : SELECT Captain FROM table WHERE Played = 13
+
+  id       : wikisql_train_39453
+  question : What rounds did Roy Salvadori drive for David Brown Corporation?
+  gold     : SELECT Rounds FROM table WHERE Entrant = 'david brown corporation' AND Driver = 'roy salvadori'
+  pred     : SELECT Rounds FROM table WHERE Entrant = 'Roy Salvadori' AND Constructor = 'David Brown Corporation'
+
+========== output/eval_wikisql_non-thinking_zero_outlines.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_outlines.json          50      10      40  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY               0         0.0%
+WRONG_TABLE         0         0.0%
+WRONG_COL          28        70.0%
+WRONG_COND         12        30.0%
+OTHER               0         0.0%
+
+=================================================================
+  WRONG_COL  (28 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT SUM(U_S_VIEWERS) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Agst = 645
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : SELECT Game FROM table WHERE High points = '30' AND Team = 'Miller'
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT Parish FROM table WHERE Sub_Parish = 'fortun'
+
+
+=================================================================
+  WRONG_COND  (12 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_7296
+  question : What year had an Allison B400R transmission and a model of BRT?
+  gold     : SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'
+  pred     : SELECT Year FROM table WHERE Model = 'BRT' AND Transmission = 'Allison B400R'
+
+  id       : wikisql_train_10463
+  question : Whose WSOP earnings were $36,372? 
+  gold     : SELECT Name FROM table WHERE WSOP earnings = '$36,372'
+  pred     : SELECT Name FROM table WHERE WSOP earnings = '36,372'
+
+  id       : wikisql_train_13031
+  question : Who was the lites 2 race two winning team when #13 Inspire Motorsports was the Lites 1 race one winning team?
+  gold     : SELECT Lites 2 Race Two Winning Team FROM table WHERE Lites 1 Race One Winning Team = '#13 Inspire Motorsports'
+  pred     : SELECT Lites 2 Race Two Winning Team FROM table WHERE Circuit = '13 Inspire Motorsports'
+
+  id       : wikisql_train_18024
+  question : Which Region has a Date of early september 1999?
+  gold     : SELECT Region FROM table WHERE Date = 'early september 1999'
+  pred     : SELECT Region FROM table WHERE Date = 'September 1999'
+
+  id       : wikisql_train_18231
+  question : What is the lowest population of alessandria where the altitude is less than 197 and density is less than 461.8?
+  gold     : SELECT MIN(Population) FROM table WHERE Altitude (mslm) < 197 AND City = 'alessandria' AND Density (inhabitants/km 2 ) < 461.8
+  pred     : SELECT MIN(Population) FROM table WHERE City = 'Alessandria' AND Altitude < 197
+
+========== output/eval_wikisql_non-thinking_zero_xgrammar.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_xgrammar.json          50      12      38  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY               1         2.6%
+WRONG_TABLE         0         0.0%
+WRONG_COL          27        71.1%
+WRONG_COND         10        26.3%
+OTHER               0         0.0%
+
+=================================================================
+  EMPTY  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : 
+
+
+=================================================================
+  WRONG_COL  (27 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT COUNT(*) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Agst = 645
+
+  id       : wikisql_train_6078
+  question : Who was the radio commentator when the final television commentator was John Dunn? 
+  gold     : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  pred     : SELECT * FROM table WHERE Final television commentator = 'John Dunn' AND Radio commentator = 'Radio commentator'
+
+  id       : wikisql_train_6717
+  question : If the rings number is 60.000, what is the number for the vault?
+  gold     : SELECT COUNT(Vault) FROM table WHERE Rings = '60.000'
+  pred     : SELECT Vault FROM table WHERE Rings = '60.000'
+
+
+=================================================================
+  WRONG_COND  (10 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress'
+
+  id       : wikisql_train_7296
+  question : What year had an Allison B400R transmission and a model of BRT?
+  gold     : SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'
+  pred     : SELECT Year FROM table WHERE Model = 'BRT' AND Transmission = 'Allison B400R'
+
+  id       : wikisql_train_10463
+  question : Whose WSOP earnings were $36,372? 
+  gold     : SELECT Name FROM table WHERE WSOP earnings = '$36,372'
+  pred     : SELECT Name FROM table WHERE WSOP earnings = '36,372'
+
+  id       : wikisql_train_15247
+  question : When 318676 is the population of 2010 and 1st class is the income classification what is the area in kilometers squared?
+  gold     : SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676
+  pred     : SELECT Area (km²) FROM table WHERE City/Municipality = '318676' AND Income Classification = '1st class'
+
+  id       : wikisql_train_18024
+  question : Which Region has a Date of early september 1999?
+  gold     : SELECT Region FROM table WHERE Date = 'early september 1999'
+  pred     : SELECT Region FROM table WHERE Date = 'September 1999' AND Date >= 'September 1999' AND Date <= 'September 1999' AND Date = 'September 1999' AND Region = 'Region' AND Format = 'Format' AND Catalog = 'Catalog' AND Label = 'Label' AND Date = 'September 1999' AND Region = 'Region' AND Format = 'Format' AND Catalog = 'Catalog
+
+========== output/eval_wikisql_thinking_zero_LMFE.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_LMFE.json                  50       3      47  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY               0         0.0%
+WRONG_TABLE         0         0.0%
+WRONG_COL          41        87.2%
+WRONG_COND          6        12.8%
+OTHER               0         0.0%
+
+=================================================================
+  WRONG_COL  (41 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT COUNT(*) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'
+
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  pred     : SELECT * FROM table WHERE Day = 'Tuesday Day Three' AND Thursday Day Five = 'Kamis'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT PLAYED FROM table WHERE Pts Agst = 645
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : SELECT * FROM table WHERE Game = 'W-L' AND High points = '30'
+
+
+=================================================================
+  WRONG_COND  (6 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_16049
+  question : What MLS team is affiliated with yale university?
+  gold     : SELECT MLS Team FROM table WHERE Affiliation = 'yale university'
+  pred     : SELECT MLS TEAM FROM table WHERE Affiliation = 'Yale University' AND Pick = 100000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+  id       : wikisql_train_27493
+  question : What is the Label that shows on april 7, 1967?
+  gold     : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  pred     : SELECT Label FROM table WHERE Date = 'april 7, 1967' AND Country = 'US'
+
+  id       : wikisql_train_35741
+  question : What's the lowest pick for a defensive back at Drake?
+  gold     : SELECT MIN(Pick) FROM table WHERE Position = 'defensive back' AND School = 'drake'
+  pred     : SELECT MIN(Pick) FROM table WHERE Player = 'Defensive' AND Position = 'Back'
+
+  id       : wikisql_train_36781
+  question : What Captain has Lost 13?
+  gold     : SELECT Captain FROM table WHERE Lost = 13
+  pred     : SELECT Captain FROM table WHERE Played = 13 AND Lost = 13
+
+  id       : wikisql_train_48540
+  question : What period has 0.25% as the other mozilla?
+  gold     : SELECT Period FROM table WHERE Other Mozilla = '0.25%'
+  pred     : SELECT Period FROM table WHERE Internet Explorer = '0.25%' AND Chrome = '0.25%'
+
+========== output/eval_wikisql_thinking_zero_none.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_none.json                  50      16      34  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY               2         5.9%
+WRONG_TABLE         1         2.9%
+WRONG_COL          23        67.6%
+WRONG_COND          8        23.5%
+OTHER               0         0.0%
+
+=================================================================
+  EMPTY  (2 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_10189
+  question : What was the highest score of candidate mir-hossein mousavi in the location known as azarbaijan, west?
+  gold     : SELECT MAX(Mir-Hossein Mousavi) FROM table WHERE Province = 'Azarbaijan, West'
+  pred     : 
+
+  id       : wikisql_train_44348
+  question : What is the smallest Pick with Overall larger than 17, a Player name of dave adams category:articles with hcards, and a Year larger than 1963?
+  gold     : SELECT MIN(Pick) FROM table WHERE Overall > 17 AND Player name = 'dave adams category:articles with hcards' AND Year > 1963
+  pred     : 
+
+
+=================================================================
+  WRONG_TABLE  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_52810
+  question : Which Venue has an amount of Tickets Sold/ Available of 4,700 / 4,700 (100%)?
+  gold     : SELECT Venue FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'
+  pred     : select the Venue where both columns are 4,700. But the question is a
+
+
+=================================================================
+  WRONG_COL  (23 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT COUNT(*) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Against = 645
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : SELECT Game, Record FROM table WHERE High points = '30' AND Team = 'Andre Miller'
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT Parish FROM table WHERE Sogn = 'fortun'
+
+
+=================================================================
+  WRONG_COND  (8 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_7296
+  question : What year had an Allison B400R transmission and a model of BRT?
+  gold     : SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'
+  pred     : SELECT Year FROM table WHERE Engine = 'Allison B400R' AND Model = 'BRT'
+
+  id       : wikisql_train_29439
+  question : Which Sanskrit has a Chinese of —, and an English of cultivation of settling?
+  gold     : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+  pred     : SELECT Sanskrit FROM table WHERE Chinese = '-' AND English = 'cultivation of settling'
+
+  id       : wikisql_train_35741
+  question : What's the lowest pick for a defensive back at Drake?
+  gold     : SELECT MIN(Pick) FROM table WHERE Position = 'defensive back' AND School = 'drake'
+  pred     : SELECT MIN(Pick) FROM table WHERE School = 'Drake' AND Position = 'defensive'
+
+  id       : wikisql_train_38618
+  question : What is the most wins with a rank of 5 and less than $1,537,571 in earnings?
+  gold     : SELECT MAX(Wins) FROM table WHERE Rank = 5 AND Earnings ( $ ) > '1,537,571'
+  pred     : SELECT MAX(Wins) FROM table WHERE Rank = 5 AND Earnings < 1537571
+
+  id       : wikisql_train_39453
+  question : What rounds did Roy Salvadori drive for David Brown Corporation?
+  gold     : SELECT Rounds FROM table WHERE Entrant = 'david brown corporation' AND Driver = 'roy salvadori'
+  pred     : SELECT Rounds FROM table WHERE Entrant = 'Roy Salvadori' AND Constructor = 'David Brown Corporation'
+
+========== output/eval_wikisql_thinking_zero_outlines.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_outlines.json              50       4      46  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY               0         0.0%
+WRONG_TABLE         0         0.0%
+WRONG_COL          38        82.6%
+WRONG_COND          8        17.4%
+OTHER               0         0.0%
+
+=================================================================
+  WRONG_COL  (38 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT COUNT(*) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'
+
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  pred     : SELECT * FROM table WHERE Day = 'Tuesday Day Three' AND Thursday Day Five = 'Kamis'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT PLAYED FROM table WHERE Pts Agst = 645
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : SELECT * FROM table WHERE Game = 'W-L' AND High Points = 'andre miller (30)'
+
+
+=================================================================
+  WRONG_COND  (8 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_18024
+  question : Which Region has a Date of early september 1999?
+  gold     : SELECT Region FROM table WHERE Date = 'early september 1999'
+  pred     : SELECT Region FROM table WHERE Date = 'September 1999' AND Format = 'early'
+
+  id       : wikisql_train_18231
+  question : What is the lowest population of alessandria where the altitude is less than 197 and density is less than 461.8?
+  gold     : SELECT MIN(Population) FROM table WHERE Altitude (mslm) < 197 AND City = 'alessandria' AND Density (inhabitants/km 2 ) < 461.8
+  pred     : SELECT MIN(Population) FROM table WHERE City = 'Alessandria' AND Altitude < 197
+
+  id       : wikisql_train_27493
+  question : What is the Label that shows on april 7, 1967?
+  gold     : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  pred     : SELECT Label FROM table WHERE Date = 'april 7, 1967' AND Country = 'United States'
+
+  id       : wikisql_train_29439
+  question : Which Sanskrit has a Chinese of —, and an English of cultivation of settling?
+  gold     : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+  pred     : SELECT Sanskrit FROM table WHERE English = 'cultivation' AND Pali = 'settlement'
+
+  id       : wikisql_train_35741
+  question : What's the lowest pick for a defensive back at Drake?
+  gold     : SELECT MIN(Pick) FROM table WHERE Position = 'defensive back' AND School = 'drake'
+  pred     : SELECT MIN(Pick) FROM table WHERE Player = 'Defensive' AND School = 'Drake'
+
+========== output/eval_wikisql_thinking_zero_xgrammar.json ==========
+File                                               Total Correct  Errors
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_xgrammar.json              50       0      50  (all)
+
+Category        Count  % of errors
+-----------------------------------
+EMPTY              10        20.0%
+WRONG_TABLE         0         0.0%
+WRONG_COL          28        56.0%
+WRONG_COND         12        24.0%
+OTHER               0         0.0%
+
+=================================================================
+  EMPTY  (10 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : 
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : 
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : 
+
+  id       : wikisql_train_6717
+  question : If the rings number is 60.000, what is the number for the vault?
+  gold     : SELECT COUNT(Vault) FROM table WHERE Rings = '60.000'
+  pred     : 
+
+  id       : wikisql_train_9144
+  question : Name the silver for baseball
+  gold     : SELECT MIN(Silver) FROM table WHERE Discipline = 'Baseball'
+  pred     : 
+
+
+=================================================================
+  WRONG_COL  (28 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53
+
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  pred     : SELECT * FROM table WHERE Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five'
+
+  id       : wikisql_train_6078
+  question : Who was the radio commentator when the final television commentator was John Dunn? 
+  gold     : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  pred     : SELECT * FROM table WHERE Year(s) = 2019 AND Radio commentator = 'John Dunn' AND Final television commentator = 'John Dunn' AND Semi-final television commentator = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT * FROM table WHERE Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn) = 'Fortun' AND Church Name = 'Fortun' AND Year Built = 'Fortun' AND Location of the Church = 'Fortun' AND Parish (Prestegjeld) = 'Fortun' AND Sub-Parish (Sogn)
+
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT * FROM table WHERE Year (Ceremony) = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress
+
+
+=================================================================
+  WRONG_COND  (12 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_425
+  question : What is the title of the episode directed by Peter Markle and written by Jerry Stahl?
+  gold     : SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl'
+  pred     : SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl' LIMIT 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+  id       : wikisql_train_15247
+  question : When 318676 is the population of 2010 and 1st class is the income classification what is the area in kilometers squared?
+  gold     : SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676
+  pred     : SELECT Area (km²) FROM table WHERE City/Municipality = 'City' AND Population (2010) = 318676 AND Income Classification = '1st class' LIMIT 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+  id       : wikisql_train_16049
+  question : What MLS team is affiliated with yale university?
+  gold     : SELECT MLS Team FROM table WHERE Affiliation = 'yale university'
+  pred     : SELECT MLS Team FROM table WHERE Affiliation = 'Yale University' AND Pick # = 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+  id       : wikisql_train_27493
+  question : What is the Label that shows on april 7, 1967?
+  gold     : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  pred     : SELECT Label FROM table WHERE Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'ap
+
+  id       : wikisql_train_27651
+  question : Which Attendance has an Opponent of carolina panthers?
+  gold     : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'
+  pred     : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers' LIMIT 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+

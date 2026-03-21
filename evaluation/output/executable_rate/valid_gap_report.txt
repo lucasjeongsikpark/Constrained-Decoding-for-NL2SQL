@@ -1,0 +1,404 @@
+========== output/eval_wikisql_non-thinking_zero_LMFE.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_LMFE.json              50     50    38    12
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 76.0%
+  Gap (valid→exec) : 12 cases  (24.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF           12     100.0%
+TYPE_MISMATCH             0       0.0%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (12 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Against = 645
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT Parish FROM table WHERE Sub_Parish = 'fortun'
+
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT Year FROM table WHERE Actor_1 = 'Teresa Wright' AND Result = 'Nominated best supporting actress'
+
+  id       : wikisql_train_14446
+  question : How many people wrote the episode that had 7.26 million u.s. viewers?
+  gold     : SELECT COUNT(Written by) FROM table WHERE U.S. viewers (million) = '7.26'
+  pred     : SELECT COUNT(*) FROM table WHERE U_S_viewers_million = '7.26'
+
+  id       : wikisql_train_15247
+  question : When 318676 is the population of 2010 and 1st class is the income classification what is the area in kilometers squared?
+  gold     : SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676
+  pred     : SELECT Area FROM table WHERE City = '318676' AND Income Classification = '1st class'
+
+========== output/eval_wikisql_non-thinking_zero_none.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_none.json              50     50    41     9
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 82.0%
+  Gap (valid→exec) : 9 cases  (18.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF            9     100.0%
+TYPE_MISMATCH             0       0.0%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (9 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Against = 645
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT Parish, Sub-Parish, Church Name, Year Built, Location of the Church FROM table WHERE Sub-Parish = 'fortun'
+
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT Year FROM table WHERE Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress'
+
+  id       : wikisql_train_18231
+  question : What is the lowest population of alessandria where the altitude is less than 197 and density is less than 461.8?
+  gold     : SELECT MIN(Population) FROM table WHERE Altitude (mslm) < 197 AND City = 'alessandria' AND Density (inhabitants/km 2 ) < 461.8
+  pred     : SELECT * FROM table WHERE Rank = '' AND City = '' AND Population < 197 AND Density < 461.8
+
+  id       : wikisql_train_33118
+  question : What is the smallest area that has a Population Density of 3,216 and a Population larger than 16,650,000?
+  gold     : SELECT MIN(Area (km²)) FROM table WHERE Population Density (People/km²) = '3,216' AND Population > '16,650,000'
+  pred     : SELECT * FROM table WHERE Population > 16650000 AND Population Density = 3216
+
+========== output/eval_wikisql_non-thinking_zero_outlines.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_outlines.json          50     50    36    14
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 72.0%
+  Gap (valid→exec) : 14 cases  (28.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF           13      92.9%
+TYPE_MISMATCH             1       7.1%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (13 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1639
+  question : What's the total number of episodes with production code 2T6705?
+  gold     : SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'
+  pred     : SELECT SUM(U_S_VIEWERS) FROM table WHERE Production code = '2T6705'
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT Parish FROM table WHERE Sub_Parish = 'fortun'
+
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT Year FROM table WHERE Actor_1 = 'Teresa Wright' AND Result = 'Best Supporting Actress'
+
+  id       : wikisql_train_14446
+  question : How many people wrote the episode that had 7.26 million u.s. viewers?
+  gold     : SELECT COUNT(Written by) FROM table WHERE U.S. viewers (million) = '7.26'
+  pred     : SELECT COUNT(*) FROM table WHERE U_S_VIEWERS_MILLION = '7.26'
+
+  id       : wikisql_train_15247
+  question : When 318676 is the population of 2010 and 1st class is the income classification what is the area in kilometers squared?
+  gold     : SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676
+  pred     : SELECT Area FROM table WHERE City = 'City' AND Population = 318676
+
+
+=================================================================
+  TYPE_MISMATCH  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_18231
+  question : What is the lowest population of alessandria where the altitude is less than 197 and density is less than 461.8?
+  gold     : SELECT MIN(Population) FROM table WHERE Altitude (mslm) < 197 AND City = 'alessandria' AND Density (inhabitants/km 2 ) < 461.8
+  pred     : SELECT MIN(Population) FROM table WHERE City = 'Alessandria' AND Altitude < 197
+
+========== output/eval_wikisql_non-thinking_zero_xgrammar.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_xgrammar.json          50     49    46     4
+
+  Valid SQL rate   : 98.0%
+  Execution rate   : 92.0%
+  Gap (valid→exec) : 4 cases  (8.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF            3      75.0%
+TYPE_MISMATCH             1      25.0%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (3 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_18024
+  question : Which Region has a Date of early september 1999?
+  gold     : SELECT Region FROM table WHERE Date = 'early september 1999'
+  pred     : SELECT Region FROM table WHERE Date = 'September 1999' AND Date >= 'September 1999' AND Date <= 'September 1999' AND Date = 'September 1999' AND Region = 'Region' AND Format = 'Format' AND Catalog = 'Catalog' AND Label = 'Label' AND Date = 'September 1999' AND Region = 'Region' AND Format = 'Format' AND Catalog = 'Catalog
+
+  id       : wikisql_train_35741
+  question : What's the lowest pick for a defensive back at Drake?
+  gold     : SELECT MIN(Pick) FROM table WHERE Position = 'defensive back' AND School = 'drake'
+  pred     : SELECT * FROM table WHERE Player = 'Defensive back' AND School = 'Drake' AND Position = 'Back' AND Round = 'Lowest' AND Pick = 'Lowest' AND Round = 'Lowest' AND Pick = 'Lowest' AND Round = 'Lowest' AND Pick = 'Lowest' AND Round = 'Lowest' AND Pick = 'Lowest' AND Round = 'Lowest' AND Pick = 'Lowest' AND Round = 'Low
+
+  id       : wikisql_train_48540
+  question : What period has 0.25% as the other mozilla?
+  gold     : SELECT Period FROM table WHERE Other Mozilla = '0.25%'
+  pred     : SELECT Period FROM table WHERE Internet Explorer = 'Other Mozilla' AND Chrome = '0.25%' AND Firefox = '0.25%' AND Safari = '0.25%' AND Opera = '0.25%?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*?*
+
+
+=================================================================
+  TYPE_MISMATCH  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_36781
+  question : What Captain has Lost 13?
+  gold     : SELECT Captain FROM table WHERE Lost = 13
+  pred     : SELECT Captain FROM table WHERE Played = 13 AND Lost = 13 AND Competition = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '1
+
+========== output/eval_wikisql_thinking_zero_LMFE.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_LMFE.json                  50     50    37    13
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 74.0%
+  Gap (valid→exec) : 13 cases  (26.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF           13     100.0%
+TYPE_MISMATCH             0       0.0%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (13 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  pred     : SELECT * FROM table WHERE Day = 'Tuesday Day Three' AND Thursday Day Five = 'Kamis'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT PLAYED FROM table WHERE Pts Agst = 645
+
+  id       : wikisql_train_6078
+  question : Who was the radio commentator when the final television commentator was John Dunn? 
+  gold     : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  pred     : SELECT * FROM table WHERE Year = 2019 AND Radio commentator = 'John Dunn'
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT * FROM table WHERE Parish = 'Fortun' AND Sub_Parish = 'Fortun'
+
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT * FROM table WHERE Year = '2010' AND Actor_1 = 'Teresa Wright'
+
+========== output/eval_wikisql_thinking_zero_none.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_none.json                  50     48    35    15
+
+  Valid SQL rate   : 96.0%
+  Execution rate   : 70.0%
+  Gap (valid→exec) : 15 cases  (30.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           1       6.7%
+BAD_COLUMN_REF           14      93.3%
+TYPE_MISMATCH             0       0.0%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_52810
+  question : Which Venue has an amount of Tickets Sold/ Available of 4,700 / 4,700 (100%)?
+  gold     : SELECT Venue FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'
+  pred     : select the Venue where both columns are 4,700. But the question is a
+
+
+=================================================================
+  BAD_COLUMN_REF  (14 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT Played FROM table WHERE Pts Against = 645
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT Parish FROM table WHERE Sogn = 'fortun'
+
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT Year FROM table WHERE Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress'
+
+  id       : wikisql_train_10463
+  question : Whose WSOP earnings were $36,372? 
+  gold     : SELECT Name FROM table WHERE WSOP earnings = '$36,372'
+  pred     : SELECT table.Name FROM table WHERE table.WSOP earnings = '36372'
+
+  id       : wikisql_train_13031
+  question : Who was the lites 2 race two winning team when #13 Inspire Motorsports was the Lites 1 race one winning team?
+  gold     : SELECT Lites 2 Race Two Winning Team FROM table WHERE Lites 1 Race One Winning Team = '#13 Inspire Motorsports'
+  pred     : SELECT Lites 2 Race Two FROM table WHERE Lites 1 = '13 Inspire Motorsports'
+
+========== output/eval_wikisql_thinking_zero_outlines.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_outlines.json              50     50    36    14
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 72.0%
+  Gap (valid→exec) : 14 cases  (28.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF           12      85.7%
+TYPE_MISMATCH             1       7.1%
+OVERGENERATION            0       0.0%
+UNKNOWN                   1       7.1%
+
+=================================================================
+  BAD_COLUMN_REF  (12 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  pred     : SELECT * FROM table WHERE Day = 'Tuesday Day Three' AND Thursday Day Five = 'Kamis'
+
+  id       : wikisql_train_2082
+  question : What is the number of played when points against 645?
+  gold     : SELECT COUNT(Played) FROM table WHERE Pts Agst = 645
+  pred     : SELECT PLAYED FROM table WHERE Pts Agst = 645
+
+  id       : wikisql_train_5697
+  question : What was the W-L record when HIgh Points was andre miller (30)?
+  gold     : SELECT Record FROM table WHERE High points = 'Andre Miller (30)'
+  pred     : SELECT * FROM table WHERE Game = 'W-L' AND High Points = 'andre miller (30)'
+
+  id       : wikisql_train_6140
+  question : In what parish is the sub-parish fortun? 
+  gold     : SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'
+  pred     : SELECT * FROM table WHERE Sub_Parish = 'Fortun' AND Parish = 'Fortun'
+
+  id       : wikisql_train_14446
+  question : How many people wrote the episode that had 7.26 million u.s. viewers?
+  gold     : SELECT COUNT(Written by) FROM table WHERE U.S. viewers (million) = '7.26'
+  pred     : SELECT COUNT(*) FROM table WHERE U S viewers millions = '7.26' AND Original air date = '2022-03-15'
+
+
+=================================================================
+  TYPE_MISMATCH  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_18231
+  question : What is the lowest population of alessandria where the altitude is less than 197 and density is less than 461.8?
+  gold     : SELECT MIN(Population) FROM table WHERE Altitude (mslm) < 197 AND City = 'alessandria' AND Density (inhabitants/km 2 ) < 461.8
+  pred     : SELECT MIN(Population) FROM table WHERE City = 'Alessandria' AND Altitude < 197
+
+
+=================================================================
+  UNKNOWN  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_16049
+  question : What MLS team is affiliated with yale university?
+  gold     : SELECT MLS Team FROM table WHERE Affiliation = 'yale university'
+  pred     : SELECT MLS TEAM FROM table WHERE Affiliation = 'Yale University'
+
+========== output/eval_wikisql_thinking_zero_xgrammar.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_xgrammar.json              50     40    22    27
+
+  Valid SQL rate   : 80.0%
+  Execution rate   : 44.0%
+  Gap (valid→exec) : 27 cases  (54.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF            1       3.7%
+TYPE_MISMATCH             0       0.0%
+OVERGENERATION           26      96.3%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_48540
+  question : What period has 0.25% as the other mozilla?
+  gold     : SELECT Period FROM table WHERE Other Mozilla = '0.25%'
+  pred     : SELECT Period FROM table WHERE Internet Explorer = 'OROpera ='.25% AND Chrome = 'OROpera ='.25% AND Firefox = 'OROpera ='.25% AND Safari = 'OROpera ='.25% AND Opera = 'OROpera ='.25% AND Other Mozilla = 'OROpera ='.25%
+
+
+=================================================================
+  OVERGENERATION  (26 cases, showing up to 5)
+=================================================================
+  id       : wikisql_train_425
+  question : What is the title of the episode directed by Peter Markle and written by Jerry Stahl?
+  gold     : SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl'
+  pred     : SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl' LIMIT 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+  id       : wikisql_train_1739
+  question : How many times was the GFR 2006 equal to 53.2?
+  gold     : SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'
+  pred     : SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53.2' AND TFR 2006 = '53.2' AND Whites as % of Pop. = '53.2' AND County = '53.2' AND Live births 2006 = '53.2' AND GFR 2006 = '53
+
+  id       : wikisql_train_6078
+  question : Who was the radio commentator when the final television commentator was John Dunn? 
+  gold     : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  pred     : SELECT * FROM table WHERE Year(s) = 2019 AND Radio commentator = 'John Dunn' AND Final television commentator = 'John Dunn' AND Semi-final television commentator = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John Dunn' AND Semi-final second television commentator = 'John Dunn' AND Spokesperson = 'John
+
+  id       : wikisql_train_6698
+  question : What year was Teresa Wright nominated best supporting actress?
+  gold     : SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'
+  pred     : SELECT * FROM table WHERE Year (Ceremony) = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress' AND Category = 'best supporting actress' AND Film title used in nomination = 'Teresa Wright' AND Actor/Actress = 'Teresa Wright' AND Result = 'best supporting actress
+
+  id       : wikisql_train_7296
+  question : What year had an Allison B400R transmission and a model of BRT?
+  gold     : SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'
+  pred     : SELECT * FROM table WHERE Model = 'BRT' AND Transmission = 'Allison B400R' AND Year = '2010' LIMIT 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+

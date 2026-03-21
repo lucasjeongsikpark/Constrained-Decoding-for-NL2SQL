@@ -1,0 +1,250 @@
+  Shared: 50   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+result_wikisql_thinking_zero_none.json                 11   22.0%
+result_wikisql_non-thinking_zero_none.json              8   16.0%
+
+Both correct            7  (14.0%)
+Both wrong             38  (76.0%)
+Only A correct          4  (8.0%)
+Only B correct          1  (2.0%)
+
+====================================================================
+  Only A correct  —  result_wikisql_thinking_zero_none.json  (showing up to 5)
+====================================================================
+  id       : wikisql_train_35713
+  question : How many people attended when the record was broken with 47–63?
+  gold     : SELECT Attendance FROM table WHERE Record = '47–63'
+  A pred   : SELECT Attendance FROM table WHERE Record = '47–63'
+  B pred   : SELECT COUNT(*) FROM table WHERE Record = '47–63'
+
+  id       : wikisql_train_36781
+  question : What Captain has Lost 13?
+  gold     : SELECT Captain FROM table WHERE Lost = 13
+  A pred   : SELECT Captain FROM table WHERE Lost = 13
+  B pred   : SELECT Captain FROM table WHERE Played = 13
+
+  id       : wikisql_train_45962
+  question : What is the total of Matches with Goals of 18, and an Average larger than 0.55?
+  gold     : SELECT SUM(Matches) FROM table WHERE Goals = 18 AND Average > 0.55
+  A pred   : SELECT SUM(Matches) FROM table WHERE Goals = 18 AND Average > 0.55
+  B pred   : SELECT Goals, Average FROM table WHERE Goals = 18 AND Average > 0.55
+
+  id       : wikisql_train_6078
+  question : Who was the radio commentator when the final television commentator was John Dunn? 
+  gold     : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  A pred   : SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'
+  B pred   : SELECT * FROM table WHERE Final television commentator = 'John Dunn'
+
+
+====================================================================
+  Only B correct  —  result_wikisql_non-thinking_zero_none.json  (showing up to 5)
+====================================================================
+  id       : wikisql_train_29439
+  question : Which Sanskrit has a Chinese of —, and an English of cultivation of settling?
+  gold     : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+  A pred   : SELECT Sanskrit FROM table WHERE Chinese = '-' AND English = 'cultivation of settling'
+  B pred   : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+
+  Shared: 50   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+result_wikisql_thinking_zero_outlines.json              2    4.0%
+result_wikisql_non-thinking_zero_outlines.json          8   16.0%
+
+Both correct            2  (4.0%)
+Both wrong             42  (84.0%)
+Only A correct          0  (0.0%)
+Only B correct          6  (12.0%)
+
+====================================================================
+  Only B correct  —  result_wikisql_non-thinking_zero_outlines.json  (showing up to 5)
+====================================================================
+  id       : wikisql_train_14110
+  question : What were the high points on March 25?
+  gold     : SELECT High points FROM table WHERE Date = 'March 25'
+  A pred   : SELECT MAX(High points) FROM table WHERE Date = 'March 25'
+  B pred   : SELECT High points FROM table WHERE Date = 'March 25'
+
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  A pred   : SELECT * FROM table WHERE Day = 'Tuesday Day Three' AND Thursday Day Five = 'Kamis'
+  B pred   : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+
+  id       : wikisql_train_27493
+  question : What is the Label that shows on april 7, 1967?
+  gold     : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  A pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967' AND Country = 'United States'
+  B pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+
+  id       : wikisql_train_27651
+  question : Which Attendance has an Opponent of carolina panthers?
+  gold     : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'
+  A pred   : SELECT * FROM table WHERE Opponent = 'carolina panthers'
+  B pred   : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'
+
+  id       : wikisql_train_45753
+  question : What country has a score of 71-66-72-72=281?
+  gold     : SELECT Country FROM table WHERE Score = '71-66-72-72=281'
+  A pred   : SELECT * FROM table WHERE Score = 71 AND To par = '72'
+  B pred   : SELECT Country FROM table WHERE Score = '71-66-72-72=281'
+
+  Shared: 50   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+result_wikisql_thinking_zero_xgrammar.json              0    0.0%
+result_wikisql_non-thinking_zero_xgrammar.json          9   18.0%
+
+Both correct            0  (0.0%)
+Both wrong             41  (82.0%)
+Only A correct          0  (0.0%)
+Only B correct          9  (18.0%)
+
+====================================================================
+  Only B correct  —  result_wikisql_non-thinking_zero_xgrammar.json  (showing up to 5)
+====================================================================
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  A pred   : SELECT * FROM table WHERE Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five'
+  B pred   : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+
+  id       : wikisql_train_27493
+  question : What is the Label that shows on april 7, 1967?
+  gold     : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  A pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'ap
+  B pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+
+  id       : wikisql_train_27651
+  question : Which Attendance has an Opponent of carolina panthers?
+  gold     : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'
+  A pred   : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers' LIMIT 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  B pred   : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'
+
+  id       : wikisql_train_29439
+  question : Which Sanskrit has a Chinese of —, and an English of cultivation of settling?
+  gold     : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+  A pred   : SELECT * FROM table WHERE English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND Pali = '—' AND Sanskrit = 'settlement' AND Chinese = '—' AND Tibetan = '—' AND English = 'cultivation' AND P
+  B pred   : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+
+  id       : wikisql_train_41905
+  question : What county has a CERCLIS ID of scd037405362?
+  gold     : SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'
+  A pred   : SELECT * FROM table WHERE CERCLIS ID = 's cd037405362' LIMIT 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  B pred   : SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'
+
+  Shared: 50   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+result_wikisql_thinking_zero_LMFE.json                  2    4.0%
+result_wikisql_non-thinking_zero_LMFE.json              7   14.0%
+
+Both correct            2  (4.0%)
+Both wrong             43  (86.0%)
+Only A correct          0  (0.0%)
+Only B correct          5  (10.0%)
+
+====================================================================
+  Only B correct  —  result_wikisql_non-thinking_zero_LMFE.json  (showing up to 5)
+====================================================================
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  A pred   : SELECT * FROM table WHERE Day = 'Tuesday Day Three' AND Thursday Day Five = 'Kamis'
+  B pred   : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+
+  id       : wikisql_train_27493
+  question : What is the Label that shows on april 7, 1967?
+  gold     : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  A pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967' AND Country = 'US'
+  B pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+
+  id       : wikisql_train_29439
+  question : Which Sanskrit has a Chinese of —, and an English of cultivation of settling?
+  gold     : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+  A pred   : SELECT * FROM table WHERE English = 'cultivation' AND Pali = '—'
+  B pred   : SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'
+
+  id       : wikisql_train_41905
+  question : What county has a CERCLIS ID of scd037405362?
+  gold     : SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'
+  A pred   : SELECT * FROM table WHERE CERCLIS ID = 's cd037405362' AND County = 'scd037405362'
+  B pred   : SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'
+
+  id       : wikisql_train_45753
+  question : What country has a score of 71-66-72-72=281?
+  gold     : SELECT Country FROM table WHERE Score = '71-66-72-72=281'
+  A pred   : SELECT * FROM table WHERE Score = 71667272281
+  B pred   : SELECT Country FROM table WHERE Score = '71-66-72-72=281'
+
+  Shared: 50   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+result_wikisql_non-thinking_zero_none.json              8   16.0%
+result_wikisql_non-thinking_zero_xgrammar.json          9   18.0%
+
+Both correct            8  (16.0%)
+Both wrong             41  (82.0%)
+Only A correct          0  (0.0%)
+Only B correct          1  (2.0%)
+
+====================================================================
+  Only B correct  —  result_wikisql_non-thinking_zero_xgrammar.json  (showing up to 5)
+====================================================================
+  id       : wikisql_train_52810
+  question : Which Venue has an amount of Tickets Sold/ Available of 4,700 / 4,700 (100%)?
+  gold     : SELECT Venue FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'
+  A pred   : SELECT Venue, Tickets Sold / Available FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'
+  B pred   : SELECT Venue FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'
+
+  Shared: 50   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+result_wikisql_thinking_zero_none.json                 11   22.0%
+result_wikisql_thinking_zero_xgrammar.json              0    0.0%
+
+Both correct            0  (0.0%)
+Both wrong             39  (78.0%)
+Only A correct         11  (22.0%)
+Only B correct          0  (0.0%)
+
+====================================================================
+  Only A correct  —  result_wikisql_thinking_zero_none.json  (showing up to 5)
+====================================================================
+  id       : wikisql_train_1952
+  question : What is tuesday day three when thursday day five is kamis?
+  gold     : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  A pred   : SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'
+  B pred   : SELECT * FROM table WHERE Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five' AND Day (see Irregularities ) = 'Kamis' AND Day (see Irregularities ) = 'Tuesday Day Three' AND Day (see Irregularities ) = 'Thursday Day Five'
+
+  id       : wikisql_train_27493
+  question : What is the Label that shows on april 7, 1967?
+  gold     : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  A pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967'
+  B pred   : SELECT Label FROM table WHERE Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'april 7, 1967' AND Country = 'US' AND Format = '1967' AND Catalog = '1967' AND Label = 'Label' AND Date = 'ap
+
+  id       : wikisql_train_27651
+  question : Which Attendance has an Opponent of carolina panthers?
+  gold     : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'
+  A pred   : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'
+  B pred   : SELECT Attendance FROM table WHERE Opponent = 'carolina panthers' LIMIT 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+  id       : wikisql_train_35713
+  question : How many people attended when the record was broken with 47–63?
+  gold     : SELECT Attendance FROM table WHERE Record = '47–63'
+  A pred   : SELECT Attendance FROM table WHERE Record = '47–63'
+  B pred   : SELECT COUNT(*) FROM table WHERE Record = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2023-04-01' AND Opponent = 'Team A' AND Score = '47–63' AND Attendance > 0 AND Loss = '0' AND Date = '2
+
+  id       : wikisql_train_36781
+  question : What Captain has Lost 13?
+  gold     : SELECT Captain FROM table WHERE Lost = 13
+  A pred   : SELECT Captain FROM table WHERE Lost = 13
+  B pred   : SELECT Captain FROM table WHERE Played = 13 AND Lost = 13 AND Competition = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '13' AND Main Article = '13' AND Coach = '13' AND Captain = '13' AND Position = '1
+
