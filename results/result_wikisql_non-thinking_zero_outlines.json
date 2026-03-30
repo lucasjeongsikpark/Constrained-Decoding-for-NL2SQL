@@ -49,7 +49,7 @@
     },
     "gold_sql": "SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl'",
     "predicted_sql": "SELECT Title FROM table WHERE Directed by = 'Peter Markle' AND Written by = 'Jerry Stahl'",
-    "latency_ms": 4328.077,
+    "latency_ms": 33833.024,
     "num_tokens_generated": 22
   },
   {
@@ -101,9 +101,9 @@
       ]
     },
     "gold_sql": "SELECT COUNT(Title) FROM table WHERE Production code = '2T6705'",
-    "predicted_sql": "SELECT SUM(U_S_VIEWERS) FROM table WHERE Production code = '2T6705'",
-    "latency_ms": 3983.103,
-    "num_tokens_generated": 21
+    "predicted_sql": "SELECT SERIES COUNT FROM table WHERE Production code = '2T6705'",
+    "latency_ms": 8997.696,
+    "num_tokens_generated": 17
   },
   {
     "instance_id": "wikisql_train_1739",
@@ -145,7 +145,7 @@
     },
     "gold_sql": "SELECT COUNT(Whites as % of Pop.) FROM table WHERE GFR 2006 = '53.2'",
     "predicted_sql": "SELECT COUNT(*) FROM table WHERE GFR 2006 = '53.2'",
-    "latency_ms": 4683.379,
+    "latency_ms": 9331.314,
     "num_tokens_generated": 20
   },
   {
@@ -203,7 +203,7 @@
     },
     "gold_sql": "SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'",
     "predicted_sql": "SELECT Tuesday Day Three FROM table WHERE Thursday Day Five = 'Kamis'",
-    "latency_ms": 4382.426,
+    "latency_ms": 8353.775,
     "num_tokens_generated": 16
   },
   {
@@ -271,7 +271,7 @@
     },
     "gold_sql": "SELECT COUNT(Played) FROM table WHERE Pts Agst = 645",
     "predicted_sql": "SELECT Played FROM table WHERE Pts Agst = 645",
-    "latency_ms": 3016.9,
+    "latency_ms": 8736.424,
     "num_tokens_generated": 15
   },
   {
@@ -333,9 +333,9 @@
       ]
     },
     "gold_sql": "SELECT Record FROM table WHERE High points = 'Andre Miller (30)'",
-    "predicted_sql": "SELECT Game FROM table WHERE High points = '30' AND Team = 'Miller'",
-    "latency_ms": 3767.967,
-    "num_tokens_generated": 18
+    "predicted_sql": "SELECT Game FROM table WHERE High points = 'andre miller (30)' AND Record = ''",
+    "latency_ms": 9269.258,
+    "num_tokens_generated": 20
   },
   {
     "instance_id": "wikisql_train_6078",
@@ -382,7 +382,7 @@
     },
     "gold_sql": "SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'",
     "predicted_sql": "SELECT Radio commentator FROM table WHERE Final television commentator = 'John Dunn'",
-    "latency_ms": 3898.165,
+    "latency_ms": 8539.623,
     "num_tokens_generated": 14
   },
   {
@@ -425,7 +425,7 @@
     },
     "gold_sql": "SELECT Parish (Prestegjeld) FROM table WHERE Sub-Parish (Sogn) = 'Fortun'",
     "predicted_sql": "SELECT Parish FROM table WHERE Sub_Parish = 'fortun'",
-    "latency_ms": 3467.524,
+    "latency_ms": 8390.699,
     "num_tokens_generated": 14
   },
   {
@@ -468,7 +468,7 @@
     },
     "gold_sql": "SELECT Year (Ceremony) FROM table WHERE Actor/Actress = 'Teresa Wright' AND Category = 'Best Supporting Actress'",
     "predicted_sql": "SELECT Year FROM table WHERE Actor_1 = 'Teresa Wright' AND Result = 'Best Supporting Actress'",
-    "latency_ms": 3895.148,
+    "latency_ms": 9419.458,
     "num_tokens_generated": 22
   },
   {
@@ -531,7 +531,7 @@
     },
     "gold_sql": "SELECT COUNT(Vault) FROM table WHERE Rings = '60.000'",
     "predicted_sql": "SELECT Vault FROM table WHERE Rings = '60.000'",
-    "latency_ms": 3186.35,
+    "latency_ms": 8975.729,
     "num_tokens_generated": 15
   },
   {
@@ -584,7 +584,7 @@
     },
     "gold_sql": "SELECT Year FROM table WHERE Transmission = 'Allison B400R' AND Model = 'BRT'",
     "predicted_sql": "SELECT Year FROM table WHERE Model = 'BRT' AND Transmission = 'Allison B400R'",
-    "latency_ms": 4643.487,
+    "latency_ms": 14968.547,
     "num_tokens_generated": 23
   },
   {
@@ -637,7 +637,7 @@
     },
     "gold_sql": "SELECT MIN(Silver) FROM table WHERE Discipline = 'Baseball'",
     "predicted_sql": "SELECT Silver FROM table WHERE Discipline = 'Baseball'",
-    "latency_ms": 2905.039,
+    "latency_ms": 8262.855,
     "num_tokens_generated": 11
   },
   {
@@ -689,9 +689,9 @@
       ]
     },
     "gold_sql": "SELECT MAX(Mir-Hossein Mousavi) FROM table WHERE Province = 'Azarbaijan, West'",
-    "predicted_sql": "SELECT Total votes FROM table WHERE Province = 'Azarbaijan, West'",
-    "latency_ms": 3714.174,
-    "num_tokens_generated": 16
+    "predicted_sql": "SELECT MAX(Spoiled ballots) FROM table WHERE Province = 'azarbaijan west'",
+    "latency_ms": 8391.469,
+    "num_tokens_generated": 18
   },
   {
     "instance_id": "wikisql_train_10463",
@@ -743,7 +743,7 @@
     },
     "gold_sql": "SELECT Name FROM table WHERE WSOP earnings = '$36,372'",
     "predicted_sql": "SELECT Name FROM table WHERE WSOP earnings = '36,372'",
-    "latency_ms": 3970.959,
+    "latency_ms": 9151.818,
     "num_tokens_generated": 17
   },
   {
@@ -791,7 +791,7 @@
     },
     "gold_sql": "SELECT Lites 2 Race Two Winning Team FROM table WHERE Lites 1 Race One Winning Team = '#13 Inspire Motorsports'",
     "predicted_sql": "SELECT Lites 2 Race Two Winning Team FROM table WHERE Circuit = '13 Inspire Motorsports'",
-    "latency_ms": 3891.634,
+    "latency_ms": 9224.348,
     "num_tokens_generated": 22
   },
   {
@@ -854,7 +854,7 @@
     },
     "gold_sql": "SELECT High points FROM table WHERE Date = 'March 25'",
     "predicted_sql": "SELECT High points FROM table WHERE Date = 'March 25'",
-    "latency_ms": 3076.939,
+    "latency_ms": 7763.053,
     "num_tokens_generated": 14
   },
   {
@@ -912,7 +912,7 @@
     },
     "gold_sql": "SELECT COUNT(Round) FROM table WHERE Circuit = 'Brno'",
     "predicted_sql": "SELECT COUNT(*) FROM table WHERE Grand Prix = 'Brno'",
-    "latency_ms": 3610.326,
+    "latency_ms": 8881.137,
     "num_tokens_generated": 13
   },
   {
@@ -965,7 +965,7 @@
     },
     "gold_sql": "SELECT COUNT(Written by) FROM table WHERE U.S. viewers (million) = '7.26'",
     "predicted_sql": "SELECT COUNT(*) FROM table WHERE U_S_VIEWERS_MILLION = '7.26'",
-    "latency_ms": 4311.972,
+    "latency_ms": 9378.754,
     "num_tokens_generated": 20
   },
   {
@@ -1013,7 +1013,7 @@
     },
     "gold_sql": "SELECT COUNT(Next in line) FROM table WHERE Heir = 'Archduke Karl'",
     "predicted_sql": "SELECT COUNT(*) FROM table WHERE Heir = 'Archduke Karl'",
-    "latency_ms": 3137.833,
+    "latency_ms": 7903.169,
     "num_tokens_generated": 15
   },
   {
@@ -1055,9 +1055,9 @@
       ]
     },
     "gold_sql": "SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676",
-    "predicted_sql": "SELECT Area FROM table WHERE City = 'City' AND Population = 318676",
-    "latency_ms": 6779.479,
-    "num_tokens_generated": 21
+    "predicted_sql": "SELECT Area FROM table WHERE City = '318676' AND Income Classification = '1st class'",
+    "latency_ms": 9520.899,
+    "num_tokens_generated": 24
   },
   {
     "instance_id": "wikisql_train_16049",
@@ -1099,7 +1099,7 @@
     },
     "gold_sql": "SELECT MLS Team FROM table WHERE Affiliation = 'yale university'",
     "predicted_sql": "SELECT MLS Team FROM table WHERE Affiliation = 'Yale University'",
-    "latency_ms": 3009.656,
+    "latency_ms": 8621.618,
     "num_tokens_generated": 14
   },
   {
@@ -1142,7 +1142,7 @@
     },
     "gold_sql": "SELECT Region FROM table WHERE Date = 'early september 1999'",
     "predicted_sql": "SELECT Region FROM table WHERE Date = 'September 1999'",
-    "latency_ms": 3577.917,
+    "latency_ms": 8606.352,
     "num_tokens_generated": 15
   },
   {
@@ -1190,7 +1190,7 @@
     },
     "gold_sql": "SELECT Venue FROM table WHERE Player = 'jack badcock'",
     "predicted_sql": "SELECT Player FROM table WHERE Player = 'Jack Badcock'",
-    "latency_ms": 2951.474,
+    "latency_ms": 8356.852,
     "num_tokens_generated": 12
   },
   {
@@ -1237,9 +1237,9 @@
       ]
     },
     "gold_sql": "SELECT MIN(Population) FROM table WHERE Altitude (mslm) < 197 AND City = 'alessandria' AND Density (inhabitants/km 2 ) < 461.8",
-    "predicted_sql": "SELECT MIN(Population) FROM table WHERE City = 'Alessandria' AND Altitude < 197",
-    "latency_ms": 4967.121,
-    "num_tokens_generated": 26
+    "predicted_sql": "SELECT Rank FROM table WHERE City = 'Alessandria' AND Population < 461 AND Altitude < 197 AND Density < 461",
+    "latency_ms": 9699.515,
+    "num_tokens_generated": 36
   },
   {
     "instance_id": "wikisql_train_22059",
@@ -1281,7 +1281,7 @@
     },
     "gold_sql": "SELECT Record FROM table WHERE Visitor = 'montreal' AND Date = 'february 2'",
     "predicted_sql": "SELECT * FROM table WHERE Visitor = 'Montreal' AND Date = 'February 2'",
-    "latency_ms": 3239.728,
+    "latency_ms": 9220.599,
     "num_tokens_generated": 19
   },
   {
@@ -1354,7 +1354,7 @@
     },
     "gold_sql": "SELECT COUNT(Rank) FROM table WHERE Club = 'zulte waregem' AND Points > 22",
     "predicted_sql": "SELECT Rank FROM table WHERE Club = 'zulte waregem' AND Points > 22",
-    "latency_ms": 3965.963,
+    "latency_ms": 8663.329,
     "num_tokens_generated": 21
   },
   {
@@ -1397,7 +1397,7 @@
     },
     "gold_sql": "SELECT Label FROM table WHERE Date = 'april 7, 1967'",
     "predicted_sql": "SELECT Label FROM table WHERE Date = 'april 7, 1967'",
-    "latency_ms": 4519.26,
+    "latency_ms": 8764.681,
     "num_tokens_generated": 19
   },
   {
@@ -1440,7 +1440,7 @@
     },
     "gold_sql": "SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'",
     "predicted_sql": "SELECT Attendance FROM table WHERE Opponent = 'carolina panthers'",
-    "latency_ms": 2950.178,
+    "latency_ms": 8992.836,
     "num_tokens_generated": 14
   },
   {
@@ -1483,7 +1483,7 @@
     },
     "gold_sql": "SELECT Song FROM table WHERE Index = 'f6'",
     "predicted_sql": "SELECT Index FROM table WHERE Name = 'F6'",
-    "latency_ms": 3364.366,
+    "latency_ms": 8763.938,
     "num_tokens_generated": 11
   },
   {
@@ -1526,7 +1526,7 @@
     },
     "gold_sql": "SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'",
     "predicted_sql": "SELECT Sanskrit FROM table WHERE Chinese = '—\" AND English = '",
-    "latency_ms": 3457.321,
+    "latency_ms": 8253.556,
     "num_tokens_generated": 17
   },
   {
@@ -1573,8 +1573,8 @@
       ]
     },
     "gold_sql": "SELECT MIN(Area (km²)) FROM table WHERE Population Density (People/km²) = '3,216' AND Population > '16,650,000'",
-    "predicted_sql": "SELECT * FROM table WHERE Population > 16650000 AND Population Density = 3216",
-    "latency_ms": 4509.805,
+    "predicted_sql": "SELECT * FROM table WHERE Population Density = 3216 AND Population > 16650000",
+    "latency_ms": 9637.938,
     "num_tokens_generated": 26
   },
   {
@@ -1621,9 +1621,9 @@
       ]
     },
     "gold_sql": "SELECT Attendance FROM table WHERE Record = '47–63'",
-    "predicted_sql": "SELECT COUNT(*) FROM table WHERE Record = '47–63'",
-    "latency_ms": 3082.706,
-    "num_tokens_generated": 15
+    "predicted_sql": "SELECT COUNT(Attendance) FROM table WHERE Record = '47–63'",
+    "latency_ms": 9063.066,
+    "num_tokens_generated": 17
   },
   {
     "instance_id": "wikisql_train_35741",
@@ -1664,9 +1664,9 @@
       ]
     },
     "gold_sql": "SELECT MIN(Pick) FROM table WHERE Position = 'defensive back' AND School = 'drake'",
-    "predicted_sql": "SELECT MIN(Pick) FROM table WHERE Player = 'Defensive Back' AND School = 'Drake'",
-    "latency_ms": 3986.735,
-    "num_tokens_generated": 22
+    "predicted_sql": "SELECT MIN(Pick) FROM table WHERE Player = 'Defensive' AND Position = 'Back' AND School = 'Drake'",
+    "latency_ms": 8801.11,
+    "num_tokens_generated": 27
   },
   {
     "instance_id": "wikisql_train_36781",
@@ -1722,8 +1722,8 @@
       ]
     },
     "gold_sql": "SELECT Captain FROM table WHERE Lost = 13",
-    "predicted_sql": "SELECT Captain FROM table WHERE Played = 13",
-    "latency_ms": 3852.829,
+    "predicted_sql": "SELECT Captain FROM table WHERE Lost = 13",
+    "latency_ms": 8652.512,
     "num_tokens_generated": 11
   },
   {
@@ -1771,7 +1771,7 @@
     },
     "gold_sql": "SELECT MAX(Wins) FROM table WHERE Rank = 5 AND Earnings ( $ ) > '1,537,571'",
     "predicted_sql": "SELECT * FROM table WHERE Rank = 5 AND Earnings < 1537571",
-    "latency_ms": 6845.609,
+    "latency_ms": 8954.64,
     "num_tokens_generated": 22
   },
   {
@@ -1813,9 +1813,9 @@
       ]
     },
     "gold_sql": "SELECT Country of origin* FROM table WHERE Pick < 12 AND College = 'uv'",
-    "predicted_sql": "SELECT Player FROM table WHERE Pick < 12 AND College = 'UV'",
-    "latency_ms": 4869.846,
-    "num_tokens_generated": 16
+    "predicted_sql": "SELECT Country of origin FROM table WHERE Pick < 12 AND College = 'UV'",
+    "latency_ms": 9041.112,
+    "num_tokens_generated": 18
   },
   {
     "instance_id": "wikisql_train_39453",
@@ -1866,8 +1866,8 @@
       ]
     },
     "gold_sql": "SELECT Rounds FROM table WHERE Entrant = 'david brown corporation' AND Driver = 'roy salvadori'",
-    "predicted_sql": "SELECT Rounds FROM table WHERE Entrant = 'Roy Salvadori' AND Constructor = 'David Brown Corporation'",
-    "latency_ms": 3814.268,
+    "predicted_sql": "SELECT Rounds FROM table WHERE Constructor = 'David Brown Corporation' AND Entrant = 'Roy Salvadori'",
+    "latency_ms": 8557.406,
     "num_tokens_generated": 21
   },
   {
@@ -1910,7 +1910,7 @@
     },
     "gold_sql": "SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'",
     "predicted_sql": "SELECT County FROM table WHERE CERCLIS ID = 'scd037405362'",
-    "latency_ms": 3586.934,
+    "latency_ms": 9289.504,
     "num_tokens_generated": 24
   },
   {
@@ -1958,7 +1958,7 @@
     },
     "gold_sql": "SELECT NBA Draft FROM table WHERE School = 'bishop o'connell high school'",
     "predicted_sql": "SELECT NBA Draft FROM table WHERE School = 'Bishop O'",
-    "latency_ms": 4248.442,
+    "latency_ms": 8969.296,
     "num_tokens_generated": 14
   },
   {
@@ -2010,9 +2010,9 @@
       ]
     },
     "gold_sql": "SELECT MIN(Pick) FROM table WHERE Overall > 17 AND Player name = 'dave adams category:articles with hcards' AND Year > 1963",
-    "predicted_sql": "SELECT Player name FROM table WHERE Overall > 17 AND Player name = 'Dave Adams'",
-    "latency_ms": 3965.826,
-    "num_tokens_generated": 20
+    "predicted_sql": "SELECT * FROM table WHERE Year > 1963 AND Player name = 'Dave Adams' AND Overall > 17 AND AFL team = 'HCards' AND Position = 'Articles' AND Pick = 'Cards' AND Year > 1963",
+    "latency_ms": 10860.545,
+    "num_tokens_generated": 55
   },
   {
     "instance_id": "wikisql_train_45753",
@@ -2059,7 +2059,7 @@
     },
     "gold_sql": "SELECT Country FROM table WHERE Score = '71-66-72-72=281'",
     "predicted_sql": "SELECT Country FROM table WHERE Score = '71-66-72-72=281'",
-    "latency_ms": 3642.119,
+    "latency_ms": 8345.079,
     "num_tokens_generated": 24
   },
   {
@@ -2101,9 +2101,9 @@
       ]
     },
     "gold_sql": "SELECT SUM(Matches) FROM table WHERE Goals = 18 AND Average > 0.55",
-    "predicted_sql": "SELECT Goals SUM MATCHES FROM table WHERE Average > 055 AND Goals = 18",
-    "latency_ms": 4219.136,
-    "num_tokens_generated": 21
+    "predicted_sql": "SELECT Matches FROM table WHERE Goals = 18 AND Average > 055",
+    "latency_ms": 9138.826,
+    "num_tokens_generated": 18
   },
   {
     "instance_id": "wikisql_train_46925",
@@ -2154,9 +2154,9 @@
       ]
     },
     "gold_sql": "SELECT MIN(Total Passengers (millions) 2011–12) FROM table WHERE Annual entry/exit (millions) 2011–12 = 36.609",
-    "predicted_sql": "SELECT MIN(Annual Passengers) FROM table WHERE Annual entry or exit = 36609",
-    "latency_ms": 3816.932,
-    "num_tokens_generated": 22
+    "predicted_sql": "SELECT MIN(Annual entry or exit) FROM table WHERE Annual entry or exit = 36609",
+    "latency_ms": 9081.447,
+    "num_tokens_generated": 23
   },
   {
     "instance_id": "wikisql_train_48265",
@@ -2203,7 +2203,7 @@
     },
     "gold_sql": "SELECT MAX(Matches) FROM table WHERE Round = 'third round'",
     "predicted_sql": "SELECT MAX(Matches) FROM table WHERE Round = 'Third Round'",
-    "latency_ms": 3422.938,
+    "latency_ms": 8445.033,
     "num_tokens_generated": 14
   },
   {
@@ -2255,9 +2255,9 @@
       ]
     },
     "gold_sql": "SELECT Period FROM table WHERE Other Mozilla = '0.25%'",
-    "predicted_sql": "SELECT Period FROM table WHERE Internet Explorer = 'Other Mozilla' AND Chrome = '0.25%'",
-    "latency_ms": 3309.999,
-    "num_tokens_generated": 21
+    "predicted_sql": "SELECT Period FROM table WHERE Internet Explorer = '0.25%' AND Chrome = '0.25%' AND Firefox = '0.25%' AND Safari = '0.25%' AND Opera = '0.25%' AND Other Mozilla = '0.25%'",
+    "latency_ms": 10810.883,
+    "num_tokens_generated": 61
   },
   {
     "instance_id": "wikisql_train_48598",
@@ -2303,9 +2303,9 @@
       ]
     },
     "gold_sql": "SELECT 1st Place Team FROM table WHERE Year > 1956",
-    "predicted_sql": "SELECT YEAR FROM table WHERE YEAR > 1956 AND YEAR IN 1956 GROUP BY YEAR ORDER BY YEAR ASC != 1956",
-    "latency_ms": 5693.016,
-    "num_tokens_generated": 38
+    "predicted_sql": "SELECT PLACE FROM table WHERE Year = 1956 AND PLACE = '1st Place Team' AND PLACE = '1st Place Team' AND PLACE = '1st Place Team' AND PLACE = '1st Place Team' AND PLACE = '1st Place Team' AND PLACE = '1st Place Team' AND PLACE = '1st Place Team' AND PLACE = '1",
+    "latency_ms": 12690.407,
+    "num_tokens_generated": 89
   },
   {
     "instance_id": "wikisql_train_49729",
@@ -2357,7 +2357,7 @@
     },
     "gold_sql": "SELECT Fencing Victories (pts) FROM table WHERE Total = 5640",
     "predicted_sql": "SELECT Fencing Victories FROM table WHERE Total = 5640",
-    "latency_ms": 3154.357,
+    "latency_ms": 9238.359,
     "num_tokens_generated": 16
   },
   {
@@ -2409,8 +2409,8 @@
       ]
     },
     "gold_sql": "SELECT COUNT(Guests) FROM table WHERE Ship name = 'rv indochina' AND Crew < 28",
-    "predicted_sql": "SELECT Guests FROM table WHERE Ship name = 'rv indochina' AND Crew < 28",
-    "latency_ms": 3849.941,
+    "predicted_sql": "SELECT * FROM table WHERE Ship name = 'rv indochina' AND Crew < 28",
+    "latency_ms": 9285.802,
     "num_tokens_generated": 21
   },
   {
@@ -2452,9 +2452,9 @@
       ]
     },
     "gold_sql": "SELECT Venue FROM table WHERE Tickets Sold / Available = '4,700 / 4,700 (100%)'",
-    "predicted_sql": "SELECT Venue FROM table WHERE Tickets Sold Available = '4,700' AND Tickets Sold Available = '4,700'",
-    "latency_ms": 4799.334,
-    "num_tokens_generated": 28
+    "predicted_sql": "SELECT Venue FROM table WHERE Tickets Sold Available = '4,700 / 4,700' AND Gross Revenue 1979 = '4,700' AND Gross Revenue 2012 = '4,700'",
+    "latency_ms": 10437.646,
+    "num_tokens_generated": 55
   },
   {
     "instance_id": "wikisql_train_53046",
@@ -2501,7 +2501,7 @@
     },
     "gold_sql": "SELECT Nat. FROM table WHERE Ship type = 'battlecruiser' AND Estimate = '513'",
     "predicted_sql": "SELECT Nation FROM table WHERE Estimate = '513'",
-    "latency_ms": 3346.092,
+    "latency_ms": 8188.502,
     "num_tokens_generated": 12
   }
 ]
