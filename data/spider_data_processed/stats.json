@@ -1,0 +1,25 @@
+{
+  "train": {
+    "records": 8659,
+    "unique_db_ids": 146
+  },
+  "val": {
+    "records": 1034,
+    "unique_db_ids": 20
+  },
+  "test": {
+    "records": 2147,
+    "unique_db_ids": 40
+  },
+  "expected_counts": {
+    "train": 8659,
+    "val": 1034,
+    "test": 2147
+  },
+  "all_validation_ok": true,
+  "validation_error_counts": {
+    "train": 0,
+    "val": 0,
+    "test": 0
+  }
+}
