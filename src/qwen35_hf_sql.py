@@ -21,6 +21,7 @@ import argparse
 import json
 import os
 import re
+import random
 import time
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
@@ -451,13 +452,21 @@ def main() -> None:
     parser.add_argument("--data-path", default=None, help="Override dataset JSON path")
     parser.add_argument("--max-new-tokens", type=int, default=DEFAULT_MAX_NEW_TOKENS)
     parser.add_argument("--max-examples", type=int, default=None)
+    parser.add_argument("--test-size", type=int, default=None, help="Randomly sample this many examples (seed=42)")
     parser.add_argument("--output", default=None)
     args = parser.parse_args()
 
     data_path = args.data_path or DEFAULT_DATA_PATHS[args.dataset]
     rows = load_json(data_path)
+    print(f"Loaded {len(rows)} rows from {data_path}")
+    if args.test_size is not None:
+        random.seed(42)
+        take_k = min(args.test_size, len(rows))
+        rows = random.sample(rows, k=take_k)
+        print(f"Sampled {len(rows)} rows (test_size={args.test_size}, seed=42)")
     if args.max_examples is not None:
         rows = rows[: args.max_examples]
+        print(f"Truncated to first {len(rows)} rows due to max_examples={args.max_examples}")
     examples = to_examples(args.dataset, rows)
 
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
