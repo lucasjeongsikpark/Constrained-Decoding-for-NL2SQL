@@ -1,47 +1,29 @@
-"""Unified HF runner for Qwen/Qwen3.5-0.8B with constrained decoding (none / outlines / lmfe / xgrammar)
-for WikiSQL and Spider on local GPU.
+"""OpenAI-compatible Qwen3.5 runner for text-to-SQL with constraints.
 
-Key points
-- Model: Qwen/Qwen3.5-0.8B via Hugging Face (no checkpoints, no OpenAI API).
-- Data defaults: processed test splits
-    wikisql -> data/wikisql_processed/wikisql_test.json
-    spider  -> data/spider_data_processed/spider_test.json
-- CLI: --dataset {wikisql, spider}, --constraint {none, outlines, lmfe, xgrammar},
-       --mode {thinking, non-thinking}, --train-mode {zero, few}, --max-new-tokens, --max-examples.
-- Output: result_{dataset}_{mode}_{train_mode}_{constraint}.json with fields
-  instance_id, question, gold_sql, predicted_sql, latency_ms, num_tokens_generated.
-- Generation hparams fixed to deterministic decoding unless changed via --max-new-tokens.
-- Prompts: separate templates for WikiSQL (single table) and Spider (multi-table with PK/FK hints),
-  thinking flag only affects enable_thinking in chat template, not rules.
+Matches the CLI, prompts, and outputs of qwen35_hf_sql.py but calls a remote
+FastAPI server (see src/server/deploy_qwen.sh) through the OpenAI client. All
+constraint modes are supported server-side: none, outlines, lmfe, xgrammar.
 """
-
 from __future__ import annotations
 
 import argparse
 import json
 import os
-import re
 import random
+import re
 import time
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-# Optional imports are loaded lazily inside runners to avoid hard deps.
+from openai import OpenAI
 
 MODEL_NAME = "Qwen/Qwen3.5-0.8B"
+DEFAULT_BASE_URL = "http://localhost:8082/v1"
 DEFAULT_DATA_PATHS = {
     "wikisql": "data/wikisql_processed/wikisql_test.json",
     "spider": "data/spider_data_processed/spider_test.json",
 }
 
-# Deterministic decoding by default; user can bump max_new_tokens.
-TEMPERATURE = None
-TOP_P = None
-TOP_K = None
-MIN_P = None
 DEFAULT_MAX_NEW_TOKENS = 100
 
 
@@ -60,28 +42,14 @@ def load_json(path: str) -> Any:
         return json.load(f)
 
 
-def ensure_device(model: torch.nn.Module) -> torch.device:
-    if torch.cuda.is_available():
-        return next(model.parameters()).device
-    return torch.device("cpu")
-
-
 def get_default_sampling() -> Dict[str, Any]:
-    return {"do_sample": False}
+    # Deterministic by default; temperature=0 maps to greedy on the server.
+    return {"temperature": 0.0, "top_p": 1.0}
 
 
 def build_generation_kwargs(max_new_tokens: int) -> Dict[str, Any]:
     kwargs = get_default_sampling()
-    kwargs["max_new_tokens"] = max_new_tokens
-    if kwargs.get("do_sample", False):
-        if TEMPERATURE is not None:
-            kwargs["temperature"] = TEMPERATURE
-        if TOP_P is not None:
-            kwargs["top_p"] = TOP_P
-        if TOP_K is not None:
-            kwargs["top_k"] = TOP_K
-        if MIN_P is not None:
-            kwargs["min_p"] = MIN_P
+    kwargs["max_tokens"] = max_new_tokens
     return kwargs
 
 
@@ -195,20 +163,12 @@ def build_user_prompt(dataset: str, ex: Example) -> str:
     )
 
 
-def build_qwen_prompt(tokenizer, dataset: str, ex: Example, mode: str) -> str:
+def build_messages(dataset: str, ex: Example) -> List[Dict[str, str]]:
     user_prompt = build_user_prompt(dataset, ex)
-    messages = [
+    return [
         {"role": "system", "content": "You are a precise text-to-SQL assistant."},
         {"role": "user", "content": user_prompt},
     ]
-    enable_thinking = mode == "thinking"
-    prompt = tokenizer.apply_chat_template(
-        messages,
-        tokenize=False,
-        add_generation_prompt=True,
-        enable_thinking=enable_thinking,
-    )
-    return prompt
 
 
 # --------------------------- cleaning ---------------------------
@@ -274,7 +234,7 @@ def build_spider_regex(table_names: List[str]) -> str:
 
 
 def escape_ebnf_literal(s: str) -> str:
-    return s.replace("\\", "\\\\").replace('"', '\\"')
+    return s.replace("\\", "\\\\").replace('"', '\"')
 
 
 def build_sql_ebnf(columns: List[str], tables: List[str], *, allow_or: bool, allow_join: bool) -> str:
@@ -321,78 +281,11 @@ def build_xgrammar(dataset: str, example: Dict[str, Any]) -> str:
         cols = [c[1] for c in schema.get("column_names_original", [])]
         tables = schema.get("table_names_original", ["table"])
         return build_sql_ebnf(cols, tables, allow_or=True, allow_join=False)
-    # spider
     input_obj = example.get("input", {})
     schema_json = input_obj.get("schema_json", {})
     cols = [c[1] for c in schema_json.get("column_names_original", [])]
     tables = schema_json.get("table_names_original", [])
     return build_sql_ebnf(cols, tables, allow_or=True, allow_join=True)
-
-
-# --------------------------- runners ---------------------------
-class OutlinesRunner:
-    def __init__(self, model, tokenizer):
-        import outlines
-        from outlines.types import Regex
-        self.outlines_model = outlines.from_transformers(model, tokenizer)
-        self.Regex = Regex
-        self.tokenizer = tokenizer
-
-    def generate_regex(self, prompt: str, regex_pattern: str, max_new_tokens: int):
-        start = time.perf_counter()
-        output = self.outlines_model(prompt, self.Regex(regex_pattern), max_new_tokens=max_new_tokens)
-        latency_ms = (time.perf_counter() - start) * 1000.0
-        text = output if isinstance(output, str) else str(output)
-        num_tokens_generated = len(self.tokenizer.encode(text, add_special_tokens=False))
-        return text, num_tokens_generated, latency_ms
-
-
-class LMFERunner:
-    def __init__(self, model, tokenizer):
-        from lmformatenforcer import JsonSchemaParser
-        from lmformatenforcer.integrations.transformers import build_transformers_prefix_allowed_tokens_fn
-        self.tokenizer = tokenizer
-        self.model = model
-        self.JsonSchemaParser = JsonSchemaParser
-        self.build_fn = build_transformers_prefix_allowed_tokens_fn
-
-    def generate_with_prefix_fn(self, prompt: str, regex_pattern: str, generation_kwargs: Dict[str, Any]):
-        # Convert regex to JSON schema wrapper; here we just allow plain text via regex_to_schema = {"type": "string"}
-        # LMFE works better with JSON, but to keep parity we gate tokens by regex match prefix.
-        from lmformatenforcer.regex import create_regex_parser
-        parser = create_regex_parser(regex_pattern)
-        prefix_fn = self.build_fn(self.tokenizer, parser)
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
-        input_len = inputs["input_ids"].shape[1]
-        start = time.perf_counter()
-        with torch.no_grad():
-            outputs = self.model.generate(**inputs, prefix_allowed_tokens_fn=prefix_fn, **generation_kwargs)
-        latency_ms = (time.perf_counter() - start) * 1000.0
-        generated_ids = outputs[0][input_len:]
-        text = self.tokenizer.decode(generated_ids, skip_special_tokens=False)
-        num_tokens_generated = int(generated_ids.shape[0])
-        return text, num_tokens_generated, latency_ms
-
-
-class XGrammarRunner:
-    def __init__(self, tokenizer):
-        from xgrammar import LMGrammar, GenerationConfig
-        self.LMGrammar = LMGrammar
-        self.GenerationConfig = GenerationConfig
-        self.tokenizer = tokenizer
-
-    def generate_xgrammar(self, model, prompt: str, grammar: str, generation_kwargs: Dict[str, Any]):
-        lm_grammar = self.LMGrammar.from_ebnf(self.tokenizer, grammar)
-        config = self.GenerationConfig(**generation_kwargs)
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(model.device)
-        input_len = inputs["input_ids"].shape[1]
-        start = time.perf_counter()
-        outputs = lm_grammar.generate(model, inputs=inputs, generation_config=config)
-        latency_ms = (time.perf_counter() - start) * 1000.0
-        generated_ids = outputs[0][input_len:]
-        text = self.tokenizer.decode(generated_ids, skip_special_tokens=False)
-        num_tokens_generated = int(generated_ids.shape[0])
-        return text, num_tokens_generated, latency_ms
 
 
 # --------------------------- data conversion ---------------------------
@@ -426,25 +319,41 @@ def to_examples(dataset: str, rows: List[Dict[str, Any]]) -> List[Example]:
 
 # --------------------------- generation core ---------------------------
 
-def generate_plain(model, tokenizer, prompt: str, generation_kwargs: Dict[str, Any]):
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-    input_len = inputs["input_ids"].shape[1]
-    start = time.perf_counter()
-    with torch.no_grad():
-        outputs = model.generate(**inputs, **generation_kwargs)
-    latency_ms = (time.perf_counter() - start) * 1000.0
-    generated_ids = outputs[0][input_len:]
-    text = tokenizer.decode(generated_ids, skip_special_tokens=False)
-    num_tokens_generated = int(generated_ids.shape[0])
-    return text, num_tokens_generated, latency_ms
-
-
 def build_output_filename(dataset: str, mode: str, train_mode: str, constraint: str) -> str:
     return f"result_{dataset}_{mode}_{train_mode}_{constraint}.json"
 
 
+def call_openai(client: OpenAI, model_name: str, messages: List[Dict[str, str]], *, constraint: str, regex_pattern: Optional[str], grammar: Optional[str], mode: str, generation_kwargs: Dict[str, Any]) -> Tuple[str, int, float]:
+    extra_body: Dict[str, Any] = {
+        "constraint": constraint,
+        "regex_pattern": regex_pattern,
+        "grammar": grammar,
+        "mode": mode,
+    }
+    start = time.perf_counter()
+    resp = client.chat.completions.create(
+        model=model_name,
+        messages=messages,
+        max_tokens=generation_kwargs.get("max_tokens"),
+        temperature=generation_kwargs.get("temperature"),
+        top_p=generation_kwargs.get("top_p"),
+        extra_body=extra_body,
+    )
+    latency_ms = getattr(resp, "latency_ms", None)
+    if latency_ms is None:
+        latency_ms = (time.perf_counter() - start) * 1000.0
+    text = resp.choices[0].message.content or ""
+    usage = getattr(resp, "usage", None)
+    num_tokens_generated = getattr(usage, "completion_tokens", None)
+    if num_tokens_generated is None:
+        num_tokens_generated = len(text.split())
+    return text, int(num_tokens_generated), float(latency_ms)
+
+
+# --------------------------- main ---------------------------
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Qwen3.5-0.8B HF text-to-SQL with constraints")
+    parser = argparse.ArgumentParser(description="Qwen3.5 OpenAI text-to-SQL with constraints")
     parser.add_argument("--dataset", choices=["wikisql", "spider"], required=True)
     parser.add_argument("--constraint", choices=["none", "outlines", "lmfe", "xgrammar"], required=True)
     parser.add_argument("--mode", choices=["thinking", "non-thinking"], default="non-thinking")
@@ -454,6 +363,8 @@ def main() -> None:
     parser.add_argument("--max-examples", type=int, default=None)
     parser.add_argument("--test-size", type=int, default=None, help="Randomly sample this many examples (seed=42)")
     parser.add_argument("--output", default=None)
+    parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    parser.add_argument("--model-name", default=MODEL_NAME)
     args = parser.parse_args()
 
     data_path = args.data_path or DEFAULT_DATA_PATHS[args.dataset]
@@ -469,45 +380,31 @@ def main() -> None:
         print(f"Truncated to first {len(rows)} rows due to max_examples={args.max_examples}")
     examples = to_examples(args.dataset, rows)
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(
-        MODEL_NAME,
-        trust_remote_code=True,
-        torch_dtype="auto",
-        device_map="auto",
-    )
-    model.eval()
-    device = ensure_device(model)
-    print(f"Loaded model on {device}")
+    client = OpenAI(base_url=args.base_url, api_key=os.getenv("OPENAI_API_KEY", "EMPTY"))
 
     generation_kwargs = build_generation_kwargs(args.max_new_tokens)
-    outlines_runner = None
-    lmfe_runner = None
-    xgrammar_runner = None
 
-    if args.constraint == "outlines":
-        outlines_runner = OutlinesRunner(model, tokenizer)
-    elif args.constraint == "lmfe":
-        lmfe_runner = LMFERunner(model, tokenizer)
-    elif args.constraint == "xgrammar":
-        xgrammar_runner = XGrammarRunner(tokenizer)
-        with torch.no_grad():
     results: List[Dict[str, Any]] = []
     for idx, (ex, raw_row) in enumerate(zip(examples, rows), start=1):
-        prompt = build_qwen_prompt(tokenizer, args.dataset, ex, args.mode)
-        if args.constraint == "none":
-            raw_text, num_tokens, latency_ms = generate_plain(model, tokenizer, prompt, generation_kwargs)
-        elif args.constraint == "outlines":
+        messages = build_messages(args.dataset, ex)
+
+        regex_pattern = None
+        grammar = None
+        if args.constraint in {"outlines", "lmfe"}:
             regex_pattern = build_wikisql_regex() if args.dataset == "wikisql" else build_spider_regex(ex.schema.get("table_names_original", []))
-            raw_text, num_tokens, latency_ms = outlines_runner.generate_regex(prompt, regex_pattern, args.max_new_tokens)
-        elif args.constraint == "lmfe":
-            regex_pattern = build_wikisql_regex() if args.dataset == "wikisql" else build_spider_regex(ex.schema.get("table_names_original", []))
-            raw_text, num_tokens, latency_ms = lmfe_runner.generate_with_prefix_fn(prompt, regex_pattern, generation_kwargs)
         elif args.constraint == "xgrammar":
             grammar = build_xgrammar(args.dataset, raw_row)
-            raw_text, num_tokens, latency_ms = xgrammar_runner.generate_xgrammar(model, prompt, grammar, generation_kwargs)
-        else:
-            raise ValueError("Unsupported constraint")
+
+        raw_text, num_tokens, latency_ms = call_openai(
+            client,
+            args.model_name,
+            messages,
+            constraint=args.constraint,
+            regex_pattern=regex_pattern,
+            grammar=grammar,
+            mode=args.mode,
+            generation_kwargs=generation_kwargs,
+        )
         predicted_sql = clean_sql(raw_text, mode=args.mode)
         result = {
             "instance_id": ex.instance_id,
@@ -529,9 +426,12 @@ def main() -> None:
             print("Generated tokens:", num_tokens)
         if idx % 20 == 0 or idx == len(examples):
             print(f"Processed {idx}/{len(examples)}")
+
     out_path = args.output or build_output_filename(args.dataset, args.mode, args.train_mode, args.constraint)
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     print("Saved to:", out_path)
+
+
 if __name__ == "__main__":
     main()
