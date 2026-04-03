@@ -1,0 +1,71 @@
+============================================================
+PROMPT (example 1):
+<|im_start|>system
+You are working with the WikiSQL dataset. Each database has exactly one table always named 'table'. Queries are simple: single-table SELECT with optional aggregation, WHERE conditions, and ORDER BY. No JOINs, subqueries, or UNION are needed.
+
+Your task: convert the user's natural language question into exactly one valid SQL query.
+
+Rules:
+1. Output ONLY the SQL query — no explanation, no markdown, no code fences, nothing else.
+2. The query must start with SELECT.
+3. Always use the table name: table.
+4. Use only columns that appear in the schema.
+5. Do not use JOINs, subqueries, or UNION.
+6. Preserve string values exactly from the question when used in WHERE conditions.
+7. Put text values in single quotes.
+8. Do not invent columns, values, or conditions not implied by the question.
+9. Prefer the simplest correct query.<|im_end|>
+<|im_start|>user
+Schema:
+TABLE: table
+- Team [text]
+- Head Coach [text]
+- President [text]
+- Home Ground [text]
+- Location [text]
+
+Question:
+Who is the Head Coach of the team whose President is Mario Volarevic?
+
+SQL:
+<|im_end|>
+<|im_start|>assistant
+
+============================================================
+Generated 10/10 (batch 1: 298148 ms for 10 examples, 29815 ms/example amortized)
+============================================================
+RAW OUTPUT (example 1):
+<think>
+Okay, let's see. The user is asking for the Head Coach of a team where the President is Mario Volarevic. The schema has a table named 'table' with columns like Team, Head Coach, President, Home Ground, and Location.
+
+So, the query needs to select the Head Coach from the table where the President is Mario Volarevic. The table name is fixed, and we can't use JOINs or subqueries. Also, we have to use only the columns mentioned. The WHERE condition should be on the President column. Let me check if there are any other conditions. The question doesn't mention anything else, so just the President equals Mario Volarevic. The SQL should be SELECT Head Coach FROM table WHERE President = 'Mario Volarevic'; that's the simplest and correct query. I need to make sure there are no extra columns or conditions. Yep, looks good.
+</think>
+
+SELECT Head Coach FROM table WHERE President = 'Mario Volarevic';
+============================================================
+============================================================
+Example 1
+Question: Who is the Head Coach of the team whose President is Mario Volarevic?
+Gold SQL: SELECT Head Coach FROM table WHERE President = 'mario volarevic'
+Predicted SQL: SELECT Head Coach FROM table WHERE President = 'Mario Volarevic'
+Constraint: outlines
+Latency (ms, amortized): 29814.85
+Generated tokens: 202
+============================================================
+Example 2
+Question: How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
+Gold SQL: SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
+Predicted SQL: SELECT COUNT(*) FROM table WHERE Club = 'Liga MX' AND Top Division = 'Top Division'
+Constraint: outlines
+Latency (ms, amortized): 29814.85
+Generated tokens: 377
+============================================================
+Example 3
+Question: What height was the forward position at Crockett High School?
+Gold SQL: SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'
+Predicted SQL: SELECT Height FROM table WHERE Name = 'Crockett High School' AND Position = 'Forward'
+Constraint: outlines
+Latency (ms, amortized): 29814.85
+Generated tokens: 397
+Saved results to: result_wikisql_thinking_zero_outlines_vllm.json
+Saved log     to: log_wikisql_thinking_zero_outlines_vllm.txt

@@ -1,0 +1,112 @@
+[
+  {
+    "instance_id": "spider_test_000457",
+    "question": "What are the address details and biographical information of each student?",
+    "gold_sql": "SELECT T1.address_details ,  T3.bio_data FROM Addresses AS T1 JOIN Students_Addresses AS T2 ON T1.address_id  =  T2.address_id JOIN Students AS T3 ON T2.student_id  =  T3.student_id",
+    "predicted_sql": "SELECT address_id FROM Students_Addresses JOIN Students ON address_id = Students.student_id ORDER BY address_id ASC LIMIT 100000",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 1223,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000103",
+    "question": "What is the product average price?",
+    "gold_sql": "SELECT avg(product_price) FROM Products",
+    "predicted_sql": "SELECT AVG(product_price) FROM Products ORDER BY product_price ASC LIMIT 100000",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 1052,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_001127",
+    "question": "Count the number of different plane names across all pilots.",
+    "gold_sql": "SELECT count(DISTINCT plane_name) FROM pilotskills",
+    "predicted_sql": "SELECT COUNT(*) FROM PilotSkills JOIN Hangar ON pilot_name = plane_name WHERE plane_name IS NOT NULL ORDERBY LIMIT 100000",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 258,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_001004",
+    "question": "How many reference papers does paper with id D12-1027 have?",
+    "gold_sql": "SELECT count(*) FROM Citation WHERE paper_id  =  \"D12-1027\"",
+    "predicted_sql": "SELECT COUNT(*) FROM Paper WHERE paper_id = 'D12-1027'",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 397,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000915",
+    "question": "What is the maximum rating for sailors?",
+    "gold_sql": "SELECT max(rating) FROM Sailors",
+    "predicted_sql": "SELECT * FROM Sailors WHERE sid = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 1500,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000572",
+    "question": "What is the average sale price of books written by George Orwell?",
+    "gold_sql": "SELECT avg(saleprice) FROM Book AS T1 JOIN Author_book AS T2 ON T1.isbn  =  T2.isbn JOIN Author AS T3 ON T2.Author  =  T3.idAuthor WHERE T3.name  =  \"George Orwell\"",
+    "predicted_sql": "SELECT ISBN FROM Books_Order WHERE ISBN = '1234567890' AND IdOrder = '1234567890' AND IdOrder = '1234567890' AND IdOrder = '1234567890'",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 75,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000420",
+    "question": "What is the average age for customers with a membership credit above the average?",
+    "gold_sql": "SELECT avg(age) FROM customers WHERE membership_credit  >  (SELECT avg(membership_credit) FROM customers)",
+    "predicted_sql": "SELECT AVG(age) FROM Customers WHERE membership_credit > SELECT AND membership_credit = AVG_MEMBERSHIP_CREDITS.",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 1183,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000357",
+    "question": "What is the list of channel details ordered alphabetically ?",
+    "gold_sql": "select channel_details from channels order by channel_details",
+    "predicted_sql": "SELECT Channel_ID FROM Customer_Interactions JOIN Customers_and_Services ON Customer_Interaction_ID = Customers_and_Services.Service_ID JOIN Services ON Customers_and_Services_ID = Services.Service_ID JOIN Customers ON Customers_and_Services_ID = Customers.Customer_ID ORDER BY Channel_ID ASC LIMIT 100000",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 713,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_001729",
+    "question": "What are the codes of boxes for which the value is greater than the value of any box that contains Rocks?",
+    "gold_sql": "SELECT code FROM boxes WHERE value  >  (SELECT min(value) FROM boxes WHERE CONTENTS  =  'Rocks')",
+    "predicted_sql": "SELECT Code FROM Boxes WHERE Contents = 'Rocks' AND Value > SELECTMAX.ValueFROMBoxesWHEREContentsLIKE%Rocks% AND Warehouse = Warehouses.Code LIMIT 100000",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 545,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000131",
+    "question": "Find the number of channels that do not run any program.",
+    "gold_sql": "SELECT count(*) FROM channel WHERE channel_id NOT IN (SELECT channel_id FROM program)",
+    "predicted_sql": "selects the count of channels where there are no foreign key relationships. However, without",
+    "latency_ms": 56862.63,
+    "num_tokens_generated": 1500,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  }
+]

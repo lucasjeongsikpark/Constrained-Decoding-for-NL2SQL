@@ -1,0 +1,75 @@
+============================================================
+PROMPT (example 1):
+<|im_start|>system
+You are working with the WikiSQL dataset. Each database has exactly one table always named 'table'. Queries are simple: single-table SELECT with optional aggregation, WHERE conditions, and ORDER BY. No JOINs, subqueries, or UNION are needed.
+
+Your task: convert the user's natural language question into exactly one valid SQL query.
+
+Rules:
+1. Output ONLY the SQL query — no explanation, no markdown, no code fences, nothing else.
+2. The query must start with SELECT.
+3. Always use the table name: table.
+4. Use only columns that appear in the schema.
+5. Do not use JOINs, subqueries, or UNION.
+6. Preserve string values exactly from the question when used in WHERE conditions.
+7. Put text values in single quotes.
+8. Do not invent columns, values, or conditions not implied by the question.
+9. Prefer the simplest correct query.<|im_end|>
+<|im_start|>user
+Schema:
+TABLE: table
+- Team [text]
+- Head Coach [text]
+- President [text]
+- Home Ground [text]
+- Location [text]
+
+Question:
+Who is the Head Coach of the team whose President is Mario Volarevic?
+
+SQL:
+<|im_end|>
+<|im_start|>assistant
+
+============================================================
+Generated 10/10 (batch 1: 284858 ms for 10 examples, 28486 ms/example amortized)
+============================================================
+RAW OUTPUT (example 1):
+<think>
+Okay, let's see. The user is asking for the Head Coach of the team where the President is Mario Volarevic. The table has columns Team, Head Coach, President, Home Ground, and Location.
+
+First, I need to make sure I use the correct table name, which is 'table'. The question is about finding the Head Coach, so I should select that column. The WHERE condition is based on the President being Mario Volarevic. So the WHERE clause should be President = 'Mario Volarevic'. 
+
+I don't see any joins or subqueries needed here. The query is straightforward. Let me check if there are any other conditions or if I need to include more columns. The problem says not to invent columns, so only the necessary ones. The answer should be a single SELECT statement with the correct WHERE condition. 
+
+Wait, the user mentioned not to use JOINs, subqueries, or UNION. So the query is just a simple SELECT from the table with the correct conditions. That's it. I think that's all.
+</think>
+
+SELECT Head Coach FROM table WHERE President = 'Mario Volarevic';
+============================================================
+============================================================
+Example 1
+Question: Who is the Head Coach of the team whose President is Mario Volarevic?
+Gold SQL: SELECT Head Coach FROM table WHERE President = 'mario volarevic'
+Predicted SQL: SELECT Head Coach FROM table WHERE President = 'Mario Volarevic'
+Constraint: none
+Latency (ms, amortized): 28485.82
+Generated tokens: 233
+============================================================
+Example 2
+Question: How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
+Gold SQL: SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
+Predicted SQL: SELECT COUNT(*) FROM table WHERE first season in top division >= '1990-91'
+Constraint: none
+Latency (ms, amortized): 28485.82
+Generated tokens: 427
+============================================================
+Example 3
+Question: What height was the forward position at Crockett High School?
+Gold SQL: SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'
+Predicted SQL: SELECT Home Town FROM table WHERE Name = 'Crockett' AND Height = 180
+Constraint: none
+Latency (ms, amortized): 28485.82
+Generated tokens: 729
+Saved results to: result_wikisql_thinking_zero_none_vllm.json
+Saved log     to: log_wikisql_thinking_zero_none_vllm.txt

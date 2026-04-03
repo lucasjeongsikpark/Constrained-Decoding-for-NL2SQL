@@ -1,0 +1,112 @@
+[
+  {
+    "instance_id": "wikisql_test_10477",
+    "question": "Who is the Head Coach of the team whose President is Mario Volarevic?",
+    "gold_sql": "SELECT Head Coach FROM table WHERE President = 'mario volarevic'",
+    "predicted_sql": "SELECT Team FROM table WHERE President = 'Mario'",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 15,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_1825",
+    "question": "How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?",
+    "gold_sql": "SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'",
+    "predicted_sql": "SELECT COUNT(*) FROM table WHERE First season in top division = 1990-91.",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 477,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_410",
+    "question": "What height was the forward position at Crockett High School?",
+    "gold_sql": "SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'",
+    "predicted_sql": "SELECT Height FROM table WHERE High School = 'Crockett High School'",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 222,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_12150",
+    "question": "What is the score for the 2nd leg when Belasica is team 2?",
+    "gold_sql": "SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'",
+    "predicted_sql": "SELECT 2nd leg FROM table WHERE Team 2 = 'Belasica'",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 400,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_4507",
+    "question": "Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?",
+    "gold_sql": "SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'",
+    "predicted_sql": "SELECT Name FROM table WHERE Name = 'Penske' AND Name = 'Rick' AND Name = 'Driver' ORDER BY Name DESC LIMIT 1",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 341,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_4013",
+    "question": "What is the number in season of the episode whose production code is pabf05?",
+    "gold_sql": "SELECT # FROM table WHERE Production code = 'PABF05'",
+    "predicted_sql": "SELECT № FROM table WHERE Production code = 'pabf05'",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 321,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_3658",
+    "question": "What is the highest pick number for player don barber?",
+    "gold_sql": "SELECT MAX(Pick #) FROM table WHERE Player = 'Don Barber'",
+    "predicted_sql": "SELECT Player FROM table WHERE Player = 'Don Barber' ORDER BY Pick # DESC LIMIT 1",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 292,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_2287",
+    "question": "What was the original air date for season 11?",
+    "gold_sql": "SELECT Original air date FROM table WHERE Season # = 11",
+    "predicted_sql": "select the original air date from the table where the season",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 1500,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_12067",
+    "question": "Which home team scored 9.13 (67)?",
+    "gold_sql": "SELECT Home team FROM table WHERE Home team score = '9.13 (67)'",
+    "predicted_sql": "SELECT, use the table name, and not include any joins, subqueries, or unions. Also, the WHERE conditions must use the values from the question. The user mentioned \"Home team scored 9\" and \"Away team score 9\". Wait, the original question might have been something like \"Which home team scored 9?\" or similar. But the user's input here is a bit unclear. Let me check again. The user's question is: \"Home team [text] scored 9.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 1500,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "wikisql_test_1680",
+    "question": "Name who directed the episode by joe sachs and david zabel",
+    "gold_sql": "SELECT Directed by FROM table WHERE Written by = 'Joe Sachs and David Zabel'",
+    "predicted_sql": "SELECT Directed by FROM table ORDER BY Series # ASC LIMIT 100000",
+    "latency_ms": 40285.783,
+    "num_tokens_generated": 259,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  }
+]

@@ -1,0 +1,69 @@
+============================================================
+PROMPT (example 1):
+<|im_start|>system
+You are working with the WikiSQL dataset. Each database has exactly one table always named 'table'. Queries are simple: single-table SELECT with optional aggregation, WHERE conditions, and ORDER BY. No JOINs, subqueries, or UNION are needed.
+
+Your task: convert the user's natural language question into exactly one valid SQL query.
+
+Rules:
+1. Output ONLY the SQL query — no explanation, no markdown, no code fences, nothing else.
+2. The query must start with SELECT.
+3. Always use the table name: table.
+4. Use only columns that appear in the schema.
+5. Do not use JOINs, subqueries, or UNION.
+6. Preserve string values exactly from the question when used in WHERE conditions.
+7. Put text values in single quotes.
+8. Do not invent columns, values, or conditions not implied by the question.
+9. Prefer the simplest correct query.<|im_end|>
+<|im_start|>user
+Schema:
+TABLE: table
+- Team [text]
+- Head Coach [text]
+- President [text]
+- Home Ground [text]
+- Location [text]
+
+Question:
+Who is the Head Coach of the team whose President is Mario Volarevic?
+
+SQL:
+<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+
+============================================================
+Generated 10/10 (batch 1: 19588 ms for 10 examples, 1959 ms/example amortized)
+============================================================
+RAW OUTPUT (example 1):
+SELECT Team FROM table WHERE Team = 'Mario';
+============================================================
+============================================================
+Example 1
+Question: Who is the Head Coach of the team whose President is Mario Volarevic?
+Gold SQL: SELECT Head Coach FROM table WHERE President = 'mario volarevic'
+Predicted SQL: SELECT Team FROM table WHERE Team = 'Mario'
+Constraint: outlines
+Latency (ms, amortized): 1958.77
+Generated tokens: 11
+============================================================
+Example 2
+Question: How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
+Gold SQL: SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
+Predicted SQL: SELECT COUNT(*) FROM table WHERE year = 1990-91
+Constraint: outlines
+Latency (ms, amortized): 1958.77
+Generated tokens: 18
+============================================================
+Example 3
+Question: What height was the forward position at Crockett High School?
+Gold SQL: SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'
+Predicted SQL: SELECT Position AS position FROM table WHERE Home Town = 'Crockett High School'
+Constraint: outlines
+Latency (ms, amortized): 1958.77
+Generated tokens: 18
+Saved results to: result_wikisql_non-thinking_zero_outlines_vllm.json
+Saved log     to: log_wikisql_non-thinking_zero_outlines_vllm.txt
