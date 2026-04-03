@@ -3,110 +3,530 @@
     "instance_id": "wikisql_test_10477",
     "question": "Who is the Head Coach of the team whose President is Mario Volarevic?",
     "gold_sql": "SELECT Head Coach FROM table WHERE President = 'mario volarevic'",
-    "predicted_sql": "SELECT Team FROM table WHERE President = 'Mario'",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 15,
+    "predicted_sql": "SELECT Head Coach FROM table WHERE President = 'Mario Volarevic'",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 263,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "2-11365528-2",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Team"
+        ],
+        [
+          0,
+          "Head Coach"
+        ],
+        [
+          0,
+          "President"
+        ],
+        [
+          0,
+          "Home Ground"
+        ],
+        [
+          0,
+          "Location"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_1825",
     "question": "How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?",
     "gold_sql": "SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'",
-    "predicted_sql": "SELECT COUNT(*) FROM table WHERE First season in top division = 1990-91.",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 477,
+    "predicted_sql": "SELECT COUNT(*) FROM table WHERE Club = '' AND Top division titles = 'Top Division' AND Number of seasons in top division = 1990-91.",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 447,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "1-18143210-2",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Club"
+        ],
+        [
+          0,
+          "First season in top division"
+        ],
+        [
+          0,
+          "Number of seasons in top division"
+        ],
+        [
+          0,
+          "First season of current spell in top division"
+        ],
+        [
+          0,
+          "Number of seasons in Liga MX"
+        ],
+        [
+          0,
+          "Top division titles"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "real",
+        "text",
+        "real",
+        "real"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_410",
     "question": "What height was the forward position at Crockett High School?",
     "gold_sql": "SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'",
-    "predicted_sql": "SELECT Height FROM table WHERE High School = 'Crockett High School'",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 222,
+    "predicted_sql": "SELECT Height FROM table WHERE Position = 'Forward' AND Name = 'Crockett High School' LIMIT 1",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 362,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "1-12032893-1",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "#"
+        ],
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "Height"
+        ],
+        [
+          0,
+          "Weight"
+        ],
+        [
+          0,
+          "Year"
+        ],
+        [
+          0,
+          "Home Town"
+        ],
+        [
+          0,
+          "High School"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "text",
+        "text",
+        "real",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_12150",
     "question": "What is the score for the 2nd leg when Belasica is team 2?",
     "gold_sql": "SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'",
     "predicted_sql": "SELECT 2nd leg FROM table WHERE Team 2 = 'Belasica'",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 400,
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 337,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "2-18122086-2",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Team 1"
+        ],
+        [
+          0,
+          "Agg."
+        ],
+        [
+          0,
+          "Team 2"
+        ],
+        [
+          0,
+          "1st leg"
+        ],
+        [
+          0,
+          "2nd leg"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_4507",
     "question": "Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?",
     "gold_sql": "SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'",
-    "predicted_sql": "SELECT Name FROM table WHERE Name = 'Penske' AND Name = 'Rick' AND Name = 'Driver' ORDER BY Name DESC LIMIT 1",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 341,
+    "predicted_sql": "SELECT Name FROM table WHERE Pole Position = SELECTMAXPolePositionFROMtable",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 401,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "2-10706879-3",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "Pole Position"
+        ],
+        [
+          0,
+          "Fastest Lap"
+        ],
+        [
+          0,
+          "Winning driver"
+        ],
+        [
+          0,
+          "Winning team"
+        ],
+        [
+          0,
+          "Report"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_4013",
     "question": "What is the number in season of the episode whose production code is pabf05?",
     "gold_sql": "SELECT # FROM table WHERE Production code = 'PABF05'",
-    "predicted_sql": "SELECT № FROM table WHERE Production code = 'pabf05'",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 321,
+    "predicted_sql": "SELECT # FROM table WHERE # = 'pabf05'",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 319,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "1-28194879-1",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "№"
+        ],
+        [
+          0,
+          "#"
+        ],
+        [
+          0,
+          "Title"
+        ],
+        [
+          0,
+          "Directed by"
+        ],
+        [
+          0,
+          "Written by"
+        ],
+        [
+          0,
+          "Original air date"
+        ],
+        [
+          0,
+          "Production code"
+        ],
+        [
+          0,
+          "U.S. viewers (millions)"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_3658",
     "question": "What is the highest pick number for player don barber?",
     "gold_sql": "SELECT MAX(Pick #) FROM table WHERE Player = 'Don Barber'",
-    "predicted_sql": "SELECT Player FROM table WHERE Player = 'Don Barber' ORDER BY Pick # DESC LIMIT 1",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 292,
+    "predicted_sql": "SELECT MAX(Pick #) FROM table WHERE Player = 'Don Barber' ORDER BY Pick # DESC LIMIT 1",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 288,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "1-2679061-6",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Pick #"
+        ],
+        [
+          0,
+          "Player"
+        ],
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "Nationality"
+        ],
+        [
+          0,
+          "NHL team"
+        ],
+        [
+          0,
+          "College/junior/club team"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_2287",
     "question": "What was the original air date for season 11?",
     "gold_sql": "SELECT Original air date FROM table WHERE Season # = 11",
-    "predicted_sql": "select the original air date from the table where the season",
-    "latency_ms": 40285.783,
+    "predicted_sql": "select the Season # where Season # is 11 and then get the original air date. But since the table doesn't have that column, maybe the answer is that there's no such column. But the user expects an SQL query. This is confusing. Wait, maybe the original air date is stored in a column named 'air_date' which is not listed. But the user's question is about that. Alternatively, maybe the original air date is stored in a column named 'air_date' but the user's question is phrased differently. Wait, perhaps the original air date is stored in a column named 'air_date' but the user's question is about that. But since the user's question is about the original air date, but the table doesn't have that column, maybe there's a mistake. Alternatively, maybe the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. This is a problem. Wait, maybe the original air date is stored in a column named 'air_date' but the user's question is phrased incorrectly. Alternatively, maybe the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. This is conflicting. Wait, perhaps the original air date is stored in a column named 'air_date' but the user's question is about that. But since the user's question is about the original air date, but the table doesn't have that column, maybe the answer is that there's no such column. But the user expects an SQL query. Maybe I need to proceed with the available columns. The user's question is about the original air date, but the table doesn't have that column. Therefore, perhaps there's a mistake in the question. But since the user is asking, maybe I should proceed with the available columns. Wait, maybe the original air date is stored in a column named 'air_date' which is not listed. But the user's question is about that. Alternatively, maybe the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. This is a problem. Wait, perhaps the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. Maybe the answer is that there's no such column. But the user expects an SQL query. Maybe I need to proceed with the available columns. The user's question is about the original air date, but the table doesn't have that column. Therefore, perhaps the answer is that there's no such column. But the user's question is about that. This is conflicting. Maybe I need to check again. The original question says \"original air date\" but the table doesn't have that column. Therefore, perhaps the answer is that there's no such column. But the user expects an SQL query. Maybe I need to proceed with the available columns. The columns are Series #, Season #, Title, Directed by. So perhaps the original air date is stored in another column. But since the user's question is about that, maybe the answer is that there's no such column. But the user's question is about that. This is a problem. Wait, maybe the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. Maybe the answer is that there's no such column. But the user expects an SQL query. I'm stuck. Maybe I should proceed with the available columns and assume that the original air date is stored in a column named 'air_date' which is not present. But that's not possible. Alternatively, maybe the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. This is a problem. Maybe the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. I think there's a mistake here. Maybe the original air date is stored in a column named 'air_date' which is not present. But the user's question is about that. Therefore, perhaps the answer is that there's no such column. But the user expects an SQL query. Maybe I need to proceed with the available columns. The user's question is about the original air date, but the table doesn't",
+    "latency_ms": 36837.177,
     "num_tokens_generated": 1500,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "1-20704243-6",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Series #"
+        ],
+        [
+          0,
+          "Season #"
+        ],
+        [
+          0,
+          "Title"
+        ],
+        [
+          0,
+          "Directed by"
+        ],
+        [
+          0,
+          "Written by"
+        ],
+        [
+          0,
+          "Original air date"
+        ],
+        [
+          0,
+          "U.S. viewers (in millions)"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_12067",
     "question": "Which home team scored 9.13 (67)?",
     "gold_sql": "SELECT Home team FROM table WHERE Home team score = '9.13 (67)'",
-    "predicted_sql": "SELECT, use the table name, and not include any joins, subqueries, or unions. Also, the WHERE conditions must use the values from the question. The user mentioned \"Home team scored 9\" and \"Away team score 9\". Wait, the original question might have been something like \"Which home team scored 9?\" or similar. But the user's input here is a bit unclear. Let me check again. The user's question is: \"Home team [text] scored 9.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13.13",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 1500,
+    "predicted_sql": "SELECT Home team FROM table WHERE Home team = '9' AND Home team = '9' AND Home team = '9' ORDER BY Home team ASC LIMIT 100000",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 244,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "2-10808089-4",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Home team"
+        ],
+        [
+          0,
+          "Home team score"
+        ],
+        [
+          0,
+          "Away team"
+        ],
+        [
+          0,
+          "Away team score"
+        ],
+        [
+          0,
+          "Venue"
+        ],
+        [
+          0,
+          "Crowd"
+        ],
+        [
+          0,
+          "Date"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "real",
+        "text"
+      ]
+    }
   },
   {
     "instance_id": "wikisql_test_1680",
     "question": "Name who directed the episode by joe sachs and david zabel",
     "gold_sql": "SELECT Directed by FROM table WHERE Written by = 'Joe Sachs and David Zabel'",
-    "predicted_sql": "SELECT Directed by FROM table ORDER BY Series # ASC LIMIT 100000",
-    "latency_ms": 40285.783,
-    "num_tokens_generated": 259,
+    "predicted_sql": "SELECT Directed by FROM table WHERE Series # = 'Joe Sachs' ORDER BY Directed by",
+    "latency_ms": 36837.177,
+    "num_tokens_generated": 804,
     "constraint": "xgrammar",
     "mode": "thinking",
-    "thinking_suppressed": false
+    "thinking_suppressed": false,
+    "db": "1-17355743-1",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Series #"
+        ],
+        [
+          0,
+          "Season #"
+        ],
+        [
+          0,
+          "Title"
+        ],
+        [
+          0,
+          "Directed by"
+        ],
+        [
+          0,
+          "Written by"
+        ],
+        [
+          0,
+          "Original air date"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "real",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
   }
 ]
