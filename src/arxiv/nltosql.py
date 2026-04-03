@@ -484,7 +484,6 @@ def main() -> None:
     outlines_runner = None
     lmfe_runner = None
     xgrammar_runner = None
-
     if args.constraint == "outlines":
         outlines_runner = OutlinesRunner(model, tokenizer)
     elif args.constraint == "lmfe":
