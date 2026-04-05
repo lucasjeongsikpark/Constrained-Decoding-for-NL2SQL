@@ -3,9 +3,9 @@
     "instance_id": "wikisql_test_10477",
     "question": "Who is the Head Coach of the team whose President is Mario Volarevic?",
     "gold_sql": "SELECT Head Coach FROM table WHERE President = 'mario volarevic'",
-    "predicted_sql": "SELECT Team FROM table WHERE President = 'Mario Volarevic' AND Head Coach = 'unknown'",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 21,
+    "predicted_sql": "SELECT Team FROM table WHERE President = 'Mario Volarevic' AND Head Coach = 'Head Coach'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -49,9 +49,9 @@
     "instance_id": "wikisql_test_1825",
     "question": "How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?",
     "gold_sql": "SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'",
-    "predicted_sql": "SELECT COUNT(*) FROM table WHERE Club = 'Liga MX' AND First season in top division = 91.",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 25,
+    "predicted_sql": "SELECT COUNT(*) FROM table WHERE Club = '' AND First season in top division = '1990-91' AND Number of seasons in top division = 1990-91",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -100,9 +100,9 @@
     "instance_id": "wikisql_test_410",
     "question": "What height was the forward position at Crockett High School?",
     "gold_sql": "SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'",
-    "predicted_sql": "SELECT COUNT(*) FROM table WHERE Name = 'Crockett' AND Year = 2023.",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 24,
+    "predicted_sql": "SELECT Height FROM table WHERE Position = 'Forward' AND Home Town = 'Crockett High School'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -161,9 +161,9 @@
     "instance_id": "wikisql_test_12150",
     "question": "What is the score for the 2nd leg when Belasica is team 2?",
     "gold_sql": "SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'",
-    "predicted_sql": "SELECT 1st leg FROM table WHERE Team 2 = 'Belasica' AND 2nd leg = '1st leg' AND 1st leg = '1st leg' ORDER BY 1st leg ASC LIMIT 100000",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 56,
+    "predicted_sql": "SELECT 2nd leg FROM table WHERE Team 2 = 'Belasica'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -207,9 +207,9 @@
     "instance_id": "wikisql_test_4507",
     "question": "Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?",
     "gold_sql": "SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'",
-    "predicted_sql": "SELECT Pole Position FROM table WHERE Name = 'Rick Mears' AND Winning driver = 'Penske Racing' AND Winning team = 'Penske Racing' ORDER BY Pole Position ASC LIMIT 100000",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 47,
+    "predicted_sql": "SELECT Winning driver FROM table WHERE Name = 'Penske Racing' AND Pole Position = 'Rick Mears'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -258,9 +258,9 @@
     "instance_id": "wikisql_test_4013",
     "question": "What is the number in season of the episode whose production code is pabf05?",
     "gold_sql": "SELECT # FROM table WHERE Production code = 'PABF05'",
-    "predicted_sql": "SELECT Title FROM table WHERE Title = 'The Great Gatsby' AND Directed by = 'James Cameron' AND Original air date = '1922-01-01'",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 39,
+    "predicted_sql": "SELECT № FROM table WHERE Production code = 'pabf05'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -319,9 +319,9 @@
     "instance_id": "wikisql_test_3658",
     "question": "What is the highest pick number for player don barber?",
     "gold_sql": "SELECT MAX(Pick #) FROM table WHERE Player = 'Don Barber'",
-    "predicted_sql": "SELECT College/junior/club team FROM table WHERE Position = 'Barber' ORDER BY College/junior/club team ASC LIMIT 100000",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 38,
+    "predicted_sql": "SELECT * FROM table WHERE Player = 'don barber'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -370,9 +370,9 @@
     "instance_id": "wikisql_test_2287",
     "question": "What was the original air date for season 11?",
     "gold_sql": "SELECT Original air date FROM table WHERE Season # = 11",
-    "predicted_sql": "SELECT COUNT(*) FROM table WHERE Series # = '1' AND Season # = '1' AND Title = 'The Original'",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 27,
+    "predicted_sql": "SELECT Original air date FROM table WHERE Season # = 11",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -426,9 +426,9 @@
     "instance_id": "wikisql_test_12067",
     "question": "Which home team scored 9.13 (67)?",
     "gold_sql": "SELECT Home team FROM table WHERE Home team score = '9.13 (67)'",
-    "predicted_sql": "SELECT Home team score FROM table WHERE Home team = '13' AND Away team = '67' AND Venue = '9' ORDER BY Home team score ASC LIMIT 100000",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 43,
+    "predicted_sql": "SELECT Home team FROM table WHERE Home team score = '9.13' AND Away team score = '67' AND Venue = '' AND Crowd = 0.",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -482,9 +482,9 @@
     "instance_id": "wikisql_test_1680",
     "question": "Name who directed the episode by joe sachs and david zabel",
     "gold_sql": "SELECT Directed by FROM table WHERE Written by = 'Joe Sachs and David Zabel'",
-    "predicted_sql": "SELECT Title FROM table WHERE Series # = '123' AND Directed by = 'Joe Sachs' AND Written by = 'David Zabel'",
-    "latency_ms": 1658.297,
-    "num_tokens_generated": 31,
+    "predicted_sql": "SELECT Series # FROM table WHERE Directed by = 'joe sachs' AND Written by = 'david zabel'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
     "constraint": "xgrammar",
     "mode": "non-thinking",
     "thinking_suppressed": false,
@@ -526,6 +526,536 @@
         "text",
         "text",
         "text"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_11088",
+    "question": "Which competition has a Year of 2008, a Surface of carpet, and a Date of 31 jan?",
+    "gold_sql": "SELECT Competition FROM table WHERE Year = 2008 AND Surface = 'carpet' AND Date = '31 jan'",
+    "predicted_sql": "SELECT Competition FROM table WHERE Year = 2008 AND Surface = 'carpet' AND Date = '31 jan'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "2-11233501-4",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Year"
+        ],
+        [
+          0,
+          "Competition"
+        ],
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Surface"
+        ],
+        [
+          0,
+          "Location"
+        ],
+        [
+          0,
+          "Score"
+        ],
+        [
+          0,
+          "Result"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_12136",
+    "question": "What date was the Madonie Circuit?",
+    "gold_sql": "SELECT Date FROM table WHERE Circuit = 'madonie'",
+    "predicted_sql": "SELECT Date FROM table WHERE Circuit = 'Madonie Circuit'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "2-18279093-2",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "Circuit"
+        ],
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Winning driver"
+        ],
+        [
+          0,
+          "Winning constructor"
+        ],
+        [
+          0,
+          "Report"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_14618",
+    "question": "What was the date for game 6?",
+    "gold_sql": "SELECT Date FROM table WHERE Game = 6",
+    "predicted_sql": "SELECT Date FROM table WHERE Game = 6",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "2-13135264-10",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Game"
+        ],
+        [
+          0,
+          "Date"
+        ],
+        [
+          0,
+          "Visitor"
+        ],
+        [
+          0,
+          "Score"
+        ],
+        [
+          0,
+          "Home"
+        ],
+        [
+          0,
+          "Decision"
+        ],
+        [
+          0,
+          "Attendance"
+        ],
+        [
+          0,
+          "Series"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "text",
+        "real",
+        "text"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_8936",
+    "question": "Which College has a Round of 11, and a Pick of 14?",
+    "gold_sql": "SELECT College FROM table WHERE Round = 11 AND Pick = 14",
+    "predicted_sql": "SELECT College FROM table WHERE Round = 11 AND Pick = 14.",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "2-17100961-49",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Round"
+        ],
+        [
+          0,
+          "Pick"
+        ],
+        [
+          0,
+          "Overall"
+        ],
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "College"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "real",
+        "real",
+        "text",
+        "text",
+        "text"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_1425",
+    "question": "What is the highest number of Counties carries?",
+    "gold_sql": "SELECT MAX(Counties Carries) FROM table",
+    "predicted_sql": "SELECT Delegates FROM table WHERE State Delegate = 0 AND Percentage = 'Highest' AND Counties Carries = 'Highest' AND Delegates = 'Highest'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "1-16186152-1",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Candidate"
+        ],
+        [
+          0,
+          "State Delegate"
+        ],
+        [
+          0,
+          "Percentage"
+        ],
+        [
+          0,
+          "Delegates"
+        ],
+        [
+          0,
+          "Counties Carries"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "real",
+        "text",
+        "real",
+        "real"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_9675",
+    "question": "What is the average React, when Name is \"Candice Davis\", and when Lane is less than 3?",
+    "gold_sql": "SELECT AVG(React) FROM table WHERE Name = 'candice davis' AND Lane < 3",
+    "predicted_sql": "SELECT AVG(React) FROM table WHERE Name = 'Candice Davis' AND Lane < 3.",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "2-17221632-4",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Lane"
+        ],
+        [
+          0,
+          "Name"
+        ],
+        [
+          0,
+          "Country"
+        ],
+        [
+          0,
+          "Mark"
+        ],
+        [
+          0,
+          "React"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "text",
+        "real",
+        "real"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_6913",
+    "question": "What is the sum of Played when the drawn is less than 2 and against is more than 29?",
+    "gold_sql": "SELECT SUM(Played) FROM table WHERE Drawn < 2 AND Against > 29",
+    "predicted_sql": "SELECT SUM(Played) FROM table WHERE Drawn < 2 AND Against > 29",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "2-15319684-1",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Position"
+        ],
+        [
+          0,
+          "Team"
+        ],
+        [
+          0,
+          "Points"
+        ],
+        [
+          0,
+          "Played"
+        ],
+        [
+          0,
+          "Drawn"
+        ],
+        [
+          0,
+          "Lost"
+        ],
+        [
+          0,
+          "Against"
+        ],
+        [
+          0,
+          "Difference"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "text",
+        "real",
+        "real",
+        "real",
+        "real",
+        "real",
+        "text"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_521",
+    "question": "What is the number of the original airdate with the production code 208.",
+    "gold_sql": "SELECT COUNT(Original Airdate) FROM table WHERE Production Code = 208",
+    "predicted_sql": "SELECT Series Ep # FROM table WHERE Production Code = 208",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "1-12451376-2",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Series Ep #"
+        ],
+        [
+          0,
+          "Season 2 Ep #"
+        ],
+        [
+          0,
+          "Title"
+        ],
+        [
+          0,
+          "Director"
+        ],
+        [
+          0,
+          "Writer(s)"
+        ],
+        [
+          0,
+          "Original Airdate"
+        ],
+        [
+          0,
+          "Production Code"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "real",
+        "text",
+        "text",
+        "text",
+        "text",
+        "real"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_489",
+    "question": "what are the u.s. air dates with a Canadian air date of may 4, 2009",
+    "gold_sql": "SELECT U.S. airdate FROM table WHERE Canadian airdate = 'May 4, 2009'",
+    "predicted_sql": "SELECT U.S. airdate FROM table WHERE Canadian airdate = 'may 4, 2009'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "1-12294557-3",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Season #"
+        ],
+        [
+          0,
+          "Series #"
+        ],
+        [
+          0,
+          "Title"
+        ],
+        [
+          0,
+          "Canadian airdate"
+        ],
+        [
+          0,
+          "U.S. airdate"
+        ],
+        [
+          0,
+          "Production code"
+        ]
+      ],
+      "column_types": [
+        "real",
+        "real",
+        "text",
+        "text",
+        "text",
+        "real"
+      ]
+    }
+  },
+  {
+    "instance_id": "wikisql_test_1536",
+    "question": "How many hectars of land is in Kaxholmen?",
+    "gold_sql": "SELECT Land area (hectares) FROM table WHERE Urban area (locality) = 'Kaxholmen'",
+    "predicted_sql": "SELECT COUNT(*) FROM table WHERE Urban area (locality) = 'Kaxholmen' AND Land area (hectares) = 'hectares' AND Density (inh./km²) = 'inh./km²' AND Municipality = 'Municipality'",
+    "latency_ms": 973.116,
+    "num_tokens_generated": 58,
+    "constraint": "xgrammar",
+    "mode": "non-thinking",
+    "thinking_suppressed": false,
+    "db": "1-16796625-1",
+    "schema": {
+      "table_names_original": [
+        "table"
+      ],
+      "column_names_original": [
+        [
+          0,
+          "Urban area (locality)"
+        ],
+        [
+          0,
+          "Municipality"
+        ],
+        [
+          0,
+          "Population"
+        ],
+        [
+          0,
+          "Land area (hectares)"
+        ],
+        [
+          0,
+          "Density (inh./km²)"
+        ],
+        [
+          0,
+          "Code"
+        ]
+      ],
+      "column_types": [
+        "text",
+        "text",
+        "real",
+        "text",
+        "text",
+        "real"
       ]
     }
   }
