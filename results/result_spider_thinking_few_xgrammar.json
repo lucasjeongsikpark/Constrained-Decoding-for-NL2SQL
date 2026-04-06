@@ -1,0 +1,57 @@
+[
+  {
+    "instance_id": "spider_test_000457",
+    "question": "What are the address details and biographical information of each student?",
+    "gold_sql": "SELECT T1.address_details ,  T3.bio_data FROM Addresses AS T1 JOIN Students_Addresses AS T2 ON T1.address_id  =  T2.address_id JOIN Students AS T3 ON T2.student_id  =  T3.student_id",
+    "predicted_sql": "SELECT address_details FROM Addresses JOIN Students ON address_id = Students.student_id ORDER BY student_id ASC LIMIT 100000",
+    "latency_ms": 21540.151,
+    "num_tokens_generated": 464,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000103",
+    "question": "What is the product average price?",
+    "gold_sql": "SELECT avg(product_price) FROM Products",
+    "predicted_sql": "SELECT AVG(product_price) FROM Products",
+    "latency_ms": 21540.151,
+    "num_tokens_generated": 464,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_001127",
+    "question": "Count the number of different plane names across all pilots.",
+    "gold_sql": "SELECT count(DISTINCT plane_name) FROM pilotskills",
+    "predicted_sql": "SELECT COUNT(*) FROM PilotSkills JOIN Hangar ON pilot_name = plane_name",
+    "latency_ms": 21540.151,
+    "num_tokens_generated": 464,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_001004",
+    "question": "How many reference papers does paper with id D12-1027 have?",
+    "gold_sql": "SELECT count(*) FROM Citation WHERE paper_id  =  \"D12-1027\"",
+    "predicted_sql": "SELECT COUNT(*) FROM Citation WHERE paper_id = 'D12-1027'",
+    "latency_ms": 21540.151,
+    "num_tokens_generated": 464,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000915",
+    "question": "What is the maximum rating for sailors?",
+    "gold_sql": "SELECT max(rating) FROM Sailors",
+    "predicted_sql": "SELECT MAX(rating) FROM Sailors",
+    "latency_ms": 21540.151,
+    "num_tokens_generated": 464,
+    "constraint": "xgrammar",
+    "mode": "thinking",
+    "thinking_suppressed": false
+  }
+]

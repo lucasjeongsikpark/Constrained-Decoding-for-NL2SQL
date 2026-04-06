@@ -1,0 +1,57 @@
+[
+  {
+    "instance_id": "spider_test_000457",
+    "question": "What are the address details and biographical information of each student?",
+    "gold_sql": "SELECT T1.address_details ,  T3.bio_data FROM Addresses AS T1 JOIN Students_Addresses AS T2 ON T1.address_id  =  T2.address_id JOIN Students AS T3 ON T2.student_id  =  T3.student_id",
+    "predicted_sql": "",
+    "latency_ms": 9723.211,
+    "num_tokens_generated": 150,
+    "constraint": "outlines",
+    "mode": "non-thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000103",
+    "question": "What is the product average price?",
+    "gold_sql": "SELECT avg(product_price) FROM Products",
+    "predicted_sql": "SELECT product_price FROM Products",
+    "latency_ms": 1743.272,
+    "num_tokens_generated": 7,
+    "constraint": "outlines",
+    "mode": "non-thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_001127",
+    "question": "Count the number of different plane names across all pilots.",
+    "gold_sql": "SELECT count(DISTINCT plane_name) FROM pilotskills",
+    "predicted_sql": "SELECT COUNT(DISTINCT plane_name) FROM Hangar",
+    "latency_ms": 1748.77,
+    "num_tokens_generated": 13,
+    "constraint": "outlines",
+    "mode": "non-thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_001004",
+    "question": "How many reference papers does paper with id D12-1027 have?",
+    "gold_sql": "SELECT count(*) FROM Citation WHERE paper_id  =  \"D12-1027\"",
+    "predicted_sql": "SELECT COUNT(Paperpaper_id) FROM Paper WHERE paper_id = 'D12-1027'",
+    "latency_ms": 2362.144,
+    "num_tokens_generated": 24,
+    "constraint": "outlines",
+    "mode": "non-thinking",
+    "thinking_suppressed": false
+  },
+  {
+    "instance_id": "spider_test_000915",
+    "question": "What is the maximum rating for sailors?",
+    "gold_sql": "SELECT max(rating) FROM Sailors",
+    "predicted_sql": "SELECT Sailors.name AS name FROM Sailors",
+    "latency_ms": 3369.312,
+    "num_tokens_generated": 11,
+    "constraint": "outlines",
+    "mode": "non-thinking",
+    "thinking_suppressed": false
+  }
+]
