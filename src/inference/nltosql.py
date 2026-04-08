@@ -18,6 +18,10 @@ DEFAULT_DATA_PATHS = {
     "wikisql": "data/wikisql_processed/wikisql_test.json",
     "spider": "data/spider_data_processed/spider_test.json",
 }
+DEFAULT_TRAIN_PATHS = {
+    "wikisql": "data/wikisql_processed/wikisql_train.json",
+    "spider": "data/spider_data_processed/spider_train.json",
+}
 DEFAULT_MAX_NEW_TOKENS = 150           # non-thinking: SQL fits easily in 150 tokens
 DEFAULT_MAX_NEW_TOKENS_THINKING = 1500  # thinking: <think> chain adds ~600 tokens on average
 SEED = 42
@@ -168,13 +172,42 @@ def build_system_prompt(dataset: str) -> str:
     )
 
 
-def build_user_message(dataset: str, example: Dict[str, Any]) -> str:
-    """Per-instance data (schema + question) — belongs in user turn."""
+def build_user_message(
+    dataset: str,
+    example: Dict[str, Any],
+    few_shot_examples: Optional[List[Tuple[Any, Dict[str, Any]]]] = None,
+) -> str:
+    """Per-instance data (schema + question) — belongs in user turn.
+
+    few_shot_examples: list of (Example, raw_row) tuples from the training set.
+    - WikiSQL shots: rendered as schema + question → SQL (schema is compact).
+    - Spider shots: rendered as question → SQL only (schema differs per db, so
+      including it per shot would inflate the prompt without helping much).
+    """
     question = example.get("question", "")
     schema_text = format_schema_text(example.get("schema", {}), dataset)
+
+    # ── Build few-shot block ──────────────────────────────────────────────────
+    few_shot_block = ""
+    if few_shot_examples:
+        shot_lines: List[str] = ["Here are some examples:\n"]
+        for idx, (shot_ex, _) in enumerate(few_shot_examples, 1):
+            if dataset == "wikisql":
+                shot_schema = format_schema_text(shot_ex.schema, dataset)
+                shot_lines.append(f"Example {idx}:")
+                shot_lines.append(f"Schema:\n{shot_schema}")
+                shot_lines.append(f"Question: {shot_ex.question}")
+                shot_lines.append(f"SQL: {shot_ex.gold_sql}\n")
+            else:
+                shot_lines.append(f"Example {idx}:")
+                shot_lines.append(f"Question: {shot_ex.question}")
+                shot_lines.append(f"SQL: {shot_ex.gold_sql}\n")
+        shot_lines.append("Now convert the following:\n")
+        few_shot_block = "\n".join(shot_lines) + "\n"
+
     if dataset == "wikisql":
         instance_id = example.get("instance_id", "")
-        return f"""You are a text-to-SQL system.
+        return f"""{few_shot_block}You are a text-to-SQL system.
 
 Task:
 Convert the question into exactly one SQL query for the given schema.
@@ -202,7 +235,7 @@ Question:
 
 SQL:
 """
-    return f"""Schema:
+    return f"""{few_shot_block}Schema:
 {schema_text}
 
 Question:
@@ -212,10 +245,23 @@ SQL:
 """
 
 
-def build_qwen_prompt(tokenizer, dataset: str, ex: Example, mode: str) -> str:
+def build_qwen_prompt(
+    tokenizer,
+    dataset: str,
+    ex: Example,
+    mode: str,
+    few_shot_examples: Optional[List[Tuple[Any, Dict[str, Any]]]] = None,
+) -> str:
     messages = [
         {"role": "system", "content": build_system_prompt(dataset)},
-        {"role": "user", "content": build_user_message(dataset, {"instance_id": ex.instance_id, "question": ex.question, "schema": ex.schema})},
+        {
+            "role": "user",
+            "content": build_user_message(
+                dataset,
+                {"instance_id": ex.instance_id, "question": ex.question, "schema": ex.schema},
+                few_shot_examples=few_shot_examples,
+            ),
+        },
     ]
     # enable_thinking=False explicitly disables thinking for non-thinking mode.
     # The except branch is for old tokenizers that don't support enable_thinking at all
@@ -502,6 +548,66 @@ def to_examples(dataset: str, rows: List[Dict[str, Any]]) -> List[Example]:
     return examples
 
 
+class FewShotRetriever:
+    """Retrieve top-k training examples most similar to a test question.
+
+    Similarity metric (in priority order):
+    1. TF-IDF cosine similarity via scikit-learn (if installed).
+    2. Jaccard word-overlap similarity (numpy only — always available).
+
+    Usage:
+        retriever = FewShotRetriever(dataset, train_rows)
+        shots = retriever.retrieve(question, n=3)
+        # shots: List[Tuple[Example, Dict[str, Any]]]  (Example, raw_row)
+    """
+
+    def __init__(self, dataset: str, train_rows: List[Dict[str, Any]]) -> None:
+        import numpy as np
+
+        self._dataset = dataset
+        self._rows = train_rows
+        self._examples = to_examples(dataset, train_rows)
+        self._np = np
+        questions = [ex.question for ex in self._examples]
+
+        try:
+            from sklearn.feature_extraction.text import TfidfVectorizer
+            self._vectorizer = TfidfVectorizer(ngram_range=(1, 2), min_df=1)
+            self._matrix = self._vectorizer.fit_transform(questions)
+            self._use_tfidf = True
+        except ImportError:
+            # Fallback: pre-tokenise all training questions for Jaccard similarity.
+            self._train_tokens: List[set] = [self._tokenize(q) for q in questions]
+            self._use_tfidf = False
+
+    @staticmethod
+    def _tokenize(text: str) -> set:
+        return set(re.sub(r"[^a-z0-9 ]", " ", text.lower()).split())
+
+    def _scores_tfidf(self, question: str) -> "np.ndarray":
+        q_vec = self._vectorizer.transform([question])
+        return (self._matrix * q_vec.T).toarray().ravel()
+
+    def _scores_jaccard(self, question: str) -> "np.ndarray":
+        q_tokens = self._tokenize(question)
+        scores = []
+        for t_tokens in self._train_tokens:
+            denom = len(q_tokens | t_tokens)
+            scores.append(len(q_tokens & t_tokens) / denom if denom else 0.0)
+        return self._np.array(scores)
+
+    def retrieve(
+        self, question: str, n: int, exclude_id: Optional[str] = None
+    ) -> List[Tuple[Example, Dict[str, Any]]]:
+        scores = self._scores_tfidf(question) if self._use_tfidf else self._scores_jaccard(question)
+        if exclude_id is not None:
+            for i, ex in enumerate(self._examples):
+                if ex.instance_id == exclude_id:
+                    scores[i] = -1.0
+        top_indices = self._np.argsort(scores)[::-1][:n]
+        return [(self._examples[int(i)], self._rows[int(i)]) for i in top_indices]
+
+
 def build_output_filename(dataset: str, mode: str, train_mode: str, constraint: str) -> str:
     return f"results/result_{dataset}_{mode}_{train_mode}_{constraint}.json"
 
@@ -566,6 +672,10 @@ def main() -> None:
     parser.add_argument("--constraint", choices=["none", "outlines", "xgrammar"], required=True)
     parser.add_argument("--mode", choices=["thinking", "non-thinking"], default="non-thinking")
     parser.add_argument("--train-mode", choices=["zero", "few"], default="zero")
+    parser.add_argument("--n-shots", type=int, default=3,
+                        help="Number of few-shot examples to retrieve (only used when --train-mode few)")
+    parser.add_argument("--train-data-path", default=None,
+                        help="Override path to training data (used for few-shot retrieval)")
     parser.add_argument("--data-path", default=None)
     parser.add_argument("--max-new-tokens", type=int, default=DEFAULT_MAX_NEW_TOKENS)
     parser.add_argument("--max-examples", type=int, default=None)
@@ -585,6 +695,15 @@ def main() -> None:
     if args.max_examples is not None:
         rows = rows[: args.max_examples]
     examples = to_examples(args.dataset, rows)
+
+    # ── Few-shot retriever ────────────────────────────────────────────────────
+    retriever: Optional[FewShotRetriever] = None
+    if args.train_mode == "few":
+        train_path = args.train_data_path or DEFAULT_TRAIN_PATHS[args.dataset]
+        train_rows = load_json(train_path)
+        print(f"Building few-shot index from {len(train_rows)} training examples ({train_path})")
+        retriever = FewShotRetriever(args.dataset, train_rows)
+        print(f"Few-shot index ready. n_shots={args.n_shots}")
 
     effective_tokens = (
         max(args.max_new_tokens, DEFAULT_MAX_NEW_TOKENS_THINKING)
@@ -653,7 +772,16 @@ def main() -> None:
             batch_exs  = examples[batch_start : batch_start + args.batch_size]
             batch_rows = rows[batch_start : batch_start + args.batch_size]
             batch_prompts = [
-                build_qwen_prompt(tokenizer, args.dataset, ex, args.mode)
+                build_qwen_prompt(
+                    tokenizer,
+                    args.dataset,
+                    ex,
+                    args.mode,
+                    few_shot_examples=(
+                        retriever.retrieve(ex.question, args.n_shots, exclude_id=ex.instance_id)
+                        if retriever is not None else None
+                    ),
+                )
                 for ex in batch_exs
             ]
 
@@ -680,7 +808,16 @@ def main() -> None:
             elif args.constraint == "outlines":
                 batch_raw, batch_ntok, batch_latencies = [], [], []
                 for ex, raw_row in zip(batch_exs, batch_rows):
-                    prompt = build_qwen_prompt(tokenizer, args.dataset, ex, args.mode)
+                    prompt = build_qwen_prompt(
+                        tokenizer,
+                        args.dataset,
+                        ex,
+                        args.mode,
+                        few_shot_examples=(
+                            retriever.retrieve(ex.question, args.n_shots, exclude_id=ex.instance_id)
+                            if retriever is not None else None
+                        ),
+                    )
                     regex = (
                         build_wikisql_regex(args.mode)
                         if args.dataset == "wikisql"
