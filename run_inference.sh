@@ -1,33 +1,63 @@
 #!/bin/bash
 
 MODEL="Qwen/Qwen3-0.6B"
-TEST_SIZE=3
+TEST_SIZE=150
 BATCH_SIZE=3
+N_SHOTS=1
 
-# # ─── WikiSQL ──────────────────────────────────────────────────────────────────
+# # # ─── WikiSQL | zero-shot ──────────────────────────────────────────────────────
 
-# echo "===== WikiSQL | none ====="
-# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint none --mode non-thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
-# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint none --mode thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# echo "===== WikiSQL | zero | none ====="
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint none --mode non-thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint none --mode thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
 
-# echo "===== WikiSQL | outlines ====="
-# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint outlines --mode non-thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
-# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint outlines --mode thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# echo "===== WikiSQL | zero | outlines ====="
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint outlines --mode non-thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint outlines --mode thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
 
-# echo "===== WikiSQL | xgrammar ====="
-# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint xgrammar --mode non-thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
-# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint xgrammar --mode thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# echo "===== WikiSQL | zero | xgrammar ====="
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint xgrammar --mode non-thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint xgrammar --mode thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
 
-# # ─── Spider ───────────────────────────────────────────────────────────────────
+# # # ─── WikiSQL | few-shot ───────────────────────────────────────────────────────
 
-# echo "===== Spider | none ====="
-# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint none --mode non-thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
-# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint none --mode thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# echo "===== WikiSQL | few | none ====="
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint none --mode non-thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint none --mode thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
 
-echo "===== Spider | outlines ====="
-python src/inference/nltosql.py --model $MODEL --dataset spider --constraint outlines --mode non-thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
-python src/inference/nltosql.py --model $MODEL --dataset spider --constraint outlines --mode thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# echo "===== WikiSQL | few | outlines ====="
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint outlines --mode non-thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint outlines --mode thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
 
-# echo "===== Spider | xgrammar ====="
-# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint xgrammar --mode non-thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
-# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint xgrammar --mode thinking --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# echo "===== WikiSQL | few | xgrammar ====="
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint xgrammar --mode non-thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset wikisql --constraint xgrammar --mode thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+
+
+# # ─── Spider | few-shot ────────────────────────────────────────────────────────
+
+# echo "===== Spider | few | outlines ====="
+# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint outlines --mode non-thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint outlines --mode thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+
+# echo "===== Spider | few | xgrammar ====="
+# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint xgrammar --mode non-thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint xgrammar --mode thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+
+# echo "===== Spider | few | none ====="
+# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint none --mode non-thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+# python src/inference/nltosql.py --model $MODEL --dataset spider --constraint none --mode thinking --train-mode few --n-shots $N_SHOTS --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+
+# ─── Spider | zero-shot ───────────────────────────────────────────────────────
+
+echo "===== Spider | zero | outlines ====="
+python src/inference/nltosql.py --model $MODEL --dataset spider --constraint outlines --mode non-thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+python src/inference/nltosql.py --model $MODEL --dataset spider --constraint outlines --mode thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+
+echo "===== Spider | zero | xgrammar ====="
+python src/inference/nltosql.py --model $MODEL --dataset spider --constraint xgrammar --mode non-thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+python src/inference/nltosql.py --model $MODEL --dataset spider --constraint xgrammar --mode thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+
+echo "===== Spider | zero | none ====="
+python src/inference/nltosql.py --model $MODEL --dataset spider --constraint none --mode non-thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
+python src/inference/nltosql.py --model $MODEL --dataset spider --constraint none --mode thinking --train-mode zero --test-size $TEST_SIZE --batch-size $BATCH_SIZE
