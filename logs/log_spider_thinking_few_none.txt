@@ -139,34 +139,30 @@ What are the address details and biographical information of each student?
 SQL:
 <|im_end|>
 <|im_start|>assistant
-<think>
-
-</think>
-
 
 ============================================================
-Dataset: spider  Mode: non-thinking  Constraint: xgrammar
+Dataset: spider  Mode: thinking  Constraint: none
 ============================================================
 Example 1
 Question: What are the address details and biographical information of each student?
 Gold SQL: SELECT T1.address_details ,  T3.bio_data FROM Addresses AS T1 JOIN Students_Addresses AS T2 ON T1.address_id  =  T2.address_id JOIN Students AS T3 ON T2.student_id  =  T3.student_id
-Predicted SQL: SELECT student_id FROM Students JOIN Students_Addresses ON student_id = Students_Addresses.student_id JOIN Addresses ON student_address_id = Addresses.address_id JOIN Ref_Address_Types ON student_address_id = Ref_Address_Types.address_type_code JOIN Ref_Achievement_Type ON achievement_type_code = Achievements.achievement_type_code JOIN Achievements ON student_id = Achievements.student_id JOIN Students ON student_id = Students.student_id JOIN Students_Addresses ON student_id = Students_Addresses.student_id JOIN Students_Addresses ON student_id = Students_Addresses.student_id JOIN Students_Addresses ON student_id = Students_Addresses.student_id JOIN Students_Addresses ON student_id = Students_Addresses.student_id JOIN Students_Addresses ON student_id = Students_Addresses.student_id JOIN Students_Add
-Latency (ms): 7481.67
-Generated tokens: 150
+Predicted SQL: SELECT Addresses.address_details, Students.bio_data FROM Addresses JOIN Students ON Addresses.address_id = Students.student_id
+Latency (ms): 14831.26
+Generated tokens: 291
 ============================================================
 Example 2
 Question: What is the product average price?
 Gold SQL: SELECT avg(product_price) FROM Products
 Predicted SQL: SELECT AVG(product_price) FROM Products
-Latency (ms): 7481.67
-Generated tokens: 150
+Latency (ms): 14831.26
+Generated tokens: 291
 ============================================================
 Example 3
 Question: Count the number of different plane names across all pilots.
 Gold SQL: SELECT count(DISTINCT plane_name) FROM pilotskills
-Predicted SQL: SELECT COUNT(*) FROM PilotSkills JOIN Hangar ON pilot_name = plane_name WHERE plane_name IS NOT NULL ANDHangar.locationISNULL.
-Latency (ms): 7481.67
-Generated tokens: 150
+Predicted SQL: SELECT COUNT(DISTINCT plane_name) FROM PilotSkills JOIN Hangar ON PilotSkills.plane_name = Hangar.plane_name
+Latency (ms): 14831.26
+Generated tokens: 291
 Done 10/150
 Done 20/150
 Done 30/150
@@ -182,5 +178,5 @@ Done 120/150
 Done 130/150
 Done 140/150
 Done 150/150
-Saved results to: results/result_spider_non-thinking_zero_xgrammar.json
-Saved log     to: logs/log_spider_non-thinking_zero_xgrammar.txt
+Saved results to: results/result_spider_thinking_few_none.json
+Saved log     to: logs/log_spider_thinking_few_none.txt

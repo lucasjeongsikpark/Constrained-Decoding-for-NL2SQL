@@ -38,30 +38,34 @@ Who is the Head Coach of the team whose President is Mario Volarevic?
 SQL:
 <|im_end|>
 <|im_start|>assistant
+<think>
+
+</think>
+
 
 ============================================================
-Dataset: wikisql  Mode: thinking  Constraint: none
+Dataset: wikisql  Mode: non-thinking  Constraint: xgrammar
 ============================================================
 Example 1
 Question: Who is the Head Coach of the team whose President is Mario Volarevic?
 Gold SQL: SELECT Head Coach FROM table WHERE President = 'mario volarevic'
 Predicted SQL: SELECT Head Coach FROM table WHERE President = 'Mario Volarevic'
-Latency (ms): 46589.02
-Generated tokens: 1500
+Latency (ms): 1137.77
+Generated tokens: 30
 ============================================================
 Example 2
 Question: How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
 Gold SQL: SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
-Predicted SQL: SELECT COUNT(*) FROM table WHERE First season in top division = '1990-91'
-Latency (ms): 46589.02
-Generated tokens: 1500
+Predicted SQL: SELECT COUNT(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
+Latency (ms): 1137.77
+Generated tokens: 30
 ============================================================
 Example 3
 Question: What height was the forward position at Crockett High School?
 Gold SQL: SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'
-Predicted SQL: SELECT Height FROM table WHERE High School = 'Crockett High School' AND Position = 'Forward'
-Latency (ms): 46589.02
-Generated tokens: 1500
+Predicted SQL: SELECT Height FROM table WHERE Position = 'Forward' AND Home Town = 'Crockett High School'
+Latency (ms): 1137.77
+Generated tokens: 30
 Done 10/300
 Done 20/300
 Done 30/300
@@ -92,5 +96,5 @@ Done 270/300
 Done 280/300
 Done 290/300
 Done 300/300
-Saved results to: results/result_wikisql_thinking_zero_none.json
-Saved log     to: logs/log_wikisql_thinking_zero_none.txt
+Saved results to: results/result_wikisql_non-thinking_few_xgrammar.json
+Saved log     to: logs/log_wikisql_non-thinking_few_xgrammar.txt

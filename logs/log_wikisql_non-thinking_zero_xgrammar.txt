@@ -1,23 +1,31 @@
 ============================================================
 PROMPT (example 1):
 <|im_start|>system
-You are working with the WikiSQL dataset. Each database has exactly one table always named 'table'. Queries are simple: single-table SELECT with optional aggregation, WHERE conditions, and ORDER BY. No JOINs, subqueries, or UNION are needed.
+You are a precise text-to-SQL assistant.<|im_end|>
+<|im_start|>user
+You are a text-to-SQL system.
 
-Your task: convert the user's natural language question into exactly one valid SQL query.
+Task:
+Convert the question into exactly one SQL query for the given schema.
 
 Rules:
-1. Output ONLY the SQL query — no explanation, no markdown, no code fences, nothing else.
+1. Output exactly one SQL query and nothing else.
 2. The query must start with SELECT.
-3. Always use the table name: table.
-4. Use only columns that appear in the schema.
-5. Do not use JOINs, subqueries, or UNION.
-6. Preserve string values exactly from the question when used in WHERE conditions.
-7. Put text values in single quotes.
-8. Do not invent columns, values, or conditions not implied by the question.
-9. Prefer the simplest correct query.<|im_end|>
-<|im_start|>user
+3. Use only the table name: table
+4. Use only columns that appear in the schema, using the exact column name as listed.
+5. Always wrap string values in single quotes.
+6. Lowercase all string values in WHERE conditions (e.g. 'john smith' not 'John Smith').
+7. Only add WHERE conditions for constraints explicitly stated in the question.
+8. SELECT only the single column that directly answers the question — do not add extra columns.
+9. Do not invent columns, values, or conditions not present in the question.
+10. Do not add explanation.
+11. Prefer the simplest correct WikiSQL-style query.
+
+Instance ID: wikisql_test_10477
+
 Schema:
 TABLE: table
+COLUMNS:
 - Team [text]
 - Head Coach [text]
 - President [text]
@@ -36,34 +44,57 @@ SQL:
 
 
 ============================================================
-Generated 10/10 (batch 1: 35314 ms for 10 examples, 3531 ms/example amortized)
-============================================================
-RAW OUTPUT (example 1):
-SELECT Team FROM table WHERE President = 'Mario Volarevic' AND Head Coach = 'unknown'
-============================================================
+Dataset: wikisql  Mode: non-thinking  Constraint: xgrammar
 ============================================================
 Example 1
 Question: Who is the Head Coach of the team whose President is Mario Volarevic?
 Gold SQL: SELECT Head Coach FROM table WHERE President = 'mario volarevic'
-Predicted SQL: SELECT Team FROM table WHERE President = 'Mario Volarevic' AND Head Coach = 'unknown'
-Constraint: xgrammar
-Latency (ms, amortized): 3531.4
-Generated tokens: 21
+Predicted SQL: SELECT Team FROM table WHERE President = 'Mario Volarevic' AND Head Coach = 'Head Coach'
+Latency (ms): 982.14
+Generated tokens: 58
 ============================================================
 Example 2
 Question: How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
 Gold SQL: SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
-Predicted SQL: SELECT COUNT(*) FROM table WHERE First season in top division = 1990-91.
-Constraint: xgrammar
-Latency (ms, amortized): 3531.4
-Generated tokens: 22
+Predicted SQL: SELECT COUNT(*) FROM table WHERE Club = '' AND First season in top division = '1990-91' AND Number of seasons in top division = 1990-91
+Latency (ms): 982.14
+Generated tokens: 58
 ============================================================
 Example 3
 Question: What height was the forward position at Crockett High School?
 Gold SQL: SELECT Height FROM table WHERE Position = 'Forward' AND High School = 'Crockett'
-Predicted SQL: SELECT Position FROM table WHERE Name = 'Crockett' AND Height = 180.
-Constraint: xgrammar
-Latency (ms, amortized): 3531.4
-Generated tokens: 21
-Saved results to: result_wikisql_non-thinking_zero_xgrammar_vllm.json
-Saved log     to: log_wikisql_non-thinking_zero_xgrammar_vllm.txt
+Predicted SQL: SELECT Height FROM table WHERE Position = 'Forward' AND Home Town = 'Crockett High School'
+Latency (ms): 982.14
+Generated tokens: 58
+Done 10/300
+Done 20/300
+Done 30/300
+Done 40/300
+Done 50/300
+Done 60/300
+Done 70/300
+Done 80/300
+Done 90/300
+Done 100/300
+Done 110/300
+Done 120/300
+Done 130/300
+Done 140/300
+Done 150/300
+Done 160/300
+Done 170/300
+Done 180/300
+Done 190/300
+Done 200/300
+Done 210/300
+Done 220/300
+Done 230/300
+Done 240/300
+Done 250/300
+Done 260/300
+Done 270/300
+Done 280/300
+Done 290/300
+Done 300/300
+Saved results to: results/result_wikisql_non-thinking_zero_xgrammar.json
+Saved log     to: logs/log_wikisql_non-thinking_zero_xgrammar.txt

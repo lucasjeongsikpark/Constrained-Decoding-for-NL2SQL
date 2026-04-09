@@ -1,0 +1,68 @@
+============================================================
+PROMPT (example 1):
+<|im_start|>system
+You are working with the Spider dataset. Each database has multiple tables. Queries may require JOINs across tables — use only the foreign key relationships listed in the schema. Queries range from simple single-table lookups to multi-table JOINs with aggregation and ORDER BY.
+
+Your task: convert the user's natural language question into exactly one valid SQL query.
+
+Rules:
+1. Output ONLY the SQL query — no explanation, no markdown, no code fences, nothing else.
+2. The query must start with SELECT.
+3. Use only tables and columns that appear in the schema.
+4. Join tables only when necessary, and only through valid foreign key relationships shown in the schema.
+5. Qualify column names with the table name (e.g. table.column) when the column exists in multiple tables.
+6. Preserve string values exactly from the question when used in WHERE conditions.
+7. Put text values in single quotes.
+8. Do not invent columns, values, joins, or conditions not implied by the question.
+9. Keep the query concise and correct for the schema.<|im_end|>
+<|im_start|>user
+Schema:
+TABLE: Movies
+COLUMNS:
+- Code [number] (PK, FK)
+- Title [text]
+- Rating [text]
+
+TABLE: MovieTheaters
+COLUMNS:
+- Code [number] (PK)
+- Name [text]
+- Movie [number] (FK)
+
+FOREIGN KEYS:
+- MovieTheaters.Movie = Movies.Code
+
+Question:
+Show all the distinct ratings in the database.
+
+SQL:
+<|im_end|>
+<|im_start|>assistant
+
+============================================================
+Dataset: spider  Mode: thinking  Constraint: outlines
+============================================================
+Example 1
+Question: Show all the distinct ratings in the database.
+Gold SQL: SELECT DISTINCT rating FROM movies
+Predicted SQL: SELECT DISTINCT Rating FROM Movies
+Latency (ms): 19905.28
+Generated tokens: 408
+============================================================
+Example 2
+Question: Which student has the loan with the minimum value? List the student's biographical information.
+Gold SQL: SELECT T1.bio_data FROM Students AS T1 JOIN Student_Loans AS T2 ON T1.student_id  =  T2.student_id ORDER BY T2.amount_of_loan ASC LIMIT 1
+Predicted SQL: SELECT Students.student_id AS student_id FROM Students JOIN Student_Loans ON Students.student_id = Student_Loans.student_id WHERE Student_Loans.amount_of_loan = (SELECTMIN(amount_of_loan)FROMStudent_Loans)
+Latency (ms): 19401.19
+Generated tokens: 322
+============================================================
+Example 3
+Question: Find the name and number of citations of the author who has most citations among all authors?
+Gold SQL: SELECT T3.name ,  count(*) FROM Citation AS T1 JOIN Author_list AS T2 ON T1.cited_paper_id  =  T2.paper_id JOIN Author AS T3 ON T2.author_id  =  T3.author_id GROUP BY T2.author_id ORDER BY count(*) DESC LIMIT 1
+Predicted SQL: SELECT A.name AS author_name FROM Author AS A JOIN Author_list AS AL ON A author_id JOIN Citation AS C ON AL paper_id GROUP BY A author_id ORDER BY COUNT_CITATIONS DESC LIMIT 1 OFFSET 0 ROWS FROM 1 TO 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+Latency (ms): 90909.24
+Generated tokens: 1500
+Done 6/6
+[checkpoint] Saved 150 results to: results/result_spider_thinking_few_outlines.json
+Saved results to: results/result_spider_thinking_few_outlines.json
+Saved log     to: logs/log_spider_thinking_few_outlines.txt

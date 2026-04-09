@@ -141,52 +141,42 @@ SQL:
 <|im_start|>assistant
 
 ============================================================
-Generated 10/10 (batch 1: 570229 ms for 10 examples, 57023 ms/example amortized)
-============================================================
-RAW OUTPUT (example 1):
-<think>
-Okay, let's see. The user wants to know the address details and biographical information of each student. So, I need to find the address details and the student's bio data from the relevant tables.
-
-Looking at the schema, the Students table has columns for student_id, bio_data, and student_details. The Addresses table has address_details. But how do these relate? The Students_Addresses table connects student_id, address_id, address_type_code, and other details. But the user is asking for address details, which would be in Addresses.address_details. Also, the student's bio data is in Students.bio_data.
-
-Wait, but the question is about each student's address details and their bio. So maybe I need to join the Students table with Addresses and Students_Addresses to get the address details. But the Addresses table's address_details is a column, and Students_Addresses has address_id and address_type_code. But the user wants just the address details, so perhaps the Addresses.address_details column is the one they need. Also, the Students table has the bio_data column. 
-
-So the SQL query would select from Students and Addresses, joining them where necessary. But since the question is about each student, maybe just selecting from Students and Addresses. But the Addresses table's address_details is a column, and the Students_Addresses table's address_id is linked to Addresses.address_id. However, the user might just need the address details from Addresses, not the student's address details. Wait, the question says "address details and biographical information of each student". So the address details would be from Addresses.address_details, and the bio is from Students.bio_data. 
-
-So the SQL query would be SELECT Students.bio_data, Addresses.address_details FROM Students JOIN Addresses ON Students.student_id = Addresses.student_id. But wait, maybe there's another table that connects to Students. Let me check. The Students_Addresses table has student_id, address_id, address_type_code, etc. But the user is asking for address details, which is in Addresses.address_details. So perhaps the correct join is Students_Addresses.address_id = Addresses.address_id. But the user might not need that. Alternatively, maybe the answer is just selecting from Students and Addresses. 
-
-Wait, the question says "address details and biographical information of each student". So the answer would be the combination of Students.bio_data and Addresses.address_details. So the SQL query would be SELECT Students.bio_data, Addresses.address_details FROM Students JOIN Addresses ON Students.student_id = Addresses.student_id. But maybe there's a need to include other tables. Let me check the tables again. The Students_Addresses table is for student addresses, but the user is asking for address details, which is in Addresses. So the correct join is Students and Addresses. 
-
-Therefore, the SQL query should be SELECT Students.bio_data, Addresses.address_details FROM Students JOIN Addresses ON Students.student_id = Addresses.student_id. But wait, maybe there's another table that connects to Students. Let me check the tables again. The Students_Addresses table has student_id, address_id, address_type_code, etc. But the user is asking for address details, which is in Addresses.address_details. So the correct join is Students and Addresses. 
-
-Yes, that's it. So the final SQL query would be SELECT Students.bio_data, Addresses.address_details FROM Students JOIN Addresses ON Students.student_id = Addresses.student_id.
-</think>
-
-SELECT Students.bio_data, Addresses.address_details FROM Students JOIN Addresses ON Students.student_id = Addresses.student_id;
-============================================================
+Dataset: spider  Mode: thinking  Constraint: none
 ============================================================
 Example 1
 Question: What are the address details and biographical information of each student?
 Gold SQL: SELECT T1.address_details ,  T3.bio_data FROM Addresses AS T1 JOIN Students_Addresses AS T2 ON T1.address_id  =  T2.address_id JOIN Students AS T3 ON T2.student_id  =  T3.student_id
 Predicted SQL: SELECT Students.bio_data, Addresses.address_details FROM Students JOIN Addresses ON Students.student_id = Addresses.student_id
-Constraint: none
-Latency (ms, amortized): 57022.87
-Generated tokens: 716
+Latency (ms): 137202.16
+Generated tokens: 1500
 ============================================================
 Example 2
 Question: What is the product average price?
 Gold SQL: SELECT avg(product_price) FROM Products
-Predicted SQL: select the product name and price from the product table, but since there's no price, maybe the query is impossible. Wait, perhaps the user made a mistake in the schema. Maybe the product table has a price column. Let me check again. The schema shows that the Products table has columns product_id and product_name. No price. Therefore, the answer is
-Constraint: none
-Latency (ms, amortized): 57022.87
+Predicted SQL: SELECT AVG(Products.product_price) FROM Products
+Latency (ms): 137202.16
 Generated tokens: 1500
 ============================================================
 Example 3
 Question: Count the number of different plane names across all pilots.
 Gold SQL: SELECT count(DISTINCT plane_name) FROM pilotskills
-Predicted SQL: SELECT * FROM pilot_name WHERE plane_name = 'text'
-Constraint: none
-Latency (ms, amortized): 57022.87
-Generated tokens: 19
-Saved results to: result_spider_thinking_zero_none_vllm.json
-Saved log     to: log_spider_thinking_zero_none_vllm.txt
+Predicted SQL: SELECT COUNT(DISTINCT plane_name) FROM Hangar. But that would not include the pilots' data. Wait, no. Because the Pilots' data is in PilotSkills, which links to Hangar. So if we take all the plane names from PilotSkills, that would include all planes used by pilots. But if we want unique ones, we need to count them. So the answer is to count the distinct plane_name from the PilotSkills table. But then, why is the Hangar table involved? Because the Pilots' data
+Latency (ms): 137202.16
+Generated tokens: 1500
+Done 10/150
+Done 20/150
+Done 30/150
+Done 40/150
+Done 50/150
+Done 60/150
+Done 70/150
+Done 80/150
+Done 90/150
+Done 100/150
+Done 110/150
+Done 120/150
+Done 130/150
+Done 140/150
+Done 150/150
+Saved results to: results/result_spider_thinking_zero_none.json
+Saved log     to: logs/log_spider_thinking_zero_none.txt

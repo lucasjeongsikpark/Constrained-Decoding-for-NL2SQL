@@ -145,34 +145,42 @@ SQL:
 
 
 ============================================================
-Generated 10/10 (batch 1: 49998 ms for 10 examples, 5000 ms/example amortized)
-============================================================
-RAW OUTPUT (example 1):
-SELECT Students.bio_data, Students.student_details FROM Students;
-============================================================
+Dataset: spider  Mode: non-thinking  Constraint: none
 ============================================================
 Example 1
 Question: What are the address details and biographical information of each student?
 Gold SQL: SELECT T1.address_details ,  T3.bio_data FROM Addresses AS T1 JOIN Students_Addresses AS T2 ON T1.address_id  =  T2.address_id JOIN Students AS T3 ON T2.student_id  =  T3.student_id
-Predicted SQL: SELECT Students.bio_data, Students.student_details FROM Students
-Constraint: none
-Latency (ms, amortized): 4999.81
-Generated tokens: 12
+Predicted SQL: SELECT Students.student_id, Students.bio_data, Students.student_details FROM Students
+Latency (ms): 1541.75
+Generated tokens: 17
 ============================================================
 Example 2
 Question: What is the product average price?
 Gold SQL: SELECT avg(product_price) FROM Products
-Predicted SQL: SELECT Products.product_id, Products.product_name, Products.price FROM Products JOIN Order_Items ON Products.product_id = Order_Items.product_id GROUP BY Products.product_id HAVING product_id = (SELECT product_id FROM Products ORDER BY price DESC LIMIT 1)
-Constraint: none
-Latency (ms, amortized): 4999.81
-Generated tokens: 150
+Predicted SQL: SELECT AVG(product_price) AS product_average_price FROM Products
+Latency (ms): 1541.75
+Generated tokens: 17
 ============================================================
 Example 3
 Question: Count the number of different plane names across all pilots.
 Gold SQL: SELECT count(DISTINCT plane_name) FROM pilotskills
-Predicted SQL: SELECT * FROM PilotSkills
-Constraint: none
-Latency (ms, amortized): 4999.81
-Generated tokens: 7
-Saved results to: result_spider_non-thinking_zero_none_vllm.json
-Saved log     to: log_spider_non-thinking_zero_none_vllm.txt
+Predicted SQL: SELECT COUNT(DISTINCT pilot_name) FROM PilotSkills
+Latency (ms): 1541.75
+Generated tokens: 17
+Done 10/150
+Done 20/150
+Done 30/150
+Done 40/150
+Done 50/150
+Done 60/150
+Done 70/150
+Done 80/150
+Done 90/150
+Done 100/150
+Done 110/150
+Done 120/150
+Done 130/150
+Done 140/150
+Done 150/150
+Saved results to: results/result_spider_non-thinking_zero_none.json
+Saved log     to: logs/log_spider_non-thinking_zero_none.txt

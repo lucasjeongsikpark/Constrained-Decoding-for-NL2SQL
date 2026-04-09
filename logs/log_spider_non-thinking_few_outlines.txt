@@ -65,25 +65,25 @@ Dataset: spider  Mode: non-thinking  Constraint: outlines
 Example 1
 Question: What is the total distance between city BAL and all other cities.
 Gold SQL: SELECT sum(distance) FROM Direct_distance WHERE city1_code  =  "BAL"
-Predicted SQL: SELECT SUM(Direct_distance_distance) FROM Direct_distance WHERE city1_code = 'BAL'
-Latency (ms): 2549.38
-Generated tokens: 19
+Predicted SQL: SELECT sum(distance) FROM Direct_distance WHERE city1_code = 'BAL'
+Latency (ms): 2161.63
+Generated tokens: 16
 ============================================================
 Example 2
 Question: Which locations have paintings created before 1885 or after 1930?
 Gold SQL: SELECT DISTINCT LOCATION FROM paintings WHERE YEAR  < 1885 OR YEAR  >  1930
-Predicted SQL: SELECT location FROM Paintings JOIN Artists ON Paintings.painterID = Artists.artistID WHERE year < 1885 OR year > 1930
-Latency (ms): 2056.61
-Generated tokens: 35
+Predicted SQL: SELECT location FROM Paintings WHERE year < 1885 OR year > 1930
+Latency (ms): 1483.43
+Generated tokens: 23
 ============================================================
 Example 3
 Question: What are the total and average points of drivers?
 Gold SQL: SELECT sum(Points) ,  avg(Points) FROM driver
-Predicted SQL: SELECT team_driver.Driver_ID AS Driver_ID FROM team_driver JOIN driver ON team_driver Team_ID INNER JOIN team ON team Team_ID ORDER BY team_driver Driver_ID ASC LIMIT 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-Latency (ms): 8486.75
-Generated tokens: 150
+Predicted SQL: SELECT sum(points) FROM driver
+Latency (ms): 902.99
+Generated tokens: 9
 Done 10/12
 Done 12/12
-[checkpoint] Saved 150 results to: results/result_spider_non-thinking_zero_outlines.json
-Saved results to: results/result_spider_non-thinking_zero_outlines.json
-Saved log     to: logs/log_spider_non-thinking_zero_outlines.txt
+[checkpoint] Saved 150 results to: results/result_spider_non-thinking_few_outlines.json
+Saved results to: results/result_spider_non-thinking_few_outlines.json
+Saved log     to: logs/log_spider_non-thinking_few_outlines.txt
