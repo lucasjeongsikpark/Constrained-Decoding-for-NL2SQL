@@ -1,134 +1,149 @@
-"""
-3 evaluation charts for the constrained decoding project
-Figures saved to output/ as PNG files.
-Usage: python plot_er.py
-"""
-
 import matplotlib.pyplot as plt
 import numpy as np
 import os
 import json
 
-def load_from_json(dir):
-    methods = ['None', 'Outlines', 'XGrammar', 'LMFE']
-    tag_map = {'none': 'None', 'outlines': 'Outlines', 'xgrammar': 'XGrammar', 'lmfe': 'LMFE'}
-    er_scores, sql_scores = {}, {}
+INPUT_DIR = 'output/spider'
+OUTPUT_DIR = 'output'
 
-    for fname in os.listdir(dir):
+METHODS = ['none', 'outlines', 'xgrammar']
+MODES   = ['non-thinking', 'thinking']
+SHOTS   = ['zero', 'few']
+
+
+def load_data():
+    data = {}
+
+    for fname in os.listdir(INPUT_DIR):
         if not fname.endswith('.json'):
             continue
-        nl = fname.lower()
-        mode   = 'non_thinking' if ('non-thinking' in nl or 'non_thinking' in nl) else \
-                 'thinking'     if 'thinking' in nl else None
-        method = next((label for tag, label in tag_map.items() if tag in nl), None)
-        if not mode or not method:
-            continue
 
-        data  = json.load(open(os.path.join(dir, fname), encoding='utf-8'))
-        total = len(data)
+        path = os.path.join(INPUT_DIR, fname)
+        records = json.load(open(path, encoding='utf-8'))
+        total = len(records)
         if total == 0:
             continue
 
-        er_n  = sum(1 for r in data if r.get('predicted_answer') is not None)
-        sql_n = sum(1 for r in data
-                    if r['gold_sql'].strip().lower() == r['predicted_sql'].strip().lower())
-        er_scores [(mode, method)] = er_n  / total * 100
-        sql_scores[(mode, method)] = sql_n / total * 100
+        # parse filename
+        name = fname.replace('eval_spider_', '').replace('.json', '')
+        mode, shot, method = name.split('_')
 
-    def extract(scores, mode):
-        return [scores.get((mode, m), 0.0) for m in methods]
+        exec_n = sum(1 for r in records if r.get('predicted_answer') is not None)
+        match  = sum(1 for r in records if r.get('execution_match', False))
 
-    return {
-        'methods'          : methods,
-        'non_thinking_er'  : extract(er_scores,  'non_thinking'),
-        'thinking_er'      : extract(er_scores,  'thinking'),
-        'non_thinking_sql' : extract(sql_scores, 'non_thinking'),
-        'thinking_sql'     : extract(sql_scores, 'thinking'),
-    }
+        er = exec_n / total * 100
+        ea = match  / total * 100
 
-def annotate(ax, bars, fontsize=10):
-    for bar in bars:
-        h = bar.get_height()
+        data[(mode, shot, method)] = (er, ea)
+
+    return data
+
+
+def get_vals(data, mode, shot):
+    return [data.get((mode, shot, m), (0, 0))[0] for m in METHODS]
+
+
+def get_ea_vals(data, mode, shot):
+    return [data.get((mode, shot, m), (0, 0))[1] for m in METHODS]
+
+
+def annotate(ax, bars):
+    for b in bars:
+        h = b.get_height()
         if h > 0:
             ax.annotate(f'{h:.0f}%',
-                        xy=(bar.get_x() + bar.get_width()/2, h),
-                        xytext=(0, 4), textcoords='offset points',
-                        ha='center', fontsize=fontsize)
+                        (b.get_x() + b.get_width()/2, h),
+                        textcoords="offset points",
+                        xytext=(0, 4),
+                        ha='center',
+                        fontsize=9)
+
 
 # ============================================================
-# Figure 1: ER by decoding method
+# Figure 1: ER comparison
 # ============================================================
-def fig1(data, output_dir):
-    methods = data['methods']
-    x, w    = np.arange(len(methods)), 0.35
-    fig, ax = plt.subplots(figsize=(8, 5))
-    b1 = ax.bar(x - w/2, data['non_thinking_er'], w, label='Non-thinking', color='#4472C4')
-    b2 = ax.bar(x + w/2, data['thinking_er'],     w, label='Thinking',     color='#ED7D31')
-    ax.set_ylabel('Execution Rate (%)', fontsize=12)
-    ax.set_title('Figure 1: Execution Rate by Decoding Method', fontsize=13, fontweight='bold')
-    ax.set_xticks(x); ax.set_xticklabels(methods, fontsize=11)
-    ax.set_ylim(0, 100); ax.legend(fontsize=11); ax.grid(axis='y', alpha=0.3)
-    annotate(ax, b1); annotate(ax, b2)
+def plot_er(data):
+    x = np.arange(len(METHODS))
+    w = 0.2
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+
+    for i, (mode, shot) in enumerate([
+        ('non-thinking', 'zero'),
+        ('non-thinking', 'few'),
+        ('thinking', 'zero'),
+        ('thinking', 'few'),
+    ]):
+        vals = get_vals(data, mode, shot)
+        offset = (i - 1.5) * w
+        bars = ax.bar(x + offset, vals, w, label=f'{mode}-{shot}')
+        annotate(ax, bars)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels([m.capitalize() for m in METHODS])
+    ax.set_ylabel('Execution Rate (%)')
+    ax.set_title('Execution Rate across Settings')
+    ax.set_ylim(0, 100)
+    ax.legend()
+    ax.grid(axis='y', alpha=0.3)
+
     plt.tight_layout()
-    path = os.path.join(output_dir, 'fig1_er_comparison.png')
-    plt.savefig(path, dpi=200); plt.close(); print(f"Saved: {path}")
+    path = os.path.join(OUTPUT_DIR, 'spider_er_comparison.png')
+    plt.savefig(path, dpi=200)
+    plt.close()
+    print(f"Saved: {path}")
+
 
 # ============================================================
-# Figure 2: SQL Match vs ER
+# Figure 2: EA vs ER
 # ============================================================
-def fig2(data, output_dir):
-    methods  = data['methods']
-    settings = [f'NT+{m}' for m in methods] + [f'T+{m}' for m in methods]
-    sql_vals = data['non_thinking_sql'] + data['thinking_sql']
-    er_vals  = data['non_thinking_er']  + data['thinking_er']
-    x, w     = np.arange(len(settings)), 0.35
-    fig, ax  = plt.subplots(figsize=(10, 5))
-    b1 = ax.bar(x - w/2, sql_vals, w, label='SQL Exact Match',  color='#A5A5A5')
-    b2 = ax.bar(x + w/2, er_vals,  w, label='Execution Rate',   color='#4472C4')
-    ax.set_ylabel('Rate (%)', fontsize=12)
-    ax.set_title('Figure 2: SQL Exact Match vs Execution Rate', fontsize=13, fontweight='bold')
-    ax.set_xticks(x); ax.set_xticklabels(settings, fontsize=9, rotation=15)
-    ax.set_ylim(0, 100); ax.legend(fontsize=11); ax.grid(axis='y', alpha=0.3)
-    annotate(ax, b1, fontsize=9); annotate(ax, b2, fontsize=9)
-    plt.tight_layout()
-    path = os.path.join(output_dir, 'fig2_sql_match_vs_er.png')
-    plt.savefig(path, dpi=200); plt.close(); print(f"Saved: {path}")
+def plot_ea_vs_er(data):
+    labels = []
+    er_vals = []
+    ea_vals = []
 
-# ============================================================
-# Figure 3: ER breakdown (stacked)
-# ============================================================
-def fig3(data, output_dir):
-    methods  = data['methods']
-    settings = [f'NT+{m}' for m in methods] + [f'T+{m}' for m in methods]
-    sql_vals = data['non_thinking_sql'] + data['thinking_sql']
-    er_vals  = data['non_thinking_er']  + data['thinking_er']
-    gap      = [er - sql for er, sql in zip(er_vals, sql_vals)]
-    x        = np.arange(len(settings))
-    fig, ax  = plt.subplots(figsize=(10, 5))
-    ax.bar(x, sql_vals, 0.5, label='SQL Exact Match',          color='#4472C4')
-    ax.bar(x, gap,      0.5, bottom=sql_vals,
-           label='ER beyond SQL Match', color='#70AD47')
-    ax.set_ylabel('Rate (%)', fontsize=12)
-    ax.set_title('Figure 3: ER Breakdown — SQL Match + Additional Correct Executions',
-                 fontsize=13, fontweight='bold')
-    ax.set_xticks(x); ax.set_xticklabels(settings, fontsize=9, rotation=15)
-    ax.set_ylim(0, 100); ax.legend(fontsize=11); ax.grid(axis='y', alpha=0.3)
-    for i, total in enumerate(er_vals):
-        if total > 0:
-            ax.annotate(f'{total:.0f}%', xy=(i, total),
-                        xytext=(0, 4), textcoords='offset points', ha='center', fontsize=10)
+    for mode in MODES:
+        for shot in SHOTS:
+            for method in METHODS:
+                er, ea = data.get((mode, shot, method), (0, 0))
+                labels.append(f'{mode[:2]}-{shot[:1]}-{method[:1]}')
+                er_vals.append(er)
+                ea_vals.append(ea)
+
+    x = np.arange(len(labels))
+    w = 0.4
+
+    fig, ax = plt.subplots(figsize=(12, 5))
+
+    b1 = ax.bar(x - w/2, ea_vals, w, label='Execution Accuracy (EA)')
+    b2 = ax.bar(x + w/2, er_vals, w, label='Execution Rate (ER)')
+
+    annotate(ax, b1)
+    annotate(ax, b2)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=30)
+    ax.set_ylabel('Rate (%)')
+    ax.set_title('Execution Accuracy vs Execution Rate (Spider)')
+    ax.set_ylim(0, 100)
+    ax.legend()
+    ax.grid(axis='y', alpha=0.3)
+
     plt.tight_layout()
-    path = os.path.join(output_dir, 'fig3_er_gap_analysis.png')
-    plt.savefig(path, dpi=200); plt.close(); print(f"Saved: {path}")
+    path = os.path.join(OUTPUT_DIR, 'spider_ea_vs_er.png')
+    plt.savefig(path, dpi=200)
+    plt.close()
+    print(f"Saved: {path}")
+
 
 def main():
-    output_dir = 'output'
-    os.makedirs(output_dir, exist_ok=True)
-    data = load_from_json('output')
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    fig1(data, output_dir)
-    fig2(data, output_dir)
-    fig3(data, output_dir)
+    data = load_data()
+
+    plot_er(data)
+    plot_ea_vs_er(data)
+
 
 if __name__ == '__main__':
     main()
