@@ -1208,11 +1208,11 @@
         ],
         [
           0,
-          "Area (kmÂ²)"
+          "Area (km²)"
         ],
         [
           0,
-          "Pop. density (per kmÂ²)"
+          "Pop. density (per km²)"
         ],
         [
           0,
@@ -1227,7 +1227,7 @@
         "text"
       ]
     },
-    "gold_sql": "SELECT Area (kmÂ²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676",
+    "gold_sql": "SELECT Area (km²) FROM table WHERE Income Classification = '1st Class' AND Population (2010) = 318676",
     "predicted_sql": "SELECT Area FROM table WHERE Population = 318676 AND Income Classification = '1st class'",
     "latency_ms": 17651.862,
     "num_tokens_generated": 337,
@@ -1770,7 +1770,7 @@
   {
     "instance_id": "wikisql_train_29439",
     "db": "2-1686975-1",
-    "question": "Which Sanskrit has a Chinese of â€”, and an English of cultivation of settling?",
+    "question": "Which Sanskrit has a Chinese of —, and an English of cultivation of settling?",
     "schema": {
       "table_names_original": [
         "table"
@@ -1805,13 +1805,17 @@
         "text"
       ]
     },
-    "gold_sql": "SELECT Sanskrit FROM table WHERE Chinese = 'â€”' AND English = 'cultivation of settling'",
+    "gold_sql": "SELECT Sanskrit FROM table WHERE Chinese = '—' AND English = 'cultivation of settling'",
     "predicted_sql": "SELECT Sanskrit FROM table WHERE Chinese = '-' AND English = 'cultivation of settling'",
     "latency_ms": 22652.056,
     "num_tokens_generated": 435,
-    "gold_answer": [],
+    "gold_answer": [
+      [
+        "*sthāpya-bhāvanā"
+      ]
+    ],
     "predicted_answer": [],
-    "execution_match": true
+    "execution_match": false
   },
   {
     "instance_id": "wikisql_train_33118",
@@ -1840,11 +1844,11 @@
         ],
         [
           0,
-          "Area (kmÂ²)"
+          "Area (km²)"
         ],
         [
           0,
-          "Population Density (People/kmÂ²)"
+          "Population Density (People/km²)"
         ]
       ],
       "column_types": [
@@ -1856,7 +1860,7 @@
         "real"
       ]
     },
-    "gold_sql": "SELECT MIN(Area (kmÂ²)) FROM table WHERE Population Density (People/kmÂ²) = '3,216' AND Population > '16,650,000'",
+    "gold_sql": "SELECT MIN(Area (km²)) FROM table WHERE Population Density (People/km²) = '3,216' AND Population > '16,650,000'",
     "predicted_sql": "SELECT MIN(Area) FROM table WHERE Population > 16650000 AND Population Density = 3216",
     "latency_ms": 22373.045,
     "num_tokens_generated": 434,
@@ -1871,7 +1875,7 @@
   {
     "instance_id": "wikisql_train_35713",
     "db": "2-11485080-6",
-    "question": "How many people attended when the record was broken with 47â€“63?",
+    "question": "How many people attended when the record was broken with 47–63?",
     "schema": {
       "table_names_original": [
         "table"
@@ -1911,12 +1915,20 @@
         "text"
       ]
     },
-    "gold_sql": "SELECT Attendance FROM table WHERE Record = '47â€“63'",
-    "predicted_sql": "SELECT Attendance FROM table WHERE Record = '47â€“63'",
+    "gold_sql": "SELECT Attendance FROM table WHERE Record = '47–63'",
+    "predicted_sql": "SELECT Attendance FROM table WHERE Record = '47–63'",
     "latency_ms": 12796.4,
     "num_tokens_generated": 248,
-    "gold_answer": [],
-    "predicted_answer": [],
+    "gold_answer": [
+      [
+        "35,706"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "35,706"
+      ]
+    ],
     "execution_match": true
   },
   {
@@ -2407,7 +2419,7 @@
         ],
         [
           0,
-          "Money ( Â£ )"
+          "Money ( £ )"
         ]
       ],
       "column_types": [
@@ -2508,15 +2520,15 @@
         ],
         [
           0,
-          "Annual entry/exit (millions) 2011â€“12"
+          "Annual entry/exit (millions) 2011–12"
         ],
         [
           0,
-          "Annual interchanges (millions) 2011â€“12"
+          "Annual interchanges (millions) 2011–12"
         ],
         [
           0,
-          "Total Passengers (millions) 2011â€“12"
+          "Total Passengers (millions) 2011–12"
         ],
         [
           0,
@@ -2537,7 +2549,7 @@
         "real"
       ]
     },
-    "gold_sql": "SELECT MIN(Total Passengers (millions) 2011â€“12) FROM table WHERE Annual entry/exit (millions) 2011â€“12 = 36.609",
+    "gold_sql": "SELECT MIN(Total Passengers (millions) 2011–12) FROM table WHERE Annual entry/exit (millions) 2011–12 = 36.609",
     "predicted_sql": "SELECT Total Passengers FROM table WHERE Annual entry/exit = 36.609 AND Total Passengers = (SELECT MIN(Total Passengers) FROM table WHERE Annual entry/exit = 36.609)",
     "latency_ms": 25488.184,
     "num_tokens_generated": 493,
