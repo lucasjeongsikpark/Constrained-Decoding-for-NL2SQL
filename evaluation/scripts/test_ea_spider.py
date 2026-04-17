@@ -3,10 +3,12 @@ import json
 import os
 
 # map question -> db_id
-spider_data = json.load(open('data/raw/spider_test.json', encoding='utf-8'))
+spider_data = json.load(open('data/spider_data/spider_test.json', encoding='utf-8'))
 q_to_db = {d['input']['question']: d['input']['db_id'] for d in spider_data}
 
 DB_DIR = 'data/spider_data/test_database'
+RESULTS_DIR = 'results_spider'
+OUTPUT_DIR = 'output'
 
 def get_conn(db_id):
     db_path = os.path.join(DB_DIR, db_id, f'{db_id}.sqlite')
@@ -83,9 +85,9 @@ def evaluate(input_path, output_path):
 print(f"{'File':<52} {'Total':>5} {'Match':>5} {'EA':>7} {'GErr':>5} {'NotF':>5}")
 print("-" * 85)
 
-for fname in sorted(os.listdir('results')):
-    if 'spider' in fname and fname.endswith('.json'):
-        input_path = os.path.join('results', fname)
-        output_path = os.path.join('output', 'eval_' + fname.replace('result_', ''))
+for fname in sorted(os.listdir(RESULTS_DIR)):
+    if fname.endswith('.json'):
+        input_path = os.path.join(RESULTS_DIR, fname)
+        output_path = os.path.join(OUTPUT_DIR, 'eval_' + fname.replace('result_', ''))
         total, match, ea, gold_err, not_found = evaluate(input_path, output_path)
         print(f"{fname:<52} {total:>5} {match:>5} {ea:>6.1f}% {gold_err:>5} {not_found:>5}")
