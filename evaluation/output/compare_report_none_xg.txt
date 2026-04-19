@@ -1,0 +1,302 @@
+  Shared: 150   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+eval_spider_thinking_few_none.json                     53   35.3%
+eval_spider_thinking_few_xgrammar.json                 18   12.0%
+
+Both correct           18  (12.0%)
+Both wrong             97  (64.7%)
+Only A correct         35  (23.3%)
+Only B correct          0  (0.0%)
+
+Executable comparison                             
+-----------------------------------------------------------------
+eval_spider_thinking_few_none.json                    111   74.0%
+eval_spider_thinking_few_xgrammar.json                 54   36.0%
+
+====================================================================
+  Only A correct  —  eval_spider_thinking_few_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000014
+  question : From which countries are players who make more than 1200000 from?
+  gold     : SELECT DISTINCT Country FROM player WHERE Earnings  >  1200000
+  A pred   : SELECT Player.Country FROM Player WHERE Player.Earnings > 1200000
+  B pred   : SELECT Player_ID FROM player WHERE Earnings > 1200000 ORDER BY Country ASC LIMIT 100000
+
+  id       : spider_test_000027
+  question : Please show the most common manufacturer of clubs.
+  gold     : SELECT Manufacturer FROM club GROUP BY Manufacturer ORDER BY COUNT(*) DESC LIMIT 1
+  A pred   : SELECT manufacturer FROM club GROUP BY manufacturer ORDER BY COUNT(*) DESC LIMIT 1
+  B pred   : SELECT Manufacturer FROM club JOIN player ON Club_ID = player.Club_ID ORDER BY Country DESC LIMIT 1
+
+  id       : spider_test_000123
+  question : How many channels have the word 'bbc' in their internet link?
+  gold     : SELECT count(*) FROM channel WHERE internet LIKE "%bbc%"
+  A pred   : SELECT COUNT(*) FROM channel WHERE Internet LIKE '%bbc%'
+  B pred   : SELECT COUNT(*) FROM channel WHERE Internet LIKE '%bbc%’
+
+  id       : spider_test_000131
+  question : Find the number of channels that do not run any program.
+  gold     : SELECT count(*) FROM channel WHERE channel_id NOT IN (SELECT channel_id FROM program)
+  A pred   : SELECT COUNT(*) FROM channel WHERE Channel_ID NOT IN (SELECT Channel_ID FROM program)
+  B pred   : SELECT COUNT(*) FROM channel WHERE Channel_ID NOT IN SELECTChannel_IDFROMprogram
+
+  id       : spider_test_000132
+  question : What is the name of the director who is in the "Dracula" program?
+  gold     : SELECT t2.name FROM program AS t1 JOIN director AS t2 ON t1.director_id  =  t2.director_id WHERE t1.title  =  'Dracula'
+  A pred   : SELECT director.Name FROM director JOIN program ON director.Director_ID = program.Director_ID WHERE program.Title = 'Dracula'
+  B pred   : SELECT Name FROM director JOIN program ON Director_ID = program.Director_ID WHERE Title = 'Dracula' LIMIT 100000
+
+  id       : spider_test_000193
+  question : Count the number of drivers who have not driven any vehicles.
+  gold     : SELECT count(*) FROM driver WHERE driver_id NOT IN ( SELECT driver_id FROM vehicle_driver )
+  A pred   : SELECT COUNT(*) FROM driver WHERE Driver_ID NOT IN (SELECT Driver_ID FROM vehicle_driver)
+  B pred   : SELECT COUNT(*) FROM driver WHERE Driver_ID NOT IN SELECTDriver_IDFROMvehicle_driver
+
+  id       : spider_test_000272
+  question : Show all customer ids and customer names.
+  gold     : SELECT customer_id ,  customer_name FROM Customers
+  A pred   : SELECT customer_id, customer_name FROM Customers
+  B pred   : SELECT customer_id FROM Customers ORDER BY customer_id ASC LIMIT 100000
+
+  Shared: 150   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+eval_spider_thinking_zero_none.json                    65   43.3%
+eval_spider_thinking_zero_xgrammar.json                20   13.3%
+
+Both correct           19  (12.7%)
+Both wrong             84  (56.0%)
+Only A correct         46  (30.7%)
+Only B correct          1  (0.7%)
+
+Executable comparison                             
+-----------------------------------------------------------------
+eval_spider_thinking_zero_none.json                   124   82.7%
+eval_spider_thinking_zero_xgrammar.json                54   36.0%
+
+====================================================================
+  Only A correct  —  eval_spider_thinking_zero_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000080
+  question : How many different customers have ordered things?
+  gold     : SELECT count(DISTINCT customer_id) FROM Orders
+  A pred   : SELECT COUNT(DISTINCT customer_id) FROM Orders
+  B pred   : SELECT COUNT(*) FROM Orders WHERE customer_id IS NOT NULL AND ORDER BY customer_id LIMIT 100000
+
+  id       : spider_test_000123
+  question : How many channels have the word 'bbc' in their internet link?
+  gold     : SELECT count(*) FROM channel WHERE internet LIKE "%bbc%"
+  A pred   : SELECT COUNT(*) FROM channel WHERE internet LIKE '%bbc%'
+  B pred   : SELECT COUNT(*) FROM channel WHERE Internet LIKE '%bbc%"
+
+  id       : spider_test_000131
+  question : Find the number of channels that do not run any program.
+  gold     : SELECT count(*) FROM channel WHERE channel_id NOT IN (SELECT channel_id FROM program)
+  A pred   : SELECT COUNT(*) FROM channel WHERE Channel_ID NOT IN (SELECT Channel_ID FROM program)
+  B pred   : SELECT COUNT(*) FROM channel WHERE Channel_ID NOT IN SELECTChannel_IDFROMprogram.
+
+  id       : spider_test_000132
+  question : What is the name of the director who is in the "Dracula" program?
+  gold     : SELECT t2.name FROM program AS t1 JOIN director AS t2 ON t1.director_id  =  t2.director_id WHERE t1.title  =  'Dracula'
+  A pred   : SELECT director.Name FROM program JOIN director ON program.Director_ID = director.Director_ID WHERE program.Title = 'Dracula'
+  B pred   : SELECT Director_ID FROM program WHERE Title = 'Dracula' AND Program_ID = ... AND Director_ID = ... LIMIT 100000
+
+  id       : spider_test_000193
+  question : Count the number of drivers who have not driven any vehicles.
+  gold     : SELECT count(*) FROM driver WHERE driver_id NOT IN ( SELECT driver_id FROM vehicle_driver )
+  A pred   : SELECT COUNT(DISTINCT driver.Driver_ID) FROM driver WHERE driver.Driver_ID NOT IN (SELECT Driver_ID FROM vehicle_driver)
+  B pred   : SELECT COUNT(Driver_ID) FROM driver WHERE Driver_ID NOT IN SELECTDriver_IDFROMvehicle_driver.
+
+  id       : spider_test_000230
+  question : Show the types of questions that have at least three questions.
+  gold     : SELECT Type_of_Question_Code FROM Questions GROUP BY Type_of_Question_Code HAVING count(*)  >=  3
+  A pred   : SELECT Type_of_Question_Code FROM Questions GROUP BY Type_of_Question_Code HAVING COUNT(*) >= 3
+  B pred   : SELECT Type_of_Question_Code FROM Questions WHERE Type_of_Question_Code IN GROUP_CONCAT_WS_UNIQUE_VALUES_COUNT_3_QUESTIONS_HAVING_COUNT_3_QUESTIONS_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2023_01_01_2
+
+  id       : spider_test_000263
+  question : How many products are there for each product type?
+  gold     : SELECT product_type_code ,  count(*) FROM Products GROUP BY product_type_code
+  A pred   : SELECT product_type_code, COUNT(*) AS count FROM Products GROUP BY product_type_code
+  B pred   : SELECT product_type_code FROM Products ORDER BY product_type_code LIMIT 100000
+
+
+====================================================================
+  Only B correct  —  eval_spider_thinking_zero_xgrammar.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000516
+  question : List all the author names.
+  gold     : SELECT name FROM Author
+  A pred   : 
+  B pred   : SELECT Name FROM Author ORDER BY Name ASC LIMIT 100000
+
+  Shared: 150   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+eval_spider_non-thinking_few_none.json                 46   30.7%
+eval_spider_non-thinking_few_xgrammar.json             18   12.0%
+
+Both correct           13  (8.7%)
+Both wrong             99  (66.0%)
+Only A correct         33  (22.0%)
+Only B correct          5  (3.3%)
+
+Executable comparison                             
+-----------------------------------------------------------------
+eval_spider_non-thinking_few_none.json                116   77.3%
+eval_spider_non-thinking_few_xgrammar.json             55   36.7%
+
+====================================================================
+  Only A correct  —  eval_spider_non-thinking_few_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000014
+  question : From which countries are players who make more than 1200000 from?
+  gold     : SELECT DISTINCT Country FROM player WHERE Earnings  >  1200000
+  A pred   : SELECT T1.Country FROM player AS T1 JOIN club AS T2 ON T1.Club_ID = T2.Club_ID WHERE T1.Earnings > 1200000
+  B pred   : SELECT Country FROM player JOIN club ON Player_ID = Club_ID WHERE Earnings > 1200000 ORDER BY Country ASC LIMIT 100000
+
+  id       : spider_test_000027
+  question : Please show the most common manufacturer of clubs.
+  gold     : SELECT Manufacturer FROM club GROUP BY Manufacturer ORDER BY COUNT(*) DESC LIMIT 1
+  A pred   : SELECT Manufacturer FROM club GROUP BY Manufacturer ORDER BY COUNT(Manufacturer) DESC LIMIT 1
+  B pred   : SELECT Manufacturer FROM club ORDER BY Club_ID ASC LIMIT 1
+
+  id       : spider_test_000132
+  question : What is the name of the director who is in the "Dracula" program?
+  gold     : SELECT t2.name FROM program AS t1 JOIN director AS t2 ON t1.director_id  =  t2.director_id WHERE t1.title  =  'Dracula'
+  A pred   : SELECT director.Name FROM director JOIN program ON director.Director_ID = program.Director_ID WHERE program.Title = 'Dracula'
+  B pred   : SELECT Name FROM director_admin WHERE Director_ID = SELECTDirector_IDFROMprogramWHERETitleINDRacula.
+
+  id       : spider_test_000263
+  question : How many products are there for each product type?
+  gold     : SELECT product_type_code ,  count(*) FROM Products GROUP BY product_type_code
+  A pred   : SELECT product_type_code, COUNT(*) AS count FROM Products GROUP BY product_type_code
+  B pred   : SELECT product_type_code FROM Products ORDER BY product_type_code ASC
+
+  id       : spider_test_000272
+  question : Show all customer ids and customer names.
+  gold     : SELECT customer_id ,  customer_name FROM Customers
+  A pred   : SELECT Customers.customer_id, Customers.customer_name FROM Customers
+  B pred   : SELECT customer_id FROM Customers ORDER BY customer_id ASC LIMIT 100000
+
+  id       : spider_test_000284
+  question : What are the distinct payment methods used by customers?
+  gold     : SELECT DISTINCT payment_method_code FROM Customers
+  A pred   : SELECT DISTINCT payment_method_code FROM Customers
+  B pred   : SELECT customer_name FROM Customers ORDER BY customer_name ASC LIMIT 100000
+
+  id       : spider_test_000293
+  question : What were the ids, dates, and status codes for orders made by Jeromy?
+  gold     : SELECT order_id ,  order_date ,  order_status_code FROM Customer_orders AS T1 JOIN Customers AS T2 ON T1.customer_id  =  T2.customer_id WHERE T2.customer_name  =  "Jeromy"
+  A pred   : SELECT Customer_Orders.order_id, Customer_Orders.order_date, Customer_Orders.order_status_code FROM Customer_Orders WHERE customer_id = (SELECT customer_id FROM Customers WHERE customer_name = 'Jeromy')
+  B pred   : SELECT order_id FROM Customer_Orders WHERE customer_id = 10000 ORDER BY order_date ASC LIMIT 500000
+
+
+====================================================================
+  Only B correct  —  eval_spider_non-thinking_few_xgrammar.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000103
+  question : What is the product average price?
+  gold     : SELECT avg(product_price) FROM Products
+  A pred   : SELECT Products.product_price FROM Products
+  B pred   : SELECT AVG( product_price ) FROM Products
+
+  id       : spider_test_000384
+  question : Find all the details of the customers who have been involved in an interaction with status `` Stuck '' and service and channel detail `` bad '' .
+  gold     : select t1.customer_details from customers as t1 join customer_interactions as t2 on t1.customer_id  =  t2.customer_id where t2.status_code  =  "stuck" and services_and_channels_details  =  "bad"
+  A pred   : SELECT Customers.Customer_Details FROM Customers JOIN Customer_Interactions ON Customer_Interactions.Customer_ID = Customers.Customer_ID WHERE Customer_Interactions.Status_Code = 'Stuck' AND Customer_Interactions.Services_and_Channels_Details = 'bad'
+  B pred   : SELECT Customers_and_Services_Details FROM Customers_and_Services JOIN Customer_Interactions ON Customer_Interaction_ID = Customer_Interactions.Customer_ID WHERE Status_Code = 'Stuck' AND Services_and_Channels_Details = 'bad'
+
+  id       : spider_test_000915
+  question : What is the maximum rating for sailors?
+  gold     : SELECT max(rating) FROM Sailors
+  A pred   : SELECT Sailors.rating AS rating FROM Sailors
+  B pred   : SELECT MAX(rating) FROM Sailors
+
+  id       : spider_test_000921
+  question : Which headphone model has the highest price?
+  gold     : SELECT model FROM headphone ORDER BY price DESC LIMIT 1
+  A pred   : SELECT Model, Price FROM headphone ORDER BY Price DESC LIMIT 1
+  B pred   : SELECT Model FROM headphone ORDER BY Price DESC LIMIT 1
+
+  id       : spider_test_001201
+  question : What is the title of the sculpture that was created in the most recent year ?
+  gold     : select title from sculptures order by year desc limit 1
+  A pred   : SELECT title, year FROM Sculptures ORDER BY year DESC LIMIT 1
+  B pred   : SELECT title FROM Sculptures ORDER BY year DESC LIMIT 1
+
+  Shared: 150   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+eval_spider_non-thinking_zero_none.json                43   28.7%
+eval_spider_non-thinking_zero_xgrammar.json            13    8.7%
+
+Both correct           12  (8.0%)
+Both wrong            106  (70.7%)
+Only A correct         31  (20.7%)
+Only B correct          1  (0.7%)
+
+Executable comparison                             
+-----------------------------------------------------------------
+eval_spider_non-thinking_zero_none.json               116   77.3%
+eval_spider_non-thinking_zero_xgrammar.json            51   34.0%
+
+====================================================================
+  Only A correct  —  eval_spider_non-thinking_zero_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000123
+  question : How many channels have the word 'bbc' in their internet link?
+  gold     : SELECT count(*) FROM channel WHERE internet LIKE "%bbc%"
+  A pred   : SELECT COUNT(*) FROM channel WHERE Internet LIKE '%bbc%'
+  B pred   : SELECT COUNT(*) FROM channel WHERE Internet LIKE '%bbc%
+
+  id       : spider_test_000132
+  question : What is the name of the director who is in the "Dracula" program?
+  gold     : SELECT t2.name FROM program AS t1 JOIN director AS t2 ON t1.director_id  =  t2.director_id WHERE t1.title  =  'Dracula'
+  A pred   : SELECT director.Name FROM director JOIN program ON director.Director_ID = program.Director_ID WHERE program.Title = 'Dracula'
+  B pred   : SELECT Name FROM director WHERE Director_ID IN SELECTDirector_IDFROMprogramJOINdirector_adminONprogram.Director_IDdirectordirector.AGE ORDER BY Age ASC LIMIT 1
+
+  id       : spider_test_000193
+  question : Count the number of drivers who have not driven any vehicles.
+  gold     : SELECT count(*) FROM driver WHERE driver_id NOT IN ( SELECT driver_id FROM vehicle_driver )
+  A pred   : SELECT COUNT(DRIVER_ID) FROM driver WHERE Driver_ID NOT IN (SELECT Driver_ID FROM vehicle_driver)
+  B pred   : SELECT COUNT(Driver_ID) FROM driver WHERE Driver_ID NOT IN SELECTDriver_IDFROMvehicle_driver
+
+  id       : spider_test_000263
+  question : How many products are there for each product type?
+  gold     : SELECT product_type_code ,  count(*) FROM Products GROUP BY product_type_code
+  A pred   : SELECT Products.product_type_code, COUNT(Products.product_id) AS product_count FROM Products GROUP BY Products.product_type_code
+  B pred   : SELECT product_type_code FROM Products ORDER BY product_type_code ASC LIMIT 100000
+
+  id       : spider_test_000272
+  question : Show all customer ids and customer names.
+  gold     : SELECT customer_id ,  customer_name FROM Customers
+  A pred   : SELECT Customers.customer_id, Customers.customer_name FROM Customers
+  B pred   : SELECT customer_id FROM Customers ORDER BY customer_id ASC LIMIT 100000
+
+  id       : spider_test_000293
+  question : What were the ids, dates, and status codes for orders made by Jeromy?
+  gold     : SELECT order_id ,  order_date ,  order_status_code FROM Customer_orders AS T1 JOIN Customers AS T2 ON T1.customer_id  =  T2.customer_id WHERE T2.customer_name  =  "Jeromy"
+  A pred   : SELECT Customer_Orders.order_id, Customer_Orders.order_date, Customer_Orders.order_status_code FROM Customer_Orders JOIN Customers ON Customer_Orders.customer_id = Customers.customer_id WHERE Customers.customer_name = 'Jeromy'
+  B pred   : SELECT COUNT(* ) FROM Customer_Orders WHERE customer_id = 'Jeromy' AND order_status_code = 'Completed' AND order_date IS NOT NULL ORDERING ORDER BY order_date ASC LIMIT 100000
+
+  id       : spider_test_000323
+  question : Among the buildings not completed in 1980, what is the maximum number of stories?
+  gold     : SELECT max(Number_of_Stories) FROM building WHERE Completed_Year != "1980"
+  A pred   : SELECT MAX(building.Number_of_Stories) AS max_stories FROM building WHERE building.Completed_Year < 1980
+  B pred   : SELECT MAX(Number_of_Stories) FROM building WHERE Completed_Year < 1980 AND Building_ID IS NOT NULL ANDRegion_ID AND Region_ID IN 12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456
+
+
+====================================================================
+  Only B correct  —  eval_spider_non-thinking_zero_xgrammar.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000921
+  question : Which headphone model has the highest price?
+  gold     : SELECT model FROM headphone ORDER BY price DESC LIMIT 1
+  A pred   : SELECT headphone.Model FROM headphone ORDER BY headphone.Price DESC
+  B pred   : SELECT Model FROM headphone ORDER BY Price DESC LIMIT 1
+
