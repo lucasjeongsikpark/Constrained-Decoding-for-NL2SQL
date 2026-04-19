@@ -6,7 +6,7 @@ thinking/non-thinking
     for shot in few zero; do
         a="output/spider/eval_spider_non-thinking_${shot}_none.json"
         b="output/spider/eval_spider_thinking_${shot}_none.json"
-        python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report.txt
+        python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report_t_nt.txt
     done
 ===============================================================================  
 few/zero
@@ -14,7 +14,7 @@ few/zero
     for mode in thinking non-thinking; do
         a="output/spider/eval_spider_${mode}_zero_none.json"
         b="output/spider/eval_spider_${mode}_few_none.json"
-        python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report.txt
+        python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report_few_zero.txt
     done
 ===============================================================================
 none/xgrammar
@@ -23,7 +23,7 @@ none/xgrammar
         for shot in few zero; do
               a="output/spider/eval_spider_${mode}_${shot}_none.json"
               b="output/spider/eval_spider_${mode}_${shot}_xgrammar.json"
-              python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report.txt
+              python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report_none_xg.txt
         done
     done
 ===============================================================================
@@ -33,7 +33,7 @@ none/outlines
         for shot in few zero; do
             a="output/spider/eval_spider_${mode}_${shot}_none.json"
             b="output/spider/eval_spider_${mode}_${shot}_outlines.json"
-            python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report.txt
+            python compare_spider.py --a "$a" --b "$b" --limit 7 >> compare_report_none_out.txt
         done
     done
 ===============================================================================
