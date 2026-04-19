@@ -1,0 +1,216 @@
+  Shared: 150   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+eval_spider_thinking_zero_none.json                    65   43.3%
+eval_spider_thinking_few_none.json                     53   35.3%
+
+Both correct           40  (26.7%)
+Both wrong             72  (48.0%)
+Only A correct         25  (16.7%)
+Only B correct         13  (8.7%)
+
+Executable comparison                             
+-----------------------------------------------------------------
+eval_spider_thinking_zero_none.json                   124   82.7%
+eval_spider_thinking_few_none.json                    111   74.0%
+
+====================================================================
+  Only A correct  —  eval_spider_thinking_zero_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000080
+  question : How many different customers have ordered things?
+  gold     : SELECT count(DISTINCT customer_id) FROM Orders
+  A pred   : SELECT COUNT(DISTINCT customer_id) FROM Orders
+  B pred   : SELECT COUNT(DISTINCT customer_id) FROM Customers JOIN Orders ON Customers.customer_id = Orders.customer_id
+
+  id       : spider_test_000230
+  question : Show the types of questions that have at least three questions.
+  gold     : SELECT Type_of_Question_Code FROM Questions GROUP BY Type_of_Question_Code HAVING count(*)  >=  3
+  A pred   : SELECT Type_of_Question_Code FROM Questions GROUP BY Type_of_Question_Code HAVING COUNT(*) >= 3
+  B pred   : SELECT Type_of_Question_Code, COUNT(*) AS count FROM Questions JOIN Questions_in_Exams ON Questions.Question_ID = Questions_in_Exams.Question_ID GROUP BY Type_of_Question_Code HAVING COUNT(*) >= 3
+
+  id       : spider_test_000263
+  question : How many products are there for each product type?
+  gold     : SELECT product_type_code ,  count(*) FROM Products GROUP BY product_type_code
+  A pred   : SELECT product_type_code, COUNT(*) AS count FROM Products GROUP BY product_type_code
+  B pred   : SELECT COUNT(*) FROM Products GROUP BY product_type_code
+
+  id       : spider_test_000419
+  question : What is the name and age of the customer with the most membership credit?
+  gold     : SELECT name ,  age FROM customers ORDER BY membership_credit DESC LIMIT 1
+  A pred   : SELECT name, age FROM Customers ORDER BY membership_credit DESC LIMIT 1
+  B pred   : select the name and age from the Customers table, joining with Renting_history and Discount. But perhaps there's a more efficient way. For example, maybe the discount credit is already in the Customers table. But according to the schema, the Discount table has membership_credit, which is a number. So the correct SQL query would be as above. But let me check again. The schema has Customers with id, name, age, membership_credit. Discount has id, name, membership_credit. Renting_history has customer_id, discount_id, vehicles_id. So the customer's membership credit is stored in the Customers table. But the discount credit is stored in the Discount table. But how do we get the discount credit from the Renting_history? Because each renting history entry has a discount_id, which links to Discount.id. So each entry in Renting_history corresponds to a discount. But
+
+  id       : spider_test_000470
+  question : How are all the achievements described? List the achievement detail and the type description.
+  gold     : SELECT T1.achievement_details ,  T2.achievement_type_description FROM Achievements AS T1 JOIN Ref_Achievement_Type AS T2 ON T1.achievement_type_code  =  T2.achievement_type_code
+  A pred   : SELECT Achievements.achievement_details, Ref_Achievement_Type.achievement_type_description FROM Achievements JOIN Ref_Achievement_Type ON Achievements.achievement_type_code = Ref_Achievement_Type.achievement_type_code
+  B pred   : SELECT achievement_type_code, achievement_details FROM Achievements
+
+  id       : spider_test_000567
+  question : What are the titles of books with sale prices above the average sale price across all books?
+  gold     : SELECT title FROM book WHERE saleprice  >  (SELECT avg(saleprice) FROM book)
+  A pred   : SELECT Title FROM Book WHERE SalePrice > (SELECT AVG(SalePrice) FROM Book)
+  B pred   : SELECT Title FROM Books WHERE SalePrice > (SELECT AVG(SalePrice) FROM Books)
+
+  id       : spider_test_000627
+  question : Show different nationalities of customers, along with the number of customers of each nationality.
+  gold     : SELECT Nationality ,  COUNT(*) FROM customer GROUP BY Nationality
+  A pred   : SELECT Nationality, COUNT(*) AS CustomerCount FROM customer GROUP BY Nationality
+  B pred   : select Nationality and COUNT(*) from customer. But that would only count customers in the customer table. But the customer_order table has a Customer_ID, which is part of the customer table. So perhaps the answer is
+
+
+====================================================================
+  Only B correct  —  eval_spider_thinking_few_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000027
+  question : Please show the most common manufacturer of clubs.
+  gold     : SELECT Manufacturer FROM club GROUP BY Manufacturer ORDER BY COUNT(*) DESC LIMIT 1
+  A pred   : SELECT Manufacturer, COUNT(*) AS count FROM club JOIN player ON club.Club_ID = player.Club_ID GROUP BY Manufacturer ORDER BY count DESC
+  B pred   : SELECT manufacturer FROM club GROUP BY manufacturer ORDER BY COUNT(*) DESC LIMIT 1
+
+  id       : spider_test_000261
+  question : What are the names of all Hardware products, sorted by price ascending?
+  gold     : SELECT product_name FROM Products WHERE product_type_code  =  "Hardware" ORDER BY product_price ASC
+  A pred   : SELECT product_name FROM Products ORDER BY product_price ASC
+  B pred   : SELECT product_name FROM Products WHERE product_type_code = 'Hardware' ORDER BY product_price ASC
+
+  id       : spider_test_000284
+  question : What are the distinct payment methods used by customers?
+  gold     : SELECT DISTINCT payment_method_code FROM Customers
+  A pred   : SELECT payment_method_code FROM Customers
+  B pred   : SELECT DISTINCT payment_method_code FROM Customers
+
+  id       : spider_test_000327
+  question : List the names of regions in alphabetical order.
+  gold     : SELECT Name FROM region ORDER BY Name ASC
+  A pred   : SELECT Name FROM region JOIN building ON building.Region_ID = region.Region_ID ORDER BY Name
+  B pred   : SELECT region.Name FROM region ORDER BY region.Name
+
+  id       : spider_test_000512
+  question : List the start time and the end time of the students' addresses for the students who have 2 transcripts.
+  gold     : SELECT date_from ,  date_to FROM Students_Addresses WHERE student_id IN ( SELECT student_id FROM Transcripts GROUP BY student_id HAVING count(*)  =  2 )
+  A pred   : SELECT Students_Addresses.date_from, Students_Addresses.date_to FROM Students_Addresses JOIN Transcripts ON Transcripts.student_id = Students_Addresses.student_id WHERE Transcripts.transcript_id = (SELECT transcript_id FROM Transcripts WHERE student_id = ?) GROUP BY Students_Addresses.date_from, Students_Addresses.date_to HAVING COUNT(*) = 2
+  B pred   : SELECT date_from, date_to FROM Students_Addresses WHERE student_id IN ( SELECT student_id FROM Transcripts GROUP BY student_id HAVING COUNT(*) = 2 )
+
+  id       : spider_test_001003
+  question : Count the number of papers which cited a paper with id A00-1002.
+  gold     : SELECT count(*) FROM Citation WHERE cited_paper_id  =  "A00-1002"
+  A pred   : SELECT COUNT(*) FROM Paper JOIN Citation ON Paper.paper_id = Citation.paper_id WHERE Citation.paper_id = 'A00-1002'
+  B pred   : SELECT COUNT(*) FROM Paper JOIN Citation ON Paper.paper_id = Citation.paper_id WHERE Citation.cited_paper_id = 'A00-1002'
+
+  id       : spider_test_001093
+  question : What are the names of the conferences that have the top 2 most people attending?
+  gold     : SELECT T1.conference_name FROM Conference AS T1 JOIN Conference_participation AS T2 ON T1.conference_id  =  T2.conference_id GROUP BY T2.conference_id ORDER BY count(*) DESC LIMIT 2
+  A pred   : SELECT c.Conference_Name, COUNT(staff.staff_ID) AS total_attendees FROM conference c JOIN staff s ON c.Conference_ID = s.Conference_ID JOIN conference_participation cp ON s.staff_ID = cp.staff_ID GROUP BY c.Conference_ID ORDER BY total_attendees DESC LIMIT 2
+  B pred   : SELECT conference.Conference_Name FROM conference JOIN conference_participation ON conference.Conference_ID = conference_participation.Conference_ID ORDER BY conference_participation.role DESC LIMIT 2
+
+  Shared: 150   Only-A: 0   Only-B: 0
+
+File                                                Match    Rate
+-----------------------------------------------------------------
+eval_spider_non-thinking_zero_none.json                43   28.7%
+eval_spider_non-thinking_few_none.json                 46   30.7%
+
+Both correct           30  (20.0%)
+Both wrong             91  (60.7%)
+Only A correct         13  (8.7%)
+Only B correct         16  (10.7%)
+
+Executable comparison                             
+-----------------------------------------------------------------
+eval_spider_non-thinking_zero_none.json               116   77.3%
+eval_spider_non-thinking_few_none.json                116   77.3%
+
+====================================================================
+  Only A correct  —  eval_spider_non-thinking_zero_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000103
+  question : What is the product average price?
+  gold     : SELECT avg(product_price) FROM Products
+  A pred   : SELECT AVG(product_price) AS product_average_price FROM Products
+  B pred   : SELECT Products.product_price FROM Products
+
+  id       : spider_test_000123
+  question : How many channels have the word 'bbc' in their internet link?
+  gold     : SELECT count(*) FROM channel WHERE internet LIKE "%bbc%"
+  A pred   : SELECT COUNT(*) FROM channel WHERE Internet LIKE '%bbc%'
+  B pred   : SELECT COUNT(*) FROM program WHERE Internet LIKE "%bbc%"
+
+  id       : spider_test_000193
+  question : Count the number of drivers who have not driven any vehicles.
+  gold     : SELECT count(*) FROM driver WHERE driver_id NOT IN ( SELECT driver_id FROM vehicle_driver )
+  A pred   : SELECT COUNT(DRIVER_ID) FROM driver WHERE Driver_ID NOT IN (SELECT Driver_ID FROM vehicle_driver)
+  B pred   : SELECT COUNT(DISTINCT driver.Driver_ID) FROM driver
+
+  id       : spider_test_000567
+  question : What are the titles of books with sale prices above the average sale price across all books?
+  gold     : SELECT title FROM book WHERE saleprice  >  (SELECT avg(saleprice) FROM book)
+  A pred   : SELECT Title FROM Book WHERE SalePrice > (SELECT AVG(SalePrice) FROM Book)
+  B pred   : SELECT Title FROM Books ORDER BY SalePrice ASC LIMIT 1
+
+  id       : spider_test_000667
+  question : What are the document subset names?
+  gold     : SELECT Document_Subset_Name FROM Document_Subsets;
+  A pred   : SELECT Document_Subset_Name FROM Document_Subsets
+  B pred   : SELECT Collection_Subset_Name FROM Collection_Subsets
+
+  id       : spider_test_000903
+  question : What are the rating and average age for sailors who reserved red boats for each rating?
+  gold     : SELECT T1.rating ,  avg(T1.age) FROM Sailors AS T1 JOIN Reserves AS T2 ON T1.sid  =  T2.sid JOIN Boats AS T3 ON T3.bid  =  T2.bid WHERE T3.color  =  'red' GROUP BY T1.rating
+  A pred   : SELECT Sailors.rating, AVG(Sailors.age) AS average_age FROM Sailors JOIN Reserves ON Sailors.sid = Reserves.sid JOIN Boats ON Reserves.bid = Boats.bid WHERE Boats.color = 'red'
+  B pred   : SELECT Sailors.sid, Sailors.rating, Sailors.age FROM Sailors JOIN Reserves ON Sailors.sid = Reserves.sid WHERE Reserves.bid = Boats.name AND Boats.color = 'red' AND Sailors.rating = Reserves.rating
+
+  id       : spider_test_000915
+  question : What is the maximum rating for sailors?
+  gold     : SELECT max(rating) FROM Sailors
+  A pred   : SELECT MAX(rating) FROM Sailors
+  B pred   : SELECT Sailors.rating AS rating FROM Sailors
+
+
+====================================================================
+  Only B correct  —  eval_spider_non-thinking_few_none.json  (showing up to 7)
+====================================================================
+  id       : spider_test_000014
+  question : From which countries are players who make more than 1200000 from?
+  gold     : SELECT DISTINCT Country FROM player WHERE Earnings  >  1200000
+  A pred   : SELECT club.Name AS Country FROM club JOIN player ON club.Club_ID = player.Club_ID WHERE player.Earnings > 1200000
+  B pred   : SELECT T1.Country FROM player AS T1 JOIN club AS T2 ON T1.Club_ID = T2.Club_ID WHERE T1.Earnings > 1200000
+
+  id       : spider_test_000027
+  question : Please show the most common manufacturer of clubs.
+  gold     : SELECT Manufacturer FROM club GROUP BY Manufacturer ORDER BY COUNT(*) DESC LIMIT 1
+  A pred   : SELECT club.Manufacturer FROM club
+  B pred   : SELECT Manufacturer FROM club GROUP BY Manufacturer ORDER BY COUNT(Manufacturer) DESC LIMIT 1
+
+  id       : spider_test_000284
+  question : What are the distinct payment methods used by customers?
+  gold     : SELECT DISTINCT payment_method_code FROM Customers
+  A pred   : SELECT Customers.payment_method_code FROM Customers
+  B pred   : SELECT DISTINCT payment_method_code FROM Customers
+
+  id       : spider_test_000357
+  question : What is the list of channel details ordered alphabetically ?
+  gold     : select channel_details from channels order by channel_details
+  A pred   : SELECT Customers_and_Services.Channel_Details FROM Customers_and_Services ORDER BY Channel_Details
+  B pred   : SELECT Channel_Details FROM Channels ORDER BY Channel_Details
+
+  id       : spider_test_000420
+  question : What is the average age for customers with a membership credit above the average?
+  gold     : SELECT avg(age) FROM customers WHERE membership_credit  >  (SELECT avg(membership_credit) FROM customers)
+  A pred   : SELECT Customers.age AS average_age FROM Customers WHERE Customers.membership_credit > ( SELECT Membership_credit FROM Discount WHERE Membership_credit = ( SELECT Membership_credit FROM Discount WHERE Membership_credit = ( SELECT Membership_credit FROM Discount ORDER BY Membership_credit ASC LIMIT 1 ) ) )
+  B pred   : SELECT AVG(age) FROM Customers WHERE membership_credit > (SELECT AVG(membership_credit) FROM Customers)
+
+  id       : spider_test_000627
+  question : Show different nationalities of customers, along with the number of customers of each nationality.
+  gold     : SELECT Nationality ,  COUNT(*) FROM customer GROUP BY Nationality
+  A pred   : SELECT customer.Nationality, COUNT(customer.Customer_ID) AS Number_of_Customers FROM customer JOIN customer_order ON customer.Customer_ID = customer_order.Customer_ID GROUP BY customer.Nationality
+  B pred   : SELECT Nationality, COUNT(*) AS Number_of_Customers FROM customer GROUP BY Nationality
+
+  id       : spider_test_000637
+  question : Show each customer name and the total quantities of dishes ordered by that customer.
+  gold     : SELECT T1.Name ,  sum(T2.Quantity) FROM customer AS T1 JOIN customer_order AS T2 ON T1.Customer_ID  =  T2.Customer_ID GROUP BY T1.Name
+  A pred   : SELECT customer.Name, customer_order.Quantity FROM customer JOIN customer_order ON customer.Customer_ID = customer_order.Customer_ID
+  B pred   : SELECT customer.Name, SUM(customer_order.Quantity) AS total_quantity FROM customer JOIN customer_order ON customer.Customer_ID = customer_order.Customer_ID GROUP BY customer.Name
+
