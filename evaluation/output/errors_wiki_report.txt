@@ -1,0 +1,980 @@
+========== output/wiki/eval_wikisql_non-thinking_few_none.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_few_none.json              300    300   273    27
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 91.0%
+  Gap (valid→exec) : 27 cases  (9.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF           25      92.6%
+TYPE_MISMATCH             1       3.7%
+OVERGENERATION            0       0.0%
+UNKNOWN                   1       3.7%
+
+=================================================================
+  BAD_COLUMN_REF  (25 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_4507
+  question : Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?
+  gold     : SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'
+  pred     : SELECT Winning driver, Pole Position FROM table WHERE Winning team = 'Penske Racing' AND Pole position = 'Rick Mears'
+
+  id       : wikisql_test_4013
+  question : What is the number in season of the episode whose production code is pabf05?
+  gold     : SELECT # FROM table WHERE Production code = 'PABF05'
+  pred     : SELECT MIN(No(s). in season) FROM table WHERE Production code = 'pabf05'
+
+  id       : wikisql_test_8929
+  question : What example for did- is shown for a Consonant final stem of -i, and a Noun example: datv- of datv-it?
+  gold     : SELECT Example: did- FROM table WHERE Consonant final stem = '-i' AND Noun example: datv- = 'datv-it'
+  pred     : SELECT Example: did- ("did") FROM table WHERE Consonant final stem = '-i' AND Noun example: datv- = 'datv-it'
+
+  id       : wikisql_test_2616
+  question : If the start (utc) is November 18, 2008 18:09, what is the name of the spacecraft?
+  gold     : SELECT Spacecraft FROM table WHERE Start ( UTC ) = 'November 18, 2008 18:09'
+  pred     : SELECT Spacecraft FROM table WHERE Start (UTC) = 'November 18, 2008 18:09'
+
+  id       : wikisql_test_6925
+  question : What year was the Win percentage 60%?
+  gold     : SELECT Years FROM table WHERE Win percentage = '60%'
+  pred     : SELECT Year FROM table WHERE Win percentage = '60%'
+
+
+=================================================================
+  TYPE_MISMATCH  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_9561
+  question : Who was the runner(s)-up when the winning score was –13 (75-68-68=211)?
+  gold     : SELECT Runner(s)-up FROM table WHERE Winning score = '–13 (75-68-68=211)'
+  pred     : SELECT Runner(s)-up FROM table WHERE Winning score = '–13 (75-68-68=211')
+
+
+=================================================================
+  UNKNOWN  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_2622
+  question : Which team classification has taiji nishitani as the stage winner?
+  gold     : SELECT Team classification FROM table WHERE Stage winner = 'Taiji Nishitani'
+  pred     : SELECT Team Classification FROM table WHERE Stage winner = 'taiji nishitani'
+
+========== output/wiki/eval_wikisql_non-thinking_few_outlines.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_few_outlines.json          300    298   226    74
+
+  Valid SQL rate   : 99.3%
+  Execution rate   : 75.3%
+  Gap (valid→exec) : 74 cases  (24.7% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           1       1.4%
+BAD_COLUMN_REF           69      93.2%
+TYPE_MISMATCH             3       4.1%
+OVERGENERATION            0       0.0%
+UNKNOWN                   1       1.4%
+
+=================================================================
+  WRONG_TABLE_REF  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_1536
+  question : How many hectars of land is in Kaxholmen?
+  gold     : SELECT Land area (hectares) FROM table WHERE Urban area (locality) = 'Kaxholmen'
+  pred     : SELECT Land area of table WHERE Urban area of table LIKE CONCAT_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS_WS
+
+
+=================================================================
+  BAD_COLUMN_REF  (69 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_12150
+  question : What is the score for the 2nd leg when Belasica is team 2?
+  gold     : SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'
+  pred     : SELECT second leg FROM table WHERE Team 2 = 'Belasica'
+
+  id       : wikisql_test_4013
+  question : What is the number in season of the episode whose production code is pabf05?
+  gold     : SELECT # FROM table WHERE Production code = 'PABF05'
+  pred     : SELECT MIN(No) FROM table WHERE Production code = 'pabf05'
+
+  id       : wikisql_test_3658
+  question : What is the highest pick number for player don barber?
+  gold     : SELECT MAX(Pick #) FROM table WHERE Player = 'Don Barber'
+  pred     : SELECT MAX(Pick) FROM table WHERE Player = 'Don Barber'
+
+  id       : wikisql_test_2287
+  question : What was the original air date for season 11?
+  gold     : SELECT Original air date FROM table WHERE Season # = 11
+  pred     : SELECT Original air date FROM table WHERE Season no = 11
+
+  id       : wikisql_test_489
+  question : what are the u.s. air dates with a Canadian air date of may 4, 2009
+  gold     : SELECT U.S. airdate FROM table WHERE Canadian airdate = 'May 4, 2009'
+  pred     : SELECT U S Air Date FROM table WHERE Canadian airdate = 'may 4, 2009'
+
+
+=================================================================
+  TYPE_MISMATCH  (3 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_4423
+  question : Tell me the average spectators for 2006-06-21 and time more than 21
+  gold     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time(CET) > 21
+  pred     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time > 21
+
+  id       : wikisql_test_4305
+  question : How many townlands are there for caheragh and is larger than 270 acres?
+  gold     : SELECT COUNT(Townland) FROM table WHERE Civil parish = 'Caheragh' AND Area( acres ) = 270
+  pred     : SELECT COUNT(Townland) FROM table WHERE Townland = 'caherragh' AND Area Acres > 270
+
+  id       : wikisql_test_5039
+  question : Which Points is the lowest one that has a Name of wolfgang loitzl, and a 2nd (m) smaller than 126.5?
+  gold     : SELECT MIN(Points) FROM table WHERE Name = 'wolfgang loitzl' AND 2nd (m) < 126.5
+  pred     : SELECT MIN(Points) FROM table WHERE Name = 'wolfgang loitzl' AND Second m < 126
+
+
+=================================================================
+  UNKNOWN  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_2622
+  question : Which team classification has taiji nishitani as the stage winner?
+  gold     : SELECT Team classification FROM table WHERE Stage winner = 'Taiji Nishitani'
+  pred     : SELECT Team Classification FROM table WHERE Stage winner = 'taiji nishitani'
+
+========== output/wiki/eval_wikisql_non-thinking_few_xgrammar.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_few_xgrammar.json          300    300   296     4
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 98.7%
+  Gap (valid→exec) : 4 cases  (1.3% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF            4     100.0%
+TYPE_MISMATCH             0       0.0%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (4 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_6925
+  question : What year was the Win percentage 60%?
+  gold     : SELECT Years FROM table WHERE Win percentage = '60%'
+  pred     : SELECT Years FROM table WHERE Win percentage = 60%
+
+  id       : wikisql_test_10300
+  question : Which away team has Away team score of 20.12 (132)?
+  gold     : SELECT Away team FROM table WHERE Away team score = '20.12 (132)'
+  pred     : SELECT Away team FROM table WHERE Away team score = '20.12 (132)’
+
+  id       : wikisql_test_1308
+  question : Which date contained Aubrey O'Day as the cover model?
+  gold     : SELECT Date FROM table WHERE Cover model = 'Aubrey O''Day'
+  pred     : SELECT Date FROM table WHERE Cover model = 'Aubrey O\'Day'
+
+  id       : wikisql_test_14104
+  question : Which Gothic Letter has Proto-Germanic origin of /ɸ/; /b/?
+  gold     : SELECT Gothic Letter FROM table WHERE Proto-Germanic origin = '/ɸ/; /b/'
+  pred     : SELECT Gothic Letter FROM table WHERE Proto-Germanic origin = '/ɸ/
+
+========== output/wiki/eval_wikisql_non-thinking_zero_none.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_none.json             300    300   281    19
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 93.7%
+  Gap (valid→exec) : 19 cases  (6.3% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF           16      84.2%
+TYPE_MISMATCH             1       5.3%
+OVERGENERATION            1       5.3%
+UNKNOWN                   1       5.3%
+
+=================================================================
+  BAD_COLUMN_REF  (16 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_12150
+  question : What is the score for the 2nd leg when Belasica is team 2?
+  gold     : SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'
+  pred     : SELECT 2nd leg FROM table WHERE Team = 'Belasica'
+
+  id       : wikisql_test_1536
+  question : How many hectars of land is in Kaxholmen?
+  gold     : SELECT Land area (hectares) FROM table WHERE Urban area (locality) = 'Kaxholmen'
+  pred     : SELECT COUNT(*) FROM table WHERE Urban area = 'Kaxholmen'
+
+  id       : wikisql_test_8929
+  question : What example for did- is shown for a Consonant final stem of -i, and a Noun example: datv- of datv-it?
+  gold     : SELECT Example: did- FROM table WHERE Consonant final stem = '-i' AND Noun example: datv- = 'datv-it'
+  pred     : SELECT Consonant final stem, Vowel final stem, Noun example FROM table WHERE Consonant final stem = 'i' AND Noun example = 'datv-it'
+
+  id       : wikisql_test_2616
+  question : If the start (utc) is November 18, 2008 18:09, what is the name of the spacecraft?
+  gold     : SELECT Spacecraft FROM table WHERE Start ( UTC ) = 'November 18, 2008 18:09'
+  pred     : SELECT # FROM table WHERE Start (UTC) = 'November 18, 2008 18:09'
+
+  id       : wikisql_test_14119
+  question : What are the points against for 2000, when games won is 4 (1)?
+  gold     : SELECT Points against ( Tests ) FROM table WHERE Year(s) = 2000 AND Games won ( Tests ) = '4 (1)'
+  pred     : SELECT Points against (Tests) FROM table WHERE Year(s) = '2000' AND Games won (Tests) = '4' (1)
+
+
+=================================================================
+  TYPE_MISMATCH  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_1797
+  question : Name the country for deployable military is 23
+  gold     : SELECT Country FROM table WHERE Deployable military (2011, thousands) = 23
+  pred     : SELECT Country FROM table WHERE Deployable military = '23'
+
+
+=================================================================
+  OVERGENERATION  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_11947
+  question : What is the visitor team of the game with Rudy Gay (18) as the leading scorer?
+  gold     : SELECT Visitor FROM table WHERE Leading scorer = 'rudy gay (18)'
+  pred     : SELECT Visitor FROM table WHERE Leading scorer = 'Rudy Gay' AND Visitor = 'Visitor' AND Score = '18' AND Home = 'Home' AND Record = 'Record' AND Date = 'Date' AND Visitor = 'Visitor' AND Leading scorer = 'Rudy Gay' AND Score = '18' AND Home = 'Home' AND Record = 'Record' AND Date = 'Date' AND Visitor = 'Visitor' AND Leading scorer = 'Rudy Gay' AND Score = '18' AND Home = 'Home' AND Record = 'Record' AND Date = 'Date' AND Visitor = 'Visitor' AND Leading scorer = 'Rudy Gay' AND Score = '18' AND Home = '
+
+
+=================================================================
+  UNKNOWN  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_6925
+  question : What year was the Win percentage 60%?
+  gold     : SELECT Years FROM table WHERE Win percentage = '60%'
+  pred     : SELECT YEARS FROM table WHERE Win percentage = '60%'
+
+========== output/wiki/eval_wikisql_non-thinking_zero_outlines.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_outlines.json         300    300   234    66
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 78.0%
+  Gap (valid→exec) : 66 cases  (22.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           1       1.5%
+BAD_COLUMN_REF           61      92.4%
+TYPE_MISMATCH             4       6.1%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_9045
+  question : WHICH 2/3 (P) has a Verb of khêla?
+  gold     : SELECT 2/3 (P) FROM table WHERE Verb = 'khêla'
+  pred     : SELECT ValuePair WHERE 2P LIKE khela AND 2V LIKE khela AND 2F LIKE khela AND 3F LIKE khela AND 2F LIKE khela AND 2P LIKE khela AND 2V LIKE khela AND 2F LIKE khela AND 3F LIKE khela AND 2P LIKE khela AND 2V LIKE khela AND 2F LIKE khela AND 3F LIKE khela AND 2P LIKE khela AND 2V LIKE khela AND 2F LIKE khela AND 3F LIKE khela AND 2P LIKE khela AND 2V LIKE khela AND 2F LIKE khela AND 3F LIKE
+
+
+=================================================================
+  BAD_COLUMN_REF  (61 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_12150
+  question : What is the score for the 2nd leg when Belasica is team 2?
+  gold     : SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'
+  pred     : SELECT Agg FROM table WHERE Team = 'Belasica'
+
+  id       : wikisql_test_4013
+  question : What is the number in season of the episode whose production code is pabf05?
+  gold     : SELECT # FROM table WHERE Production code = 'PABF05'
+  pred     : SELECT NUMBER FROM table WHERE Production code = 'pabf05'
+
+  id       : wikisql_test_2287
+  question : What was the original air date for season 11?
+  gold     : SELECT Original air date FROM table WHERE Season # = 11
+  pred     : SELECT Original air date FROM table WHERE Season = 11
+
+  id       : wikisql_test_1680
+  question : Name who directed the episode by joe sachs and david zabel
+  gold     : SELECT Directed by FROM table WHERE Written by = 'Joe Sachs and David Zabel'
+  pred     : SELECT Series Title FROM table WHERE Directed by = 'Joe Sachs' AND Written by = 'David Zabel'
+
+  id       : wikisql_test_521
+  question : What is the number of the original airdate with the production code 208.
+  gold     : SELECT COUNT(Original Airdate) FROM table WHERE Production Code = 208
+  pred     : SELECT Series Ep 2 FROM table WHERE Production Code = 208
+
+
+=================================================================
+  TYPE_MISMATCH  (4 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_5882
+  question : What Nationality had a Pick # of 117?
+  gold     : SELECT Nationality FROM table WHERE Pick # = 117
+  pred     : SELECT Nationality FROM table WHERE Pick = '117'
+
+  id       : wikisql_test_4423
+  question : Tell me the average spectators for 2006-06-21 and time more than 21
+  gold     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time(CET) > 21
+  pred     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time > 21
+
+  id       : wikisql_test_1797
+  question : Name the country for deployable military is 23
+  gold     : SELECT Country FROM table WHERE Deployable military (2011, thousands) = 23
+  pred     : SELECT Country FROM table WHERE Deployable military = '23'
+
+  id       : wikisql_test_12593
+  question : What G/F Player has 3 Years in the NBA?
+  gold     : SELECT Player FROM table WHERE Pos. = 'g/f' AND Years of NBA experience [a ] = 3
+  pred     : SELECT Player FROM table WHERE Years of NBA experience = '3'
+
+========== output/wiki/eval_wikisql_non-thinking_zero_xgrammar.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_non-thinking_zero_xgrammar.json         300    300   290    10
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 96.7%
+  Gap (valid→exec) : 10 cases  (3.3% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           0       0.0%
+BAD_COLUMN_REF            9      90.0%
+TYPE_MISMATCH             0       0.0%
+OVERGENERATION            1      10.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  BAD_COLUMN_REF  (9 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_3528
+  question : What is the institution whose current conference is gcac (naia)? 
+  gold     : SELECT Institution FROM table WHERE Current Conference = 'GCAC (NAIA)'
+  pred     : SELECT Institution FROM table WHERE Current Conference = 'gcac (naia)’
+
+  id       : wikisql_test_4804
+  question : Was the game home or away when the record is 6-12?
+  gold     : SELECT Home / Away FROM table WHERE Record = '6-12'
+  pred     : SELECT Home / Away FROM table WHERE Record = '6-12' AND Date IS NOT NULL ANDOpponent AND Score IS NOT NULL ANDHigh_points AND High rebounds IS NOT NULL ANDHigh_assists.ISNOTNULL.
+
+  id       : wikisql_test_10835
+  question : What is the latest year that has an n/a mintage and an Issue Price of $89.95?
+  gold     : SELECT MAX(Year) FROM table WHERE Mintage = 'n/a' AND Issue Price = '$89.95'
+  pred     : SELECT Year FROM table WHERE Theme IS NULL ANDIssuePrice AND Mintage IS NULL ANDIssuePrice AND Mintage IS NULL ANDIssuePrice AND Mintage IS NULL ANDIssuePrice ORDER BY Year DESC LIMIT 1
+
+  id       : wikisql_test_1308
+  question : Which date contained Aubrey O'Day as the cover model?
+  gold     : SELECT Date FROM table WHERE Cover model = 'Aubrey O''Day'
+  pred     : SELECT Date FROM table WHERE Interview subject = 'Aubrey O\'Day'
+
+  id       : wikisql_test_3457
+  question : Who directed the episode that had 12.88 million viewers?
+  gold     : SELECT Directed by FROM table WHERE U.S. viewers (million) = 12.88
+  pred     : SELECT No. in series FROM table WHERE U.S. viewers (million) = 12.88.
+
+
+=================================================================
+  OVERGENERATION  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_4372
+  question : What outcome occurs on a hard surface with a score of 4–6, 6–7(3)?
+  gold     : SELECT Outcome FROM table WHERE Surface = 'hard' AND Score = '4–6, 6–7(3)'
+  pred     : SELECT Outcome FROM table WHERE Surface = 'hard' AND Score = '4–6' AND Score = '6–7(3)$._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes._quotes
+
+========== output/wiki/eval_wikisql_thinking_few_none.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_few_none.json                  300    300   270    30
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 90.0%
+  Gap (valid→exec) : 30 cases  (10.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           5      16.7%
+BAD_COLUMN_REF           23      76.7%
+TYPE_MISMATCH             2       6.7%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (5 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_1825
+  question : How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
+  gold     : SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
+  pred     : SELECT COUNT(Number of seasons in top division) FROM table,
+
+  id       : wikisql_test_4507
+  question : Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?
+  gold     : SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'
+  pred     : select only the single column.
+
+  id       : wikisql_test_14495
+  question : Name the sum of population 1.1.2008 for tønsberg and population 1.1.2006 more than 45.447
+  gold     : SELECT SUM(Population 1.1.2008) FROM table WHERE Urban area = 'tønsberg' AND Population 1.1.2006 > 45.447
+  pred     : select the sum of Population 1.1.20
+
+  id       : wikisql_test_7434
+  question : In the Tennis Masters Cup, how did Jiří Novák do in 1997?
+  gold     : SELECT 1997 FROM table WHERE Tournament = 'tennis masters cup'
+  pred     : select the Tournament column where the Year is 1997. But the question is about how he did in 1997, which would be the tournament. So
+
+  id       : wikisql_test_1134
+  question : Name the number of administrative county for area 1961 and 176694
+  gold     : SELECT COUNT(Administrative county) FROM table WHERE Area 1961 (Statute acres) = 176694
+  pred     : select the administrative county where Area 1961 equals 176694. But the question says "for area 1961 and 176694". Maybe it's a single area and population. Let me check the example again. In example 3, the question was about the total area for a population, so they used COUNT(Area) where Population equals the value.
+
+
+=================================================================
+  BAD_COLUMN_REF  (23 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_12433
+  question : Which Run 4 has a Run 1 of 57.37, and a Run 3 smaller than 57.45?
+  gold     : SELECT SUM(Run 4) FROM table WHERE Run 1 = 57.37 AND Run 3 < 57.45
+  pred     : SELECT Run4 FROM table WHERE Run1 = '57.37' AND Run3 < '57.45'
+
+  id       : wikisql_test_2616
+  question : If the start (utc) is November 18, 2008 18:09, what is the name of the spacecraft?
+  gold     : SELECT Spacecraft FROM table WHERE Start ( UTC ) = 'November 18, 2008 18:09'
+  pred     : SELECT Spacecraft FROM table WHERE Start (UTC) = 'November 18, 2008 18:09'
+
+  id       : wikisql_test_6925
+  question : What year was the Win percentage 60%?
+  gold     : SELECT Years FROM table WHERE Win percentage = '60%'
+  pred     : SELECT Year FROM table WHERE Win percentage = 60%
+
+  id       : wikisql_test_12510
+  question : Who has the height of m (ft 9in) and was born on  1980-03-05?
+  gold     : SELECT Name FROM table WHERE Height = 'm (ft 9in)' AND Date of Birth = '1980-03-05'
+  pred     : SELECT Name FROM table WHERE Height = (some value) AND Date of Birth = (another value)
+
+  id       : wikisql_test_712
+  question : What was the result of the election in the district whose incumbent is Tom Foley?
+  gold     : SELECT Status FROM table WHERE Incumbent = 'Tom Foley'
+  pred     : SELECT Result FROM table WHERE Incumbent = 'Tom Foley'
+
+
+=================================================================
+  TYPE_MISMATCH  (2 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_10486
+  question : What Norwegian title has 218 pages and Translated Title of Breaking Dawn?
+  gold     : SELECT Norwegian title FROM table WHERE Pages = 218 AND Translated title = 'breaking dawn'
+  pred     : SELECT Norwegian title FROM table WHERE Pages = 218 AND Translated = 'Breaking Dawn'
+
+  id       : wikisql_test_15049
+  question : Who has a transfer fee larger than 12 from ajax in 2006 while ranked higher than 17?
+  gold     : SELECT Player FROM table WHERE Transfer fee ( € million) > 12 AND Rank > 17 AND Year > 2006 AND From = 'ajax'
+  pred     : SELECT Player FROM table WHERE Transfer fee (€ million) > 12 AND From = 'Ajax' AND Year = 2006 AND Rank > 17
+
+========== output/wiki/eval_wikisql_thinking_few_outlines.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_few_outlines.json              300    260   231    69
+
+  Valid SQL rate   : 86.7%
+  Execution rate   : 77.0%
+  Gap (valid→exec) : 69 cases  (23.0% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           5       7.2%
+BAD_COLUMN_REF           55      79.7%
+TYPE_MISMATCH             7      10.1%
+OVERGENERATION            2       2.9%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (5 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_7518
+  question : What is the highest 2007-03, when 2009-03 is greater than 10.6, and when 2012-03 is 15.4?
+  gold     : SELECT MAX(2007-03) FROM table WHERE 2009-03 > 10.6 AND 2012-03 = 15.4
+  pred     : SELECT user 2 20 and 2 2 2 eldorf 2 20 20 20 2 2 20 2 FROM
+
+  id       : wikisql_test_6544
+  question : What is the total number of weeks where games were on November 5, 1973 and the attendance was larger than 49,220?
+  gold     : SELECT COUNT(Week) FROM table WHERE Date = 'november 5, 1973' AND Attendance > '49,220'
+  pred     : SELECT date
+
+  id       : wikisql_test_9978
+  question : What Texas has Johnson from Nort Dakota?
+  gold     : SELECT Texas FROM table WHERE North Dakota = 'johnson'
+  pred     : select from the table where the Texas state has a person named Johnson from North Dakota. But since there's no such column, maybe the query is impossible. Wait, maybe the user made a mistake in the schema. Let me check again. The columns are: Year, Kansas, Nebraska, Nortany. and the user's not. Let me check.
+
+  id       : wikisql_test_14397
+  question : Name the played with try bonus of 6 and drawn of 0
+  gold     : SELECT Played FROM table WHERE Try bonus = 6 AND Drawn = 0
+  pred     : SELECT example 12 the example the 1 2the above isbexampleample 1 1 1 the example 1 1 this is example example 1 the other example example 1 is 1 FROM
+
+  id       : wikisql_test_1134
+  question : Name the number of administrative county for area 1961 and 176694
+  gold     : SELECT COUNT(Administrative county) FROM table WHERE Area 1961 (Statute acres) = 176694
+  pred     : SELECT Okay 1
+
+
+=================================================================
+  BAD_COLUMN_REF  (55 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_1825
+  question : How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
+  gold     : SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
+  pred     : SELECT But the result is the first season in the period of of the query is the number the number of the number of the number of is the FROM table
+
+  id       : wikisql_test_12150
+  question : What is the score for the 2nd leg when Belasica is team 2?
+  gold     : SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'
+  pred     : SELECT second leg FROM table WHERE Team 2 = 'Belasica'
+
+  id       : wikisql_test_4013
+  question : What is the number in season of the episode whose production code is pabf05?
+  gold     : SELECT # FROM table WHERE Production code = 'PABF05'
+  pred     : SELECT No in season FROM table WHERE Production code = 'pabf05'
+
+  id       : wikisql_test_3658
+  question : What is the highest pick number for player don barber?
+  gold     : SELECT MAX(Pick #) FROM table WHERE Player = 'Don Barber'
+  pred     : SELECT MAX(Pick) FROM table WHERE Player = 'Don Barber'
+
+  id       : wikisql_test_2287
+  question : What was the original air date for season 11?
+  gold     : SELECT Original air date FROM table WHERE Season # = 11
+  pred     : SELECT Original air date FROM table WHERE Season no = 11
+
+
+=================================================================
+  TYPE_MISMATCH  (7 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_4423
+  question : Tell me the average spectators for 2006-06-21 and time more than 21
+  gold     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time(CET) > 21
+  pred     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time = 21
+
+  id       : wikisql_test_3457
+  question : Who directed the episode that had 12.88 million viewers?
+  gold     : SELECT Directed by FROM table WHERE U.S. viewers (million) = 12.88
+  pred     : SELECT Directed by FROM table WHERE U_S_viewers = '12.88'
+
+  id       : wikisql_test_4305
+  question : How many townlands are there for caheragh and is larger than 270 acres?
+  gold     : SELECT COUNT(Townland) FROM table WHERE Civil parish = 'Caheragh' AND Area( acres ) = 270
+  pred     : SELECT COUNT(Townland) FROM table WHERE Townland = 'Cahanagh' AND Area_acres > 270
+
+  id       : wikisql_test_1797
+  question : Name the country for deployable military is 23
+  gold     : SELECT Country FROM table WHERE Deployable military (2011, thousands) = 23
+  pred     : SELECT Country FROM table WHERE Deployable military = '23'
+
+  id       : wikisql_test_12593
+  question : What G/F Player has 3 Years in the NBA?
+  gold     : SELECT Player FROM table WHERE Pos. = 'g/f' AND Years of NBA experience [a ] = 3
+  pred     : SELECT Player FROM table WHERE Pos = 'G' OR Pos = 'F'
+
+
+=================================================================
+  OVERGENERATION  (2 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_14119
+  question : What are the points against for 2000, when games won is 4 (1)?
+  gold     : SELECT Points against ( Tests ) FROM table WHERE Year(s) = 2000 AND Games won ( Tests ) = '4 (1)'
+  pred     : SELECT Points against table forhein the games for of course games from the table where the user is asking for the query is the query is are games is for and the table is the user is is the question is the games ID for the the the table isvenile of the the table the in the wik the is table is and table the the query is 10 the table games in table for the table is the games the table2 and the table the table is the where is the in the table the is is the table is table in is FROM table WHERE the 2 accr the table table is the 2 the the time in the 1 the table 2 table 11 1 for the the 1 202 The 1 the 2 2 fori game 1 1 200 12 220 the20000 1 1 2 the 200_that 2 22 2 20 2 22 100 2 2 2 2 2 1 2 != 200
+
+  id       : wikisql_test_10533
+  question : What stadium has caps as the second place?
+  gold     : SELECT Stadium FROM table WHERE 2nd Place = 'caps'
+  pred     : SELECT Stadium FROM table WHERE 2nd Place LIKE CONCAT LOWERIgnoreCase_WS_Caps_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_2nd_PLACE_WS_Caps_WS_2nd_PLACE_WS_ FROM table
+
+========== output/wiki/eval_wikisql_thinking_few_xgrammar.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_few_xgrammar.json              300    300   286    14
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 95.3%
+  Gap (valid→exec) : 14 cases  (4.7% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           5      35.7%
+BAD_COLUMN_REF            8      57.1%
+TYPE_MISMATCH             1       7.1%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (5 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_1825
+  question : How many 'number of seasons in top division' were played if the 'first season in top division' games is in 1990-91?
+  gold     : SELECT MAX(Number of seasons in top division) FROM table WHERE First season in top division = '1990-91'
+  pred     : SELECT COUNT(Number of seasons in top division) FROM table,
+
+  id       : wikisql_test_4507
+  question : Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?
+  gold     : SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'
+  pred     : select only the single column.
+
+  id       : wikisql_test_14495
+  question : Name the sum of population 1.1.2008 for tønsberg and population 1.1.2006 more than 45.447
+  gold     : SELECT SUM(Population 1.1.2008) FROM table WHERE Urban area = 'tønsberg' AND Population 1.1.2006 > 45.447
+  pred     : select the sum of Population 1.1.20
+
+  id       : wikisql_test_7434
+  question : In the Tennis Masters Cup, how did Jiří Novák do in 1997?
+  gold     : SELECT 1997 FROM table WHERE Tournament = 'tennis masters cup'
+  pred     : select the Tournament column where the Year is 1997. But the question is about how he did in 1997, which would be the tournament. So
+
+  id       : wikisql_test_1134
+  question : Name the number of administrative county for area 1961 and 176694
+  gold     : SELECT COUNT(Administrative county) FROM table WHERE Area 1961 (Statute acres) = 176694
+  pred     : select the administrative county where Area 1961 equals 176694. But the question says "for area 1961 and 176694". Maybe it's a single area and population. Let me check the example again. In example 3, the question was about the total area for a population, so they used COUNT(Area) where Population equals the value.
+
+
+=================================================================
+  BAD_COLUMN_REF  (8 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_3583
+  question : What is the minimum score given in judging panel points?
+  gold     : SELECT MIN(Judging panel points) FROM table
+  pred     : SELECT Judging panel points FROM table WHERE Judging panel points = MIN_Judging_panel_points
+
+  id       : wikisql_test_6925
+  question : What year was the Win percentage 60%?
+  gold     : SELECT Years FROM table WHERE Win percentage = '60%'
+  pred     : SELECT Years FROM table WHERE Win percentage = 60%
+
+  id       : wikisql_test_3528
+  question : What is the institution whose current conference is gcac (naia)? 
+  gold     : SELECT Institution FROM table WHERE Current Conference = 'GCAC (NAIA)'
+  pred     : SELECT Institution FROM table WHERE Current Conference = 'gcac (naia)’
+
+  id       : wikisql_test_1308
+  question : Which date contained Aubrey O'Day as the cover model?
+  gold     : SELECT Date FROM table WHERE Cover model = 'Aubrey O''Day'
+  pred     : SELECT Date FROM table WHERE Cover model = 'Aubrey O\'Day'
+
+  id       : wikisql_test_11150
+  question : What year is the result 6th in munich, west germany?
+  gold     : SELECT SUM(Year) FROM table WHERE Result = '6th' AND Venue = 'munich, west germany'
+  pred     : SELECT Year FROM table WHERE Result = '6th' AND Venue IN 'munic' AND Venue IN 'west germany'
+
+
+=================================================================
+  TYPE_MISMATCH  (1 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_9065
+  question : What is the lowest population that has Big Hole Tract 8 (south) as the official name, with an area km 2 greater than 27.82?
+  gold     : SELECT MIN(Population) FROM table WHERE Official Name = 'big hole tract 8 (south)' AND Area km 2 > 27.82
+  pred     : SELECT MIN(Population) FROM table WHERE Official Name = 'Big Hole Tract 8 (south)' AND Area km 2 > 27.82.
+
+========== output/wiki/eval_wikisql_thinking_zero_none.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_none.json                 300    299   263    37
+
+  Valid SQL rate   : 99.7%
+  Execution rate   : 87.7%
+  Gap (valid→exec) : 37 cases  (12.3% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           6      16.2%
+BAD_COLUMN_REF           27      73.0%
+TYPE_MISMATCH             4      10.8%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (6 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_4507
+  question : Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?
+  gold     : SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'
+  pred     : select only one column. This is
+
+  id       : wikisql_test_6225
+  question : What is the date for the La Granja de San Ildefonso to Alto de Navacerrada course?
+  gold     : SELECT Date FROM table WHERE Course = 'la granja de san ildefonso to alto de navacerrada'
+  pred     : select the Date from the table where the Course is either of those two. But the user's question might be looking for the date of the course that is both. But how to represent that?
+
+  id       : wikisql_test_751
+  question : Who is the incumbent candidate in the election of percy priest (d) 90.8% robert m. donihi (r) 9.2%?
+  gold     : SELECT Incumbent FROM table WHERE Candidates = 'Percy Priest (D) 90.8% Robert M. Donihi (R) 9.2%'
+  pred     : SELECT Incumbent
+
+  id       : wikisql_test_9981
+  question : What  South Dakota has Bush of Oklahoma?
+  gold     : SELECT South Dakota FROM table WHERE Oklahoma = 'bush'
+  pred     : select the state where Oklahoma is present, but that's not the case. Wait, maybe the question is asking which state (South Dakota) has a person named Bush, and the person is from Oklahoma. But since the table doesn't have a column for people, perhaps the answer is that there is no such entry.
+
+  id       : wikisql_test_9126
+  question : Who was No. 9 when No. 5 Mason and No. 3 Aiden?
+  gold     : SELECT No. 9 FROM table WHERE No. 5 = 'mason' AND No. 3 = 'aiden'
+  pred     : select the person with No. 9. But the user's example shows that the answer is
+
+
+=================================================================
+  BAD_COLUMN_REF  (27 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_11732
+  question : When did the home team score 12.17 (89)?
+  gold     : SELECT Date FROM table WHERE Home team score = '12.17 (89)'
+  pred     : SELECT Date FROM table WHERE Home team score = '12.17' (89)
+
+  id       : wikisql_test_8929
+  question : What example for did- is shown for a Consonant final stem of -i, and a Noun example: datv- of datv-it?
+  gold     : SELECT Example: did- FROM table WHERE Consonant final stem = '-i' AND Noun example: datv- = 'datv-it'
+  pred     : SELECT Example FROM table WHERE Consonant final stem = '-i' AND Noun example = 'datv-it'
+
+  id       : wikisql_test_2616
+  question : If the start (utc) is November 18, 2008 18:09, what is the name of the spacecraft?
+  gold     : SELECT Spacecraft FROM table WHERE Start ( UTC ) = 'November 18, 2008 18:09'
+  pred     : SELECT Spacecraft FROM table WHERE Start (UTC) = 'November 18, 2008 18:09'
+
+  id       : wikisql_test_11956
+  question : What is the Current status of Callander Coal company grey?
+  gold     : SELECT Current status FROM table WHERE Livery = 'callander coal company grey'
+  pred     : SELECT Current status FROM table WHERE Name = 'Callander Coal company grey'
+
+  id       : wikisql_test_4804
+  question : Was the game home or away when the record is 6-12?
+  gold     : SELECT Home / Away FROM table WHERE Record = '6-12'
+  pred     : SELECT Home/Away FROM table WHERE Score = '6' AND High points = '12'
+
+
+=================================================================
+  TYPE_MISMATCH  (4 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_15347
+  question : what is the points for when the club has 0 drawn and 60 tries against?
+  gold     : SELECT Points for FROM table WHERE Drawn = 0 AND Tries against = 60
+  pred     : SELECT Points for FROM table WHERE Club.Drawn = '0' AND Tries against = '60'
+
+  id       : wikisql_test_10486
+  question : What Norwegian title has 218 pages and Translated Title of Breaking Dawn?
+  gold     : SELECT Norwegian title FROM table WHERE Pages = 218 AND Translated title = 'breaking dawn'
+  pred     : SELECT Norwegian title FROM table WHERE Pages = 218 AND Translated = 'Breaking Dawn'
+
+  id       : wikisql_test_12593
+  question : What G/F Player has 3 Years in the NBA?
+  gold     : SELECT Player FROM table WHERE Pos. = 'g/f' AND Years of NBA experience [a ] = 3
+  pred     : SELECT Player FROM table WHERE Years of NBA experience = '3'
+
+  id       : wikisql_test_15049
+  question : Who has a transfer fee larger than 12 from ajax in 2006 while ranked higher than 17?
+  gold     : SELECT Player FROM table WHERE Transfer fee ( € million) > 12 AND Rank > 17 AND Year > 2006 AND From = 'ajax'
+  pred     : SELECT Player FROM table WHERE From = 'Ajax' AND Year = 2006 AND Rank > 17 AND Transfer fee > 12
+
+========== output/wiki/eval_wikisql_thinking_zero_outlines.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_outlines.json             300    300   214    86
+
+  Valid SQL rate   : 100.0%
+  Execution rate   : 71.3%
+  Gap (valid→exec) : 86 cases  (28.7% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           3       3.5%
+BAD_COLUMN_REF           66      76.7%
+TYPE_MISMATCH             4       4.7%
+OVERGENERATION           13      15.1%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (3 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_15162
+  question : Name the total number of points for beta team march 1975 and chassis of march 751
+  gold     : SELECT COUNT(Points) FROM table WHERE Entrant = 'beta team march' AND Year = 1975 AND Chassis = 'march 751'
+  pred     : select Points and chassis
+
+  id       : wikisql_test_15449
+  question : What is the Left Office of cabinet secretary for culture and external affairs named?
+  gold     : SELECT Name FROM table WHERE Left Office = 'cabinet secretary for culture and external affairs'
+  pred     : SELECT Left Office FROM table, but that's not correct. I'm stuck. Maybe I should check the example. The user provided an
+
+  id       : wikisql_test_3296
+  question : When was the earliest season of Juncadella's career?
+  gold     : SELECT MIN(Season) FROM table
+  pred     : SELECT MIN(Season)
+
+
+=================================================================
+  BAD_COLUMN_REF  (66 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_12150
+  question : What is the score for the 2nd leg when Belasica is team 2?
+  gold     : SELECT 2nd leg FROM table WHERE Team 2 = 'belasica'
+  pred     : SELECT second_leg FROM table WHERE Team 2 = 'Belasica'
+
+  id       : wikisql_test_4013
+  question : What is the number in season of the episode whose production code is pabf05?
+  gold     : SELECT # FROM table WHERE Production code = 'PABF05'
+  pred     : SELECT NUMBER FROM table WHERE Production code = 'pabf05'
+
+  id       : wikisql_test_3658
+  question : What is the highest pick number for player don barber?
+  gold     : SELECT MAX(Pick #) FROM table WHERE Player = 'Don Barber'
+  pred     : SELECT Pick FROM table WHERE Player = 'don barber'
+
+  id       : wikisql_test_2287
+  question : What was the original air date for season 11?
+  gold     : SELECT Original air date FROM table WHERE Season # = 11
+  pred     : SELECT Original air date FROM table WHERE Season number = 11
+
+  id       : wikisql_test_1680
+  question : Name who directed the episode by joe sachs and david zabel
+  gold     : SELECT Directed by FROM table WHERE Written by = 'Joe Sachs and David Zabel'
+  pred     : SELECT Directed by FROM table WHERE Directed By = 'Joe Sachs' OR Directed By = 'David Zabel'
+
+
+=================================================================
+  TYPE_MISMATCH  (4 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_5882
+  question : What Nationality had a Pick # of 117?
+  gold     : SELECT Nationality FROM table WHERE Pick # = 117
+  pred     : SELECT Nationality FROM table WHERE Pick = '117'
+
+  id       : wikisql_test_4423
+  question : Tell me the average spectators for 2006-06-21 and time more than 21
+  gold     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time(CET) > 21
+  pred     : SELECT AVG(Spectators) FROM table WHERE Date = '2006-06-21' AND Time = 21
+
+  id       : wikisql_test_12593
+  question : What G/F Player has 3 Years in the NBA?
+  gold     : SELECT Player FROM table WHERE Pos. = 'g/f' AND Years of NBA experience [a ] = 3
+  pred     : SELECT Player FROM table WHERE Years of NBA experience = '3'
+
+  id       : wikisql_test_15049
+  question : Who has a transfer fee larger than 12 from ajax in 2006 while ranked higher than 17?
+  gold     : SELECT Player FROM table WHERE Transfer fee ( € million) > 12 AND Rank > 17 AND Year > 2006 AND From = 'ajax'
+  pred     : SELECT Player FROM table WHERE Transfer fee > 12 AND From = 'Ajax'
+
+
+=================================================================
+  OVERGENERATION  (13 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_11491
+  question : What is the 2012 value with 1r in 2011, 2007 of A, 2010 of 1r, and 2009 of A?
+  gold     : SELECT 2012 FROM table WHERE 2011 = '1r' AND 2007 = 'a' AND 2010 = '1r' AND 2009 = 'a'
+  pred     : SELECT TABLE_2012 FROM table WHERE 2011 LIKE CONCAT_WS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULLS_NULL
+
+  id       : wikisql_test_1675
+  question : how many times were high rebounds mehmet okur , paul millsap (6)
+  gold     : SELECT COUNT(Score) FROM table WHERE High rebounds = 'Mehmet Okur , Paul Millsap (6)'
+  pred     : SELECT COUNT(*) FROM table WHERE Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur Paul Millsap AND Team IN VALUES VALUES Mihmet Okur
+
+  id       : wikisql_test_6066
+  question : What example in English has a Standard Thai of ผ่า?
+  gold     : SELECT Example meaning in English FROM table WHERE Standard Thai = 'ผ่า'
+  pred     : SELECT Example meaning in English WHERE Standard Thai LIKE 20000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+  id       : wikisql_test_4375
+  question : Tell the opponent of eastbourne with score of 6–0, 5–7, 3–6
+  gold     : SELECT Opponent FROM table WHERE Tournament = 'eastbourne' AND Score = '6–0, 5–7, 3–6'
+  pred     : SELECT Opponent FROM table WHERE Score IN VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL VALUES NULL
+
+  id       : wikisql_test_2678
+  question : What is every year when the reporters were Lesley Visser and Robin Roberts?
+  gold     : SELECT Year FROM table WHERE Reporters = 'Lesley Visser and Robin Roberts'
+  pred     : SELECT Year FROM table WHERE Reporters LIKE YOUR_CASE_SENSITIVE_NAMES_HERE AND Reporters LIKE YOUR_CASE_SENSITIVE_NAMES_HERE ORDER BY Year ASC LIMIT 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+========== output/wiki/eval_wikisql_thinking_zero_xgrammar.json ==========
+File                                               Total  Valid  Exec   Gap
+---------------------------------------------------------------------------
+eval_wikisql_thinking_zero_xgrammar.json             300    299   269    31
+
+  Valid SQL rate   : 99.7%
+  Execution rate   : 89.7%
+  Gap (valid→exec) : 31 cases  (10.3% of total)
+
+Crash Reason          Count   % of gap
+----------------------------------------
+WRONG_TABLE_REF           6      19.4%
+BAD_COLUMN_REF           23      74.2%
+TYPE_MISMATCH             2       6.5%
+OVERGENERATION            0       0.0%
+UNKNOWN                   0       0.0%
+
+=================================================================
+  WRONG_TABLE_REF  (6 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_4507
+  question : Who is the winning driver of Penske Racing, and what was Rick Mears' pole position?
+  gold     : SELECT Winning driver FROM table WHERE Winning team = 'penske racing' AND Pole Position = 'rick mears'
+  pred     : select only one column. This is
+
+  id       : wikisql_test_6225
+  question : What is the date for the La Granja de San Ildefonso to Alto de Navacerrada course?
+  gold     : SELECT Date FROM table WHERE Course = 'la granja de san ildefonso to alto de navacerrada'
+  pred     : select the Date from the table where the Course is either of those two. But the user's question might be looking for the date of the course that is both. But how to represent that?
+
+  id       : wikisql_test_751
+  question : Who is the incumbent candidate in the election of percy priest (d) 90.8% robert m. donihi (r) 9.2%?
+  gold     : SELECT Incumbent FROM table WHERE Candidates = 'Percy Priest (D) 90.8% Robert M. Donihi (R) 9.2%'
+  pred     : SELECT Incumbent
+
+  id       : wikisql_test_9981
+  question : What  South Dakota has Bush of Oklahoma?
+  gold     : SELECT South Dakota FROM table WHERE Oklahoma = 'bush'
+  pred     : select the state where Oklahoma is present, but that's not the case. Wait, maybe the question is asking which state (South Dakota) has a person named Bush, and the person is from Oklahoma. But since the table doesn't have a column for people, perhaps the answer is that there is no such entry.
+
+  id       : wikisql_test_9126
+  question : Who was No. 9 when No. 5 Mason and No. 3 Aiden?
+  gold     : SELECT No. 9 FROM table WHERE No. 5 = 'mason' AND No. 3 = 'aiden'
+  pred     : select the person with No. 9. But the user's example shows that the answer is
+
+
+=================================================================
+  BAD_COLUMN_REF  (23 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_8280
+  question : WHich Video has a Channel larger than 56.4?
+  gold     : SELECT Video FROM table WHERE Channel > 56.4
+  pred     : SELECT Video FROM table WHERE Channel > 56.4.
+
+  id       : wikisql_test_14243
+  question : What is the shortest Time for David Neville when his React time was greater than 0.183?
+  gold     : SELECT MIN(Time) FROM table WHERE React > 0.183 AND Athlete = 'david neville'
+  pred     : SELECT Time FROM table WHERE Athlete = 'David Neville' AND React > 0.183.
+
+  id       : wikisql_test_3528
+  question : What is the institution whose current conference is gcac (naia)? 
+  gold     : SELECT Institution FROM table WHERE Current Conference = 'GCAC (NAIA)'
+  pred     : SELECT Institution FROM table WHERE Current Conference = 'gcac (naia)"
+
+  id       : wikisql_test_1675
+  question : how many times were high rebounds mehmet okur , paul millsap (6)
+  gold     : SELECT COUNT(Score) FROM table WHERE High rebounds = 'Mehmet Okur , Paul Millsap (6)'
+  pred     : SELECT COUNT(*) FROM table WHERE Team IN 'Mehmet Okur' AND Team IN 'Paul Millsap'
+
+  id       : wikisql_test_1292
+  question : WHAT WAS THE JERSEY NUMBER OF THE ROSTER PLAYER FROM OKLAHOMA STATE WHO PLAYED GUARD?
+  gold     : SELECT No. FROM table WHERE Position = 'Guard' AND School/Club Team = 'Oklahoma State'
+  pred     : SELECT No. FROM table WHERE Nationality = 'Oklahoma State' AND Position = 'Guard
+
+
+=================================================================
+  TYPE_MISMATCH  (2 cases, showing up to 5)
+=================================================================
+  id       : wikisql_test_14495
+  question : Name the sum of population 1.1.2008 for tønsberg and population 1.1.2006 more than 45.447
+  gold     : SELECT SUM(Population 1.1.2008) FROM table WHERE Urban area = 'tønsberg' AND Population 1.1.2006 > 45.447
+  pred     : SELECT SUM(Population 1.1.2008) FROM table WHERE Urban area = 'Tønsberg' AND Population 1.1.2006 > 45.447.
+
+  id       : wikisql_test_6305
+  question : If the RR Rate is less than 0.75 with a result of RR:08,09, what is the average appeared?
+  gold     : SELECT AVG(Appeared) FROM table WHERE RR W Rate < 0.75 AND Result = 'rr:08,09'
+  pred     : SELECT AVG(Appeared) FROM table WHERE Result = 'RR:08,09' AND RR W Rate < 0.75.
+

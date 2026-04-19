@@ -1,8 +1,8 @@
 """
 Usage:
     for f in output/spider/eval_*.json; do
-        echo "========== $f ==========" >> error_report.txt
-        python3 errors_spider.py --input "$f" --valid_exec_gap >> error_report.txt
+        echo "========== $f ==========" >> errors_spider_report.txt
+        python3 errors_spider.py --input "$f" --valid_exec_gap >> errors_spider_report.txt
     done
 """
 

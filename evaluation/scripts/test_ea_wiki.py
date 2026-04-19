@@ -60,9 +60,9 @@ def evaluate(input_path, output_path):
 print(f"{'File':<52} {'Total':>5} {'Match':>5} {'EA':>7} {'Gold Err':>8}")
 print("-" * 85)
 
-for fname in sorted(os.listdir('results_wiki')):
+for fname in sorted(os.listdir('results/wiki')):
     if fname.endswith('.json'):
-        input_path = os.path.join('results_wiki', fname)
-        output_path = os.path.join('output', 'eval_' + fname.replace('result_', ''))
+        input_path = os.path.join('results/wiki', fname)
+        output_path = os.path.join('output/wiki', 'eval_' + fname.replace('result_', ''))
         total, match, ea, gold_err = evaluate(input_path, output_path)
         print(f"{fname:<52} {total:>5} {match:>5} {ea:>6.1f}% {gold_err:>8}")

@@ -11,9 +11,9 @@ Usage:
   python errors.py --input output/*.json --exec_only
   python errors.py --input output/*.json --valid_exec_gap
 
-  for f in output/eval_*.json; do
-    echo "========== $f ==========" >> error_report.txt
-    python3 errors.py --input "$f" --valid_exec_gap >> error_report.txt
+  for f in output/wiki/eval_*.json; do
+    echo "========== $f ==========" >> errors_wiki_report.txt
+    python3 errors_wiki.py --input "$f" --valid_exec_gap >> errors_wiki_report.txt
   done
 """
 
