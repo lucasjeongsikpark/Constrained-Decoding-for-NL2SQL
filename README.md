@@ -1,4 +1,4 @@
-# CSCI566-GroupProject
+# Constrained Decoding for Natural Language to SQL.
 
 ## Quick Start
 
