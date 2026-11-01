@@ -681,6 +681,8 @@ def main() -> None:
     parser.add_argument("--max-examples", type=int, default=None)
     parser.add_argument("--test-size", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--save-interval", type=int, default=10,
+                        help="Save intermediate results every N examples (0 = save only at end)")
     parser.add_argument("--output", default=None)
     parser.add_argument("--model", default=MODEL_NAME)
     args = parser.parse_args()
@@ -695,6 +697,25 @@ def main() -> None:
     if args.max_examples is not None:
         rows = rows[: args.max_examples]
     examples = to_examples(args.dataset, rows)
+
+    # ── Resume: skip already-processed examples ───────────────────────────────
+    out_path = args.output or build_output_filename(args.dataset, args.mode, args.train_mode, args.constraint)
+    results: List[Dict[str, Any]] = []
+    done_ids: set = set()
+    if os.path.isfile(out_path):
+        try:
+            existing = load_json(out_path)
+            if isinstance(existing, list):
+                results = existing
+                done_ids = {str(r["instance_id"]) for r in results if "instance_id" in r}
+                print(f"Resuming: loaded {len(results)} existing results from {out_path}")
+        except Exception:
+            pass
+    if done_ids:
+        orig_len = len(examples)
+        examples = [ex for ex in examples if ex.instance_id not in done_ids]
+        rows = [r for r in rows if str(r.get("instance_id", "")) not in done_ids]
+        print(f"Skipping {orig_len - len(examples)} already-done examples; {len(examples)} remaining")
 
     # ── Few-shot retriever ────────────────────────────────────────────────────
     retriever: Optional[FewShotRetriever] = None
@@ -758,14 +779,16 @@ def main() -> None:
         print(msg, file=log_fh)
 
     try:
-        prompt0 = build_qwen_prompt(tokenizer, args.dataset, examples[0], args.mode)
-        log("=" * 60)
-        log("PROMPT (example 1):")
-        log(prompt0)
-        log("=" * 60)
+        if not examples:
+            log("No examples to process (all already done). Exiting.")
+        else:
+            prompt0 = build_qwen_prompt(tokenizer, args.dataset, examples[0], args.mode)
+            log("=" * 60)
+            log("PROMPT (example 1):")
+            log(prompt0)
+            log("=" * 60)
         log(f"Dataset: {args.dataset}  Mode: {args.mode}  Constraint: {args.constraint}")
 
-        results: List[Dict[str, Any]] = []
         global_idx = 0
 
         for batch_start in range(0, len(examples), args.batch_size):
@@ -882,7 +905,18 @@ def main() -> None:
                 if global_idx % 10 == 0 or global_idx == len(examples):
                     log(f"Done {global_idx}/{len(examples)}")
 
-        out_path = args.output or build_output_filename(args.dataset, args.mode, args.train_mode, args.constraint)
+            # ── Intermediate save ─────────────────────────────────────────────
+            if args.save_interval > 0:
+                prev_cp = (global_idx - len(batch_exs)) // args.save_interval
+                curr_cp = global_idx // args.save_interval
+                if curr_cp > prev_cp or global_idx == len(examples):
+                    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+                    with open(out_path, "w", encoding="utf-8") as f:
+                        json.dump(results, f, indent=2, ensure_ascii=False)
+                    log(f"[checkpoint] Saved {len(results)} results to: {out_path}")
+                    if torch.cuda.is_available():
+                        torch.cuda.empty_cache()
+
         os.makedirs(os.path.dirname(out_path), exist_ok=True)
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
