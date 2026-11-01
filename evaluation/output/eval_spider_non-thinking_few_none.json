@@ -342,7 +342,26 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "warehouse_1",
-    "gold_answer": null,
+    "gold_answer": [
+      [
+        "0MN7"
+      ],
+      [
+        "4H8P"
+      ],
+      [
+        "4RT3"
+      ],
+      [
+        "7G3H"
+      ],
+      [
+        "9J6F"
+      ],
+      [
+        "P2T6"
+      ]
+    ],
     "predicted_answer": null,
     "execution_match": false
   },
@@ -596,8 +615,15 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "warehouse_1",
-    "gold_answer": null,
-    "predicted_answer": null,
+    "gold_answer": [
+      [
+        "Chicago"
+      ],
+      [
+        "Los Angeles"
+      ]
+    ],
+    "predicted_answer": [],
     "execution_match": false
   },
   {
@@ -631,8 +657,29 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "movie_2",
-    "gold_answer": null,
-    "predicted_answer": null,
+    "gold_answer": [
+      [
+        2,
+        "G"
+      ],
+      [
+        1,
+        "NC-17"
+      ],
+      [
+        1,
+        "PG"
+      ],
+      [
+        1,
+        "PG-13"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        5
+      ]
+    ],
     "execution_match": false
   },
   {
@@ -757,8 +804,18 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "warehouse_1",
-    "gold_answer": null,
-    "predicted_answer": null,
+    "gold_answer": [
+      [
+        1625.0
+      ]
+    ],
+    "predicted_answer": [
+      [
+        5,
+        8,
+        90.0
+      ]
+    ],
     "execution_match": false
   },
   {
@@ -1098,9 +1155,17 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "bike_racing",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        3
+      ]
+    ],
+    "predicted_answer": [
+      [
+        3
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_001409",
@@ -1174,8 +1239,38 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "planet_1",
-    "gold_answer": null,
-    "predicted_answer": null,
+    "gold_answer": [
+      [
+        "Leo Wong",
+        2
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "Zapp Brannigan",
+        2
+      ],
+      [
+        "Leo Wong",
+        2
+      ],
+      [
+        "Al Gore's Head",
+        2
+      ],
+      [
+        "Ogden Wernstrom",
+        1
+      ],
+      [
+        "John Zoidfarb",
+        1
+      ],
+      [
+        "Barbados Slim",
+        1
+      ]
+    ],
     "execution_match": false
   },
   {
@@ -1305,7 +1400,11 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "bike_racing",
-    "gold_answer": null,
+    "gold_answer": [
+      [
+        3
+      ]
+    ],
     "predicted_answer": null,
     "execution_match": false
   },
@@ -1691,9 +1790,17 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "planet_1",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        103.0
+      ]
+    ],
+    "predicted_answer": [
+      [
+        103.0
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_001495",
@@ -2156,9 +2263,41 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "planet_1",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        "3004/05/11"
+      ],
+      [
+        "3004/05/11"
+      ],
+      [
+        null
+      ],
+      [
+        null
+      ],
+      [
+        null
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "3004/05/11"
+      ],
+      [
+        "3004/05/11"
+      ],
+      [
+        null
+      ],
+      [
+        null
+      ],
+      [
+        null
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_001555",
@@ -2324,7 +2463,14 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "online_exams",
-    "gold_answer": null,
+    "gold_answer": [
+      [
+        "Multiple Choice"
+      ],
+      [
+        "Single Choice"
+      ]
+    ],
     "predicted_answer": null,
     "execution_match": false
   },
@@ -2413,9 +2559,41 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "institution_sports",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        "University of Alberta"
+      ],
+      [
+        "University of British Columbia"
+      ],
+      [
+        "University of Calgary"
+      ],
+      [
+        "University of Regina"
+      ],
+      [
+        "University of Saskatchewan"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "University of Alberta"
+      ],
+      [
+        "University of British Columbia"
+      ],
+      [
+        "University of Calgary"
+      ],
+      [
+        "University of Regina"
+      ],
+      [
+        "University of Saskatchewan"
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_001097",
@@ -2870,9 +3048,35 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "planet_1",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        1,
+        1.5
+      ],
+      [
+        2,
+        2.0
+      ],
+      [
+        2,
+        3.0
+      ]
+    ],
+    "predicted_answer": [
+      [
+        1,
+        1.5
+      ],
+      [
+        2,
+        2.0
+      ],
+      [
+        2,
+        3.0
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_000586",
@@ -3045,8 +3249,33 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "warehouse_1",
-    "gold_answer": null,
-    "predicted_answer": null,
+    "gold_answer": [
+      [
+        3,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    "predicted_answer": [
+      [
+        3
+      ]
+    ],
     "execution_match": false
   },
   {
@@ -3098,7 +3327,20 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "bike_racing",
-    "gold_answer": null,
+    "gold_answer": [
+      [
+        "CANNONDALE SUPERSIX EVO HI-MOD DURA ACE"
+      ],
+      [
+        "CANYON AEROAD CF SLX 8.0 DI2"
+      ],
+      [
+        "GIANT TCR ADVANCED SL 0"
+      ],
+      [
+        "Ibis"
+      ]
+    ],
     "predicted_answer": null,
     "execution_match": false
   },
@@ -3435,9 +3677,27 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "warehouse_1",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        "4H8P",
+        "Rocks"
+      ],
+      [
+        "7G3H",
+        "Rocks"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "4H8P",
+        "Rocks"
+      ],
+      [
+        "7G3H",
+        "Rocks"
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_000261",
@@ -6630,9 +6890,35 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "planet_1",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        1,
+        10.0
+      ],
+      [
+        1,
+        15.0
+      ],
+      [
+        2,
+        27.0
+      ]
+    ],
+    "predicted_answer": [
+      [
+        1,
+        10.0
+      ],
+      [
+        1,
+        15.0
+      ],
+      [
+        2,
+        27.0
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_001030",
@@ -6924,8 +7210,58 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "university_rank",
-    "gold_answer": null,
-    "predicted_answer": null,
+    "gold_answer": [
+      [
+        1,
+        "Accounting"
+      ],
+      [
+        2,
+        "Urban Education"
+      ],
+      [
+        2,
+        "Healthcare Management"
+      ],
+      [
+        2,
+        "Journalism"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "Augustana College",
+        1
+      ],
+      [
+        "Augustana College",
+        2
+      ],
+      [
+        "Aurora University",
+        1
+      ],
+      [
+        "Augustana College",
+        2
+      ],
+      [
+        "Beloit College",
+        1
+      ],
+      [
+        "Benedictine University",
+        4
+      ],
+      [
+        "Aurora University",
+        3
+      ],
+      [
+        "Augustana College",
+        2
+      ]
+    ],
     "execution_match": false
   },
   {
@@ -7010,9 +7346,17 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "planet_1",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        103.0
+      ]
+    ],
+    "predicted_answer": [
+      [
+        103.0
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_000014",
@@ -7652,9 +7996,29 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "book_press",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        "Derrick Kosinski"
+      ],
+      [
+        "Evelyn Smith"
+      ],
+      [
+        "Jenn Grijalva"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "Derrick Kosinski"
+      ],
+      [
+        "Evelyn Smith"
+      ],
+      [
+        "Jenn Grijalva"
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_000080",
@@ -7827,7 +8191,36 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "bike_racing",
-    "gold_answer": null,
+    "gold_answer": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        7,
+        5
+      ]
+    ],
     "predicted_answer": null,
     "execution_match": false
   },
@@ -8747,9 +9140,71 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "book_press",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        "Hair-Raising Hare"
+      ],
+      [
+        "Hush My Mouse"
+      ],
+      [
+        "Hollywood Canine Canteen"
+      ],
+      [
+        "Daffy Doodles"
+      ],
+      [
+        "Hare Remover"
+      ],
+      [
+        "Baby Bottleneck"
+      ],
+      [
+        "Quentin Quail"
+      ],
+      [
+        "Holiday for Shoestrings"
+      ],
+      [
+        "Baseball Bugs"
+      ],
+      [
+        "Book Revue"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "Hair-Raising Hare"
+      ],
+      [
+        "Hush My Mouse"
+      ],
+      [
+        "Hollywood Canine Canteen"
+      ],
+      [
+        "Daffy Doodles"
+      ],
+      [
+        "Hare Remover"
+      ],
+      [
+        "Baby Bottleneck"
+      ],
+      [
+        "Quentin Quail"
+      ],
+      [
+        "Holiday for Shoestrings"
+      ],
+      [
+        "Baseball Bugs"
+      ],
+      [
+        "Book Revue"
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_000284",
@@ -9028,9 +9483,35 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "warehouse_1",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        1,
+        162.5
+      ],
+      [
+        2,
+        162.5
+      ],
+      [
+        4,
+        165.0
+      ]
+    ],
+    "predicted_answer": [
+      [
+        1,
+        162.5
+      ],
+      [
+        2,
+        162.5
+      ],
+      [
+        4,
+        165.0
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_000868",
@@ -9264,9 +9745,89 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "university_rank",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        "Milwaukee School of Engineering"
+      ],
+      [
+        "Benedictine University"
+      ],
+      [
+        "Carroll University "
+      ],
+      [
+        "Carthage College"
+      ],
+      [
+        "Concordia University Wisconsin"
+      ],
+      [
+        "Cornell College"
+      ],
+      [
+        "Defiance College"
+      ],
+      [
+        "Elmhurst College"
+      ],
+      [
+        "Fontbonne University"
+      ],
+      [
+        "Hanover College"
+      ],
+      [
+        "Beloit College"
+      ],
+      [
+        "Augustana College"
+      ],
+      [
+        "Aurora University"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "Benedictine University"
+      ],
+      [
+        "Fontbonne University"
+      ],
+      [
+        "Augustana College"
+      ],
+      [
+        "Carthage College"
+      ],
+      [
+        "Concordia University Wisconsin"
+      ],
+      [
+        "Aurora University"
+      ],
+      [
+        "Milwaukee School of Engineering"
+      ],
+      [
+        "Carroll University "
+      ],
+      [
+        "Hanover College"
+      ],
+      [
+        "Beloit College"
+      ],
+      [
+        "Defiance College"
+      ],
+      [
+        "Elmhurst College"
+      ],
+      [
+        "Cornell College"
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_002120",
@@ -9368,9 +9929,41 @@
     "mode": "non-thinking",
     "thinking_suppressed": false,
     "db_id": "movie_2",
-    "gold_answer": null,
-    "predicted_answer": null,
-    "execution_match": false
+    "gold_answer": [
+      [
+        "PG"
+      ],
+      [
+        "G"
+      ],
+      [
+        null
+      ],
+      [
+        "NC-17"
+      ],
+      [
+        "PG-13"
+      ]
+    ],
+    "predicted_answer": [
+      [
+        "PG"
+      ],
+      [
+        "G"
+      ],
+      [
+        null
+      ],
+      [
+        "NC-17"
+      ],
+      [
+        "PG-13"
+      ]
+    ],
+    "execution_match": true
   },
   {
     "instance_id": "spider_test_000496",

@@ -59,7 +59,7 @@ def evaluate(conn, input_path, output_path):
     return total, exec_count, er, match_count, ea, gold_errors
 
 def main():
-    conn = sqlite3.connect('data/data/train.db')
+    conn = sqlite3.connect('data/data/test.db')
     os.makedirs('output', exist_ok=True)
 
     print(f"{'File':<50} {'Total':>5} {'Match':>5} {'EA':>7} {'Gold Err':>8} {'Exec':>5} {'ER':>6}")

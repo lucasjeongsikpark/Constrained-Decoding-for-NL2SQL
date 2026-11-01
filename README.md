@@ -41,7 +41,7 @@ Execution accuracy (EA, %): a prediction counts as correct when it returns the s
 | thinking     | 1-shot    | **35.3** |       12.7 |       12.0 |
 
 > [!NOTE]
-> Spider EA here is 2–9 points higher than in the final report's Table 4 (for example, 43.3 instead of 36.0 for thinking, zero-shot, `none`). The report's Spider EA, and the `eval_spider_*.json` files in `evaluation/output/`, were computed while 8 of the 40 Spider test databases were unavailable, so the 24 sampled questions from those databases could never be scored as correct. The table above scores the same predictions with all databases present. WikiSQL numbers match the report exactly, and the report's trends and conclusions do not change.
+> Spider EA here is 2–9 points higher than in the final report's Table 4 (for example, 43.3 instead of 36.0 for thinking, zero-shot, `none`). The report's Spider EA was computed while 8 of the 40 Spider test databases were unavailable, so the 24 sampled questions from those databases could never be scored as correct. The table above scores the same predictions with all databases present. WikiSQL numbers match the report exactly, and the report's trends and conclusions do not change.
 
 What the numbers show:
 
@@ -87,10 +87,7 @@ cd CSCI566-GroupProject
 conda create -n nl2sql-vllm310 python=3.10 -y
 conda activate nl2sql-vllm310
 pip install -r requirements.txt
-pip install xgrammar sqlparse
 ```
-
-`xgrammar` (imported by the inference script) and `sqlparse` (used by the valid-SQL analysis) are not in `requirements.txt` yet.
 
 The first run downloads `Qwen/Qwen3-0.6B` from the Hugging Face Hub; later runs load it from the local cache. The model is loaded with `device_map="auto"`. The report's runs used an Apple M1 Pro (32 GB) with PyTorch's `mps` backend, and the full sweep took about 33 hours, most of it in thinking mode.
 
